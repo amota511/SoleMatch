@@ -44,7 +44,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         self.scrollView.contentSize = CGSize(width: self.view.frame.width * 3, height: self.view.frame.size.height)
         
-        
+        self.scrollView.isScrollEnabled = false
         
         self.scrollView.scrollRectToVisible(v2Frame , animated: false)
     }
