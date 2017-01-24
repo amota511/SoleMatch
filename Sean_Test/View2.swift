@@ -86,6 +86,17 @@ class View2: UIViewController {
     }
     
     func createNewCard() -> UIView{
+        
+        let url = URL(string: "https://bossip.files.wordpress.com/2014/01/drakes-air-jordans-ovo-07.jpg?w=900&h=700")
+        var image = UIImage(named: "Pug_portrait")
+        do {
+            let data = try Data(contentsOf: url!)
+            let sneakerPhoto = UIImage(data: data)
+            image = sneakerPhoto
+        }catch{
+            
+        }
+        
         let newCard = UIView()
         newCard.backgroundColor = UIColor.white
         
@@ -96,11 +107,11 @@ class View2: UIViewController {
         newCard.center = CGPoint(x: self.view.frame.midX, y: self.view.frame.midY)
         
        
-        let image = UIImage(named: "Pug_portrait")
+        
         let photo = UIImageView(image: image)
         photo.clipsToBounds = true
         photo.layer.cornerRadius = 15
-        photo.contentMode = .scaleToFill
+        photo.contentMode = .scaleAspectFit
         
         photo.frame.size.width = newCard.frame.width
         photo.frame.size.height = newCard.frame.height
@@ -123,14 +134,18 @@ class View2: UIViewController {
         labelView.heightAnchor.constraint(equalTo: photo.heightAnchor, multiplier: 1/10).isActive = true
         
         let nameLabel = UILabel()
-        nameLabel.text = "Mr. Pug, 21"
+        nameLabel.numberOfLines = 0
+        //nameLabel.allowsDefaultTighteningForTruncation = false
+        nameLabel.textAlignment = .left
+        nameLabel.lineBreakMode = .byWordWrapping
+        nameLabel.text = "OVO Jordan 10 Condition: Deadstock"
         labelView.addSubview(nameLabel)
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.topAnchor.constraint(equalTo: labelView.topAnchor, constant: 6).isActive = true
         nameLabel.leftAnchor.constraint(equalTo: labelView.leftAnchor, constant: 6).isActive = true
         nameLabel.widthAnchor.constraint(equalTo: labelView.widthAnchor, multiplier: 9/10).isActive = true
-        nameLabel.heightAnchor.constraint(equalTo: labelView.heightAnchor, multiplier: 1/2.5).isActive = true
+        nameLabel.heightAnchor.constraint(equalTo: labelView.heightAnchor, multiplier: 1).isActive = true
         
         self.view.insertSubview(newCard, at: 0)
 
