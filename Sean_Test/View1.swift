@@ -19,6 +19,8 @@ class View1: UIViewController {
     var myCollection: UICollectionView!
     var preferencesButton: UILabel!
     var myPreferences: UIView!
+    var myPrefSize: UILabel!
+    var myPrefSliderValue: Float!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +31,7 @@ class View1: UIViewController {
         createCollectionButton()
         //createMyCollectionView()
         createPreferencesButton()
-        createPreferncesView()
+        createPreferencesView()
     }
     
     func  createRightButton() {
@@ -192,8 +194,68 @@ class View1: UIViewController {
     
     func createPreferencesView() {
         
+        let preferencesView = UIView()
+        preferencesView.backgroundColor = UIColor.white
+        preferencesView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(preferencesView)
+        
+        preferencesView.topAnchor.constraint(equalTo: preferencesButton.bottomAnchor, constant: 1).isActive = true
+        preferencesView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        preferencesView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        preferencesView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/3).isActive = true
         
         
+        let sizeLabel = UILabel()
+        sizeLabel.textAlignment = .left
+        sizeLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        preferencesView.addSubview(sizeLabel)
+        
+        sizeLabel.topAnchor.constraint(equalTo: preferencesView.topAnchor, constant: 5).isActive = true
+        sizeLabel.centerXAnchor.constraint(equalTo: preferencesView.centerXAnchor).isActive = true
+        sizeLabel.widthAnchor.constraint(equalTo: preferencesView.widthAnchor).isActive = true
+        sizeLabel.heightAnchor.constraint(equalTo: preferencesView.heightAnchor, multiplier: 1/8).isActive = true
+        
+        self.myPrefSize = sizeLabel
+        
+        let sizeSlider = UISlider()
+        sizeSlider.translatesAutoresizingMaskIntoConstraints = false
+        sizeSlider.minimumValue = 1
+        sizeSlider.maximumValue = 15
+        
+        sizeSlider.setValue(7, animated: true)
+        self.myPrefSliderValue = sizeSlider.value
+        sizeSlider.maximumTrackTintColor = UIColor.green
+        sizeSlider.tintColor = UIColor.blue
+        
+        sizeLabel.text = "Size: \(sizeSlider.value)"
+        
+        sizeSlider.addTarget(self, action: #selector(sliderMoved(sender:)), for: .valueChanged)
+        
+        preferencesView.addSubview(sizeSlider)
+        
+        sizeSlider.topAnchor.constraint(equalTo: sizeLabel.bottomAnchor, constant: 2).isActive = true
+        sizeSlider.centerXAnchor.constraint(equalTo: preferencesView.centerXAnchor).isActive = true
+        sizeSlider.widthAnchor.constraint(equalTo: preferencesView.widthAnchor).isActive = true
+        sizeSlider.heightAnchor.constraint(equalTo: preferencesView.heightAnchor, multiplier: 1/6).isActive = true
+        
+        
+        
+        
+    }
+    
+    func sliderMoved(sender: UISlider) {
+        if sender.value > myPrefSliderValue {
+            sender.setValue( floorf(sender.value), animated: false)
+        }else{
+            sender.setValue( floorf(sender.value), animated: false)
+        }
+        
+        myPrefSliderValue = sender.value
+        print(sender.value)
+        myPrefSize.text = "Size: \(sender.value)"
     }
 
     func scrollRight(){
