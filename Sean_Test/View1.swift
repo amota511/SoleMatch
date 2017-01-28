@@ -17,8 +17,12 @@ class View1: UIViewController {
     var userName: UILabel!
     var collectionButton: UILabel!
     var myCollection: UICollectionView!
+    var myCollectionHeight: NSLayoutConstraint!
+    var isMyCollectionDroppedDown: Bool = false
     var preferencesButton: UILabel!
     var myPreferences: UIView!
+    var myPreferencesHeight: NSLayoutConstraint!
+    var isMyPreferencesDroppedDown: Bool = false
     var myPrefSize: UILabel!
     var myPrefSliderValue: Float!
     
@@ -29,7 +33,7 @@ class View1: UIViewController {
         createUserImage()
         createUserNameLabel()
         createCollectionButton()
-        //createMyCollectionView()
+        createMyCollectionView()
         createPreferencesButton()
         createPreferencesView()
     }
@@ -128,7 +132,17 @@ class View1: UIViewController {
     }
     
     func myCollectionTapRecognizer(){
-        print("Collection button was tapped")
+        self.myCollectionHeight.isActive = false
+        if !isMyCollectionDroppedDown {
+            self.myCollectionHeight = myCollection.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/3)
+            isMyCollectionDroppedDown = !isMyCollectionDroppedDown
+        }else{
+            self.myCollectionHeight = myCollection.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0)
+            isMyCollectionDroppedDown = !isMyCollectionDroppedDown
+        }
+
+        self.myCollectionHeight.isActive = true
+        
     }
     
     func createMyCollectionView() {
@@ -155,11 +169,12 @@ class View1: UIViewController {
         connectionsCollectionView.bounces = true
         
         self.view.addSubview(connectionsCollectionView)
-        
+        self.myCollectionHeight = connectionsCollectionView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0)
+        self.myCollectionHeight.isActive = true
         connectionsCollectionView.topAnchor.constraint(equalTo: collectionButton.bottomAnchor).isActive = true
         connectionsCollectionView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         connectionsCollectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        connectionsCollectionView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/3).isActive = true
+        
         
         self.myCollection = connectionsCollectionView
     }
@@ -180,7 +195,7 @@ class View1: UIViewController {
         
         self.view.addSubview(preferencesButton)
         
-        preferencesButton.topAnchor.constraint(equalTo: collectionButton.bottomAnchor, constant: 1).isActive = true
+        preferencesButton.topAnchor.constraint(equalTo: myCollection.bottomAnchor, constant: 1).isActive = true
         preferencesButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         preferencesButton.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
         preferencesButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/18).isActive = true
@@ -189,7 +204,24 @@ class View1: UIViewController {
     }
     
     func myPreferencesTapRecognizer(){
-        print("Preferences button was tapped")
+        self.myPreferencesHeight.isActive = false
+        if !isMyPreferencesDroppedDown {
+            self.myPreferencesHeight = myPreferences.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/3)
+            isMyPreferencesDroppedDown = !isMyPreferencesDroppedDown
+            for view in myPreferences.subviews {
+                view.isHidden = false
+            }
+        }else{
+            self.myPreferencesHeight = myPreferences.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0)
+            isMyPreferencesDroppedDown = !isMyPreferencesDroppedDown
+            for view in myPreferences.subviews {
+                view.isHidden = true
+            }
+        }
+        
+        
+        
+        self.myPreferencesHeight.isActive = true
     }
     
     func createPreferencesView() {
@@ -200,11 +232,14 @@ class View1: UIViewController {
         
         self.view.addSubview(preferencesView)
         
+        self.myPreferencesHeight = preferencesView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0)
+        self.myPreferencesHeight.isActive = true
         preferencesView.topAnchor.constraint(equalTo: preferencesButton.bottomAnchor, constant: 1).isActive = true
         preferencesView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         preferencesView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        preferencesView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/3).isActive = true
         
+        
+        self.myPreferences = preferencesView
         
         let sizeLabel = UILabel()
         sizeLabel.textAlignment = .left
@@ -225,7 +260,7 @@ class View1: UIViewController {
         sizeSlider.minimumValue = 1
         sizeSlider.maximumValue = 15
         
-        sizeSlider.setValue(7, animated: true)
+        sizeSlider.setValue(6, animated: true)
         self.myPrefSliderValue = sizeSlider.value
         sizeSlider.maximumTrackTintColor = UIColor.green
         sizeSlider.tintColor = UIColor.blue
@@ -235,13 +270,14 @@ class View1: UIViewController {
         sizeSlider.addTarget(self, action: #selector(sliderMoved(sender:)), for: .valueChanged)
         
         preferencesView.addSubview(sizeSlider)
-        
-        sizeSlider.topAnchor.constraint(equalTo: sizeLabel.bottomAnchor, constant: 2).isActive = true
+        sizeSlider.topAnchor.constraint(equalTo: sizeLabel.bottomAnchor, constant: 0).isActive = true
         sizeSlider.centerXAnchor.constraint(equalTo: preferencesView.centerXAnchor).isActive = true
         sizeSlider.widthAnchor.constraint(equalTo: preferencesView.widthAnchor).isActive = true
         sizeSlider.heightAnchor.constraint(equalTo: preferencesView.heightAnchor, multiplier: 1/6).isActive = true
         
-        
+        for view in myPreferences.subviews {
+            view.isHidden = true
+        }
         
         
     }
