@@ -19,6 +19,7 @@
 		1A9AB2FE1E34064C003319EC /* View2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9AB2FC1E34064C003319EC /* View2.xib */; };
 		1A9AB3011E340659003319EC /* View3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AB2FF1E340659003319EC /* View3.swift */; };
 		1A9AB3021E340659003319EC /* View3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9AB3001E340659003319EC /* View3.xib */; };
+		1AC89E0F1E428D0500539890 /* Sneaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC89E0E1E428D0500539890 /* Sneaker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		1A9AB2FC1E34064C003319EC /* View2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View2.xib; sourceTree = "<group>"; };
 		1A9AB2FF1E340659003319EC /* View3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View3.swift; sourceTree = "<group>"; };
 		1A9AB3001E340659003319EC /* View3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View3.xib; sourceTree = "<group>"; };
+		1AC89E0E1E428D0500539890 /* Sneaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sneaker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				1A9AB2F71E34063B003319EC /* View1.swift */,
 				1A9AB2F81E34063B003319EC /* View1.xib */,
 				1A9AB2FB1E34064C003319EC /* View2.swift */,
+				1AC89E0E1E428D0500539890 /* Sneaker.swift */,
 				1A9AB2FC1E34064C003319EC /* View2.xib */,
 				1A9AB2FF1E340659003319EC /* View3.swift */,
 				1A5E9A791E3A91A7005DE1D8 /* ConnectionsCVCell.swift */,
@@ -162,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A37D9B51E2896A9000B11B2 /* ViewController.swift in Sources */,
+				1AC89E0F1E428D0500539890 /* Sneaker.swift in Sources */,
 				1A9AB3011E340659003319EC /* View3.swift in Sources */,
 				1A9AB2F91E34063B003319EC /* View1.swift in Sources */,
 				1A37D9B31E2896A9000B11B2 /* AppDelegate.swift in Sources */,

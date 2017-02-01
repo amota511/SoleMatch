@@ -43,7 +43,6 @@ class View2: UIViewController {
         
         assignPanGesture(card: cardA!)
         
-        
         self.view.addSubview(rightButton)
         self.view.addSubview(leftButton)
         
@@ -87,14 +86,18 @@ class View2: UIViewController {
     
     func createNewCard() -> UIView{
         
-        let url = URL(string: "https://bossip.files.wordpress.com/2014/01/drakes-air-jordans-ovo-07.jpg?w=900&h=700")
-        var image = UIImage(named: "Pug_portrait")
-        do {
-            let data = try Data(contentsOf: url!)
-            let sneakerPhoto = UIImage(data: data)
-            image = sneakerPhoto
-        }catch{
-            
+        let photo = UIImageView()
+        DispatchQueue.global(qos: .background).async {
+            do {
+                let url = URL(string: "https://bossip.files.wordpress.com/2014/01/drakes-air-jordans-ovo-07.jpg?w=900&h=700")
+                let data = try Data(contentsOf: url!)
+                let image = UIImage(data: data)
+                DispatchQueue.main.async {
+                    photo.image = image
+                }
+            }catch{
+              print("The Sneaker photo could not be loaded")
+            }
         }
         
         let newCard = UIView()
@@ -102,13 +105,10 @@ class View2: UIViewController {
         
         newCard.layer.cornerRadius = 15
         
-        newCard.frame.size.width = self.view.frame.width / 1.2
-        newCard.frame.size.height = self.view.frame.height / 1.4
-        newCard.center = CGPoint(x: self.view.frame.midX, y: self.view.frame.midY)
+        newCard.frame.size.width = self.view.frame.width / 1.05
+        newCard.frame.size.height = self.view.frame.height / 1.2
+        newCard.center = CGPoint(x: self.view.frame.midX + 1, y: self.view.frame.midY + 45)
         
-       
-        
-        let photo = UIImageView(image: image)
         photo.clipsToBounds = true
         photo.layer.cornerRadius = 15
         photo.contentMode = .scaleAspectFit
@@ -116,8 +116,8 @@ class View2: UIViewController {
         photo.frame.size.width = newCard.frame.width
         photo.frame.size.height = newCard.frame.height
 
-        photo.center.x = newCard.center.x - 31.5
-        photo.center.y = newCard.center.y - 95
+        photo.center.x = newCard.center.x - 10
+        photo.center.y = newCard.center.y - 115
         
         newCard.addSubview(photo)
 
@@ -128,24 +128,37 @@ class View2: UIViewController {
         photo.addSubview(labelView)
         
         labelView.translatesAutoresizingMaskIntoConstraints = false
-        labelView.bottomAnchor.constraint(equalTo: photo.bottomAnchor, constant: -24).isActive = true
+        labelView.bottomAnchor.constraint(equalTo: photo.bottomAnchor, constant: -6).isActive = true
         labelView.centerXAnchor.constraint(equalTo: photo.centerXAnchor).isActive = true
-        labelView.widthAnchor.constraint(equalTo: photo.widthAnchor, multiplier: 9/10).isActive = true
+        labelView.widthAnchor.constraint(equalTo: photo.widthAnchor, multiplier: 19.5/20).isActive = true
         labelView.heightAnchor.constraint(equalTo: photo.heightAnchor, multiplier: 1/10).isActive = true
         
         let nameLabel = UILabel()
         nameLabel.numberOfLines = 0
-        //nameLabel.allowsDefaultTighteningForTruncation = false
         nameLabel.textAlignment = .left
         nameLabel.lineBreakMode = .byWordWrapping
-        nameLabel.text = "OVO Jordan 10 Condition: Deadstock"
+        nameLabel.text = "Brand: Jordan\nCondition: Deadstock "
         labelView.addSubview(nameLabel)
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.topAnchor.constraint(equalTo: labelView.topAnchor, constant: 6).isActive = true
-        nameLabel.leftAnchor.constraint(equalTo: labelView.leftAnchor, constant: 6).isActive = true
-        nameLabel.widthAnchor.constraint(equalTo: labelView.widthAnchor, multiplier: 9/10).isActive = true
-        nameLabel.heightAnchor.constraint(equalTo: labelView.heightAnchor, multiplier: 1).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: labelView.topAnchor).isActive = true
+        nameLabel.leftAnchor.constraint(equalTo: labelView.leftAnchor).isActive = true
+        nameLabel.widthAnchor.constraint(equalTo: labelView.widthAnchor).isActive = true
+        nameLabel.heightAnchor.constraint(equalTo: labelView.heightAnchor).isActive = true
+        
+        let priceLabel = UILabel()
+        priceLabel.frame = CGRect(x: 250, y: 5, width: 100, height: 35)
+        priceLabel.text = "$250"
+        //priceLabel.translatesAutoresizingMaskIntoConstraints = false
+        priceLabel.textAlignment = .center
+        priceLabel.lineBreakMode = .byWordWrapping
+        priceLabel.numberOfLines = 0
+        priceLabel.backgroundColor = UIColor.lightGray
+        priceLabel.clipsToBounds = true
+        priceLabel.layer.cornerRadius = 10
+        
+        newCard.addSubview(priceLabel)
+        
         
         self.view.insertSubview(newCard, at: 0)
 
@@ -177,7 +190,7 @@ class View2: UIViewController {
                 
                 if view.center.x < 65 {
                     
-                    UIView.animate(withDuration: 0.5, animations: {
+                    UIView.animate(withDuration: 0.2, animations: {
                         view.center.x = -(self.cardA?.frame.width)!
                     }, completion: {
                         completionFlag in
@@ -189,13 +202,13 @@ class View2: UIViewController {
                         self.cardB! = self.createNewCard()
                         self.cardB!.center.x = 187.5
                         let photo = self.cardB?.subviews.first as! UIImageView
-                        photo.center.x = self.cardB!.center.x - 31.5
-                        photo.center.y = self.cardB!.center.y - 95
+                        photo.center.x = self.cardB!.center.x - 9.5
+                        photo.center.y = self.cardB!.center.y - 115
                     })
                     
                 }else if view.center.x > self.view.frame.width - 50 {
 
-                    UIView.animate(withDuration: 0.5, animations: {
+                    UIView.animate(withDuration: 0.2, animations: {
                         view.center.x = self.view.frame.width + (self.cardA?.frame.width)!
                     }, completion: {
                         completionFlag in
@@ -207,16 +220,14 @@ class View2: UIViewController {
                         self.cardB! = self.createNewCard()
                         self.cardB!.center.x = 187.5
                         let photo = self.cardB?.subviews.first as! UIImageView
-                        photo.center.x = self.cardB!.center.x - 31.5
-                        photo.center.y = self.cardB!.center.y - 95
-                        
-                        
+                        photo.center.x = self.cardB!.center.x - 9.5
+                        photo.center.y = self.cardB!.center.y - 115
                     })
                     
                 }else {
                     
                     UIView.animate(withDuration: 0.5, animations: {
-                        sender.view!.center = CGPoint(x: self.view.frame.midX - (self.view.frame.midX / 1.5), y: self.view.frame.midY)
+                        sender.view!.center = CGPoint(x: self.cardB!.center.x, y: self.cardB!.center.y )
                         sender.view!.transform = sender.view!.transform.rotated(by: -atan2((self.cardA?.transform.b)!, (self.cardA?.transform.a)!))
                     })
                     sender.setTranslation(CGPoint(x: 0, y: 0), in: self.view)

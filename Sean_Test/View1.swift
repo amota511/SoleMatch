@@ -146,37 +146,35 @@ class View1: UIViewController {
     }
     
     func createMyCollectionView() {
-        let connectionsLayout = UICollectionViewFlowLayout()
-        connectionsLayout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        let collectionLayout = UICollectionViewFlowLayout()
+        collectionLayout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        collectionLayout.scrollDirection = .vertical
         
-        connectionsLayout.scrollDirection = .vertical
+        let collectionCV = UICollectionView(frame: CGRect(x: 0, y: 300, width: self.view.frame.width, height: self.view.frame.height * (1/5)), collectionViewLayout: collectionLayout)
+        collectionLayout.itemSize = CGSize(width: collectionLayout.collectionView!.frame.width * (1/3.4), height: collectionLayout.collectionView!.frame.height * (5/6))
+        collectionCV.dataSource = self
+        collectionCV.delegate = self
+        collectionCV.translatesAutoresizingMaskIntoConstraints = false
+        collectionCV.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "ConnectionsCell")
+        collectionCV.isScrollEnabled = true
+        collectionCV.backgroundColor = UIColor.white
+        collectionCV.showsHorizontalScrollIndicator = false
+        collectionCV.allowsSelection = true
+        collectionCV.alwaysBounceHorizontal = false
+        collectionCV.allowsMultipleSelection = false
+        collectionCV.alwaysBounceVertical = true
+        collectionCV.bounces = true
+        collectionCV.restorationIdentifier = "CollectionCV"
         
-        
-        
-        let connectionsCollectionView = UICollectionView(frame: CGRect(x: 0, y: 100, width: self.view.frame.width, height: self.view.frame.height * (1/8)), collectionViewLayout: connectionsLayout)
-        connectionsLayout.itemSize = CGSize(width: connectionsLayout.collectionView!.frame.width * (1/6), height: connectionsLayout.collectionView!.frame.height * (5/6))
-        connectionsCollectionView.dataSource = self
-        connectionsCollectionView.delegate = self
-        connectionsCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        connectionsCollectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "ConnectionsCell")
-        connectionsCollectionView.isScrollEnabled = true
-        connectionsCollectionView.backgroundColor = UIColor.white
-        connectionsCollectionView.showsHorizontalScrollIndicator = false
-        connectionsCollectionView.allowsSelection = true
-        connectionsCollectionView.alwaysBounceHorizontal = false
-        connectionsCollectionView.allowsMultipleSelection = false
-        connectionsCollectionView.alwaysBounceVertical = true
-        connectionsCollectionView.bounces = true
-        
-        self.view.addSubview(connectionsCollectionView)
-        self.myCollectionHeight = connectionsCollectionView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0)
+        self.view.addSubview(collectionCV)
+        self.myCollectionHeight = collectionCV.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0)
         self.myCollectionHeight.isActive = true
-        connectionsCollectionView.topAnchor.constraint(equalTo: collectionButton.bottomAnchor).isActive = true
-        connectionsCollectionView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        connectionsCollectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        collectionCV.topAnchor.constraint(equalTo: collectionButton.bottomAnchor).isActive = true
+        collectionCV.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        collectionCV.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
         
         
-        self.myCollection = connectionsCollectionView
+        self.myCollection = collectionCV
     }
     
     func createPreferencesButton() {
@@ -219,8 +217,6 @@ class View1: UIViewController {
             }
         }
         
-        
-        
         self.myPreferencesHeight.isActive = true
     }
     
@@ -244,7 +240,6 @@ class View1: UIViewController {
         let sizeLabel = UILabel()
         sizeLabel.textAlignment = .left
         sizeLabel.translatesAutoresizingMaskIntoConstraints = false
-        
         
         preferencesView.addSubview(sizeLabel)
         
@@ -278,25 +273,30 @@ class View1: UIViewController {
         for view in myPreferences.subviews {
             view.isHidden = true
         }
-        
-        
     }
     
     func sliderMoved(sender: UISlider) {
-        if sender.value > myPrefSliderValue {
-            sender.setValue( floorf(sender.value), animated: false)
-        }else{
-            sender.setValue( floorf(sender.value), animated: false)
+        
+        let flooredValue = floorf(sender.value)
+        
+        if sender.value < flooredValue + 0.4 {
+            sender.setValue( flooredValue, animated: false)
+            myPrefSliderValue = flooredValue
+        } else if sender.value > flooredValue + 0.4 && sender.value < floorf(sender.value) + 0.6 {
+            sender.setValue( flooredValue + 0.5, animated: false)
+            myPrefSliderValue = flooredValue + 0.5
+        } else if sender.value > flooredValue + 0.6 {
+            sender.setValue( floorf(sender.value) + 1.0, animated: false)
+            myPrefSliderValue = flooredValue + 1
         }
         
-        myPrefSliderValue = sender.value
         print(sender.value)
-        myPrefSize.text = "Size: \(sender.value)"
+        myPrefSize.text = "Size: \(myPrefSliderValue!)"
     }
 
     func scrollRight(){
         let v2Frame : CGRect = CGRect(x: Int((self.view.frame.width) * 1.67), y: 0, width: Int(scrollView.frame.width / 3), height: Int(scrollView.frame.height))
-        self.scrollView.scrollRectToVisible(v2Frame, animated: true)
+        scrollView.scrollRectToVisible(v2Frame, animated: true)
         print("The right button was excecuted")
     }
 
@@ -310,7 +310,7 @@ extension View1: UICollectionViewDelegate, UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 36
+        return 6
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ConnectionsCell", for: indexPath)
@@ -318,10 +318,14 @@ extension View1: UICollectionViewDelegate, UICollectionViewDataSource {
         
         cell.clipsToBounds = false
         cell.layer.cornerRadius = 19
+        
+        if indexPath.row == 5 {
+            cell.backgroundColor = UIColor.green
+        }
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        print(indexPath.row)
     }
 }
 
