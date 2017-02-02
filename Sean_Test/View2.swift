@@ -16,6 +16,8 @@ class View2: UIViewController {
     var lastTranslationX: CGFloat = 0
     var scrollView: UIScrollView!
     
+    var filterSelectionViewCenterX: NSLayoutConstraint!
+    
     lazy var leftButton: UIButton = {
         var button = UIButton()
         button.setTitle("Left", for: .normal)
@@ -43,20 +45,136 @@ class View2: UIViewController {
         
         assignPanGesture(card: cardA!)
         
-        self.view.addSubview(rightButton)
-        self.view.addSubview(leftButton)
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.lightGray
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(headerView)
+        
+        headerView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        headerView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        headerView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        headerView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/11).isActive = true
+        
+        
+        headerView.addSubview(rightButton)
+        headerView.addSubview(leftButton)
         
         leftButton.translatesAutoresizingMaskIntoConstraints = false
-        leftButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 24).isActive = true
-        leftButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 12).isActive = true
-        leftButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1/12).isActive = true
-        leftButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/15).isActive = true
+        leftButton.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 24).isActive = true
+        leftButton.leftAnchor.constraint(equalTo: headerView.leftAnchor, constant: 12).isActive = true
+        leftButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/8).isActive = true
+        leftButton.heightAnchor.constraint(equalTo: headerView.heightAnchor, multiplier: 1/2).isActive = true
         
         rightButton.translatesAutoresizingMaskIntoConstraints = false
-        rightButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 24).isActive = true
-        rightButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -12).isActive = true
-        rightButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1/8).isActive = true
-        rightButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/15).isActive = true
+        rightButton.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 24).isActive = true
+        rightButton.rightAnchor.constraint(equalTo: headerView.rightAnchor, constant: -12).isActive = true
+        rightButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/8).isActive = true
+        rightButton.heightAnchor.constraint(equalTo: headerView.heightAnchor, multiplier: 1/2).isActive = true
+        
+        
+        let cardFilter = UIView()
+        let rand1 = arc4random() % 255
+        let rand2 = arc4random() % 255
+        let rand3 = arc4random() % 255
+        cardFilter.backgroundColor = UIColor(red: CGFloat(rand1) / 255.0, green: CGFloat(rand2)/255.0, blue: CGFloat(rand3)/255.0, alpha: 1.0)
+        cardFilter.layer.cornerRadius = 10
+        cardFilter.clipsToBounds = true
+        cardFilter.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.view.addSubview(cardFilter)
+        
+        cardFilter.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 9).isActive = true
+        cardFilter.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        cardFilter.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1/1.85).isActive = true
+        cardFilter.heightAnchor.constraint(equalTo: headerView.heightAnchor, multiplier: 1/2).isActive = true
+        
+        let filterSelectionView = UIView()
+        filterSelectionView.backgroundColor = UIColor.blue
+        filterSelectionView.alpha = 0.85
+        filterSelectionView.layer.cornerRadius = 10
+        filterSelectionView.clipsToBounds = true
+        filterSelectionView.isUserInteractionEnabled = true
+        filterSelectionView.restorationIdentifier = "filterSelectionView"
+        filterSelectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        cardFilter.addSubview(filterSelectionView)
+        
+        let button1 = UIButton()
+        button1.backgroundColor = UIColor.clear
+        button1.setTitle("202", for: .normal)
+        button1.layer.cornerRadius = 10
+        button1.clipsToBounds = true
+        button1.addTarget(self, action: #selector(changeFilter(sender:)), for: .touchUpInside)
+        button1.translatesAutoresizingMaskIntoConstraints = false
+        
+        cardFilter.addSubview(button1)
+        
+        button1.topAnchor.constraint(equalTo: cardFilter.topAnchor).isActive = true
+        button1.leftAnchor.constraint(equalTo: cardFilter.leftAnchor).isActive = true
+        button1.heightAnchor.constraint(equalTo: cardFilter.heightAnchor).isActive = true
+        button1.widthAnchor.constraint(equalTo: cardFilter.widthAnchor, multiplier: 1/3.2).isActive = true
+        
+        let button2 = UIButton()
+        button2.backgroundColor = UIColor.clear
+        button2.setTitle("505", for: .normal)
+        button2.layer.cornerRadius = 10
+        button2.clipsToBounds = true
+        button2.addTarget(self, action: #selector(changeFilter(sender:)), for: .touchUpInside)
+        button2.translatesAutoresizingMaskIntoConstraints = false
+        
+        cardFilter.addSubview(button2)
+        
+        button2.topAnchor.constraint(equalTo: cardFilter.topAnchor).isActive = true
+        button2.centerXAnchor.constraint(equalTo: cardFilter.centerXAnchor).isActive = true
+        button2.heightAnchor.constraint(equalTo: cardFilter.heightAnchor).isActive = true
+        button2.widthAnchor.constraint(equalTo: cardFilter.widthAnchor, multiplier: 1/3.2).isActive = true
+        
+        let button3 = UIButton()
+        button3.backgroundColor = UIColor.clear
+        button3.setTitle("1010", for: .normal)
+        button3.layer.cornerRadius = 10
+        button3.clipsToBounds = true
+        button3.addTarget(self, action: #selector(changeFilter(sender:)), for: .touchUpInside)
+        button3.translatesAutoresizingMaskIntoConstraints = false
+        
+        cardFilter.addSubview(button3)
+        
+        button3.topAnchor.constraint(equalTo: cardFilter.topAnchor).isActive = true
+        button3.rightAnchor.constraint(equalTo: cardFilter.rightAnchor).isActive = true
+        button3.heightAnchor.constraint(equalTo: cardFilter.heightAnchor).isActive = true
+        button3.widthAnchor.constraint(equalTo: cardFilter.widthAnchor, multiplier: 1/3.2).isActive = true
+        
+        
+        
+        
+        filterSelectionView.topAnchor.constraint(equalTo: cardFilter.topAnchor).isActive = true
+        filterSelectionViewCenterX = filterSelectionView.centerXAnchor.constraint(equalTo: cardFilter.centerXAnchor)
+        filterSelectionViewCenterX.isActive = true
+        filterSelectionView.heightAnchor.constraint(equalTo: cardFilter.heightAnchor).isActive = true
+        filterSelectionView.widthAnchor.constraint(equalTo: cardFilter.widthAnchor, multiplier: 1/3.2).isActive = true
+        
+    }
+    
+    func changeFilter(sender: UIButton){
+        let cardFilter = sender.superview!
+        var filterSelectionView: UIView? = nil
+        
+        for view in cardFilter.subviews {
+            if view.restorationIdentifier == "filterSelectionView" {
+                filterSelectionView = view
+            }
+        }
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            
+            filterSelectionView?.center.x = sender.center.x
+            let rand1 = arc4random() % 255
+            let rand2 = arc4random() % 255
+            let rand3 = arc4random() % 255
+            filterSelectionView?.backgroundColor = UIColor(red: CGFloat(rand1) / 255.0, green: CGFloat(rand2)/255.0, blue: CGFloat(rand3)/255.0, alpha: 1.0)
+            print(rand1)
+        })
         
     }
 
@@ -96,7 +214,7 @@ class View2: UIViewController {
                     photo.image = image
                 }
             }catch{
-              print("The Sneaker photo could not be loaded")
+                print("The Sneaker photo could not be loaded")
             }
         }
         
@@ -106,7 +224,7 @@ class View2: UIViewController {
         newCard.layer.cornerRadius = 15
         
         newCard.frame.size.width = self.view.frame.width / 1.05
-        newCard.frame.size.height = self.view.frame.height / 1.2
+        newCard.frame.size.height = self.view.frame.height / 1.23
         newCard.center = CGPoint(x: self.view.frame.midX + 1, y: self.view.frame.midY + 45)
         
         photo.clipsToBounds = true
@@ -123,33 +241,34 @@ class View2: UIViewController {
 
         let labelView = UIView()
         labelView.backgroundColor = UIColor.lightText
-        labelView.clipsToBounds = false
+        labelView.clipsToBounds = true
         labelView.layer.cornerRadius = 15
         photo.addSubview(labelView)
         
         labelView.translatesAutoresizingMaskIntoConstraints = false
-        labelView.bottomAnchor.constraint(equalTo: photo.bottomAnchor, constant: -6).isActive = true
+        labelView.bottomAnchor.constraint(equalTo: photo.bottomAnchor, constant: -2).isActive = true
         labelView.centerXAnchor.constraint(equalTo: photo.centerXAnchor).isActive = true
         labelView.widthAnchor.constraint(equalTo: photo.widthAnchor, multiplier: 19.5/20).isActive = true
-        labelView.heightAnchor.constraint(equalTo: photo.heightAnchor, multiplier: 1/10).isActive = true
+        labelView.heightAnchor.constraint(equalTo: photo.heightAnchor, multiplier: 1/8).isActive = true
         
         let nameLabel = UILabel()
         nameLabel.numberOfLines = 0
         nameLabel.textAlignment = .left
         nameLabel.lineBreakMode = .byWordWrapping
-        nameLabel.text = "Brand: Jordan\nCondition: Deadstock "
+        nameLabel.clipsToBounds = true
+        nameLabel.layer.cornerRadius = 15
+        nameLabel.text = "Name: OvO 10  \nCondition: Deadstock \nSize: 12"
         labelView.addSubview(nameLabel)
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.topAnchor.constraint(equalTo: labelView.topAnchor).isActive = true
-        nameLabel.leftAnchor.constraint(equalTo: labelView.leftAnchor).isActive = true
+        nameLabel.leftAnchor.constraint(equalTo: labelView.leftAnchor, constant: 2).isActive = true
         nameLabel.widthAnchor.constraint(equalTo: labelView.widthAnchor).isActive = true
         nameLabel.heightAnchor.constraint(equalTo: labelView.heightAnchor).isActive = true
         
         let priceLabel = UILabel()
         priceLabel.frame = CGRect(x: 250, y: 5, width: 100, height: 35)
         priceLabel.text = "$250"
-        //priceLabel.translatesAutoresizingMaskIntoConstraints = false
         priceLabel.textAlignment = .center
         priceLabel.lineBreakMode = .byWordWrapping
         priceLabel.numberOfLines = 0
@@ -159,7 +278,7 @@ class View2: UIViewController {
         
         newCard.addSubview(priceLabel)
         
-        
+        //self.view.addSubview(newCard)
         self.view.insertSubview(newCard, at: 0)
 
         return newCard
@@ -209,7 +328,7 @@ class View2: UIViewController {
                 }else if view.center.x > self.view.frame.width - 50 {
 
                     UIView.animate(withDuration: 0.2, animations: {
-                        view.center.x = self.view.frame.width + (self.cardA?.frame.width)!
+                        view.center.x = self.view.frame.width + ((self.cardA?.frame.width)! / 2)
                     }, completion: {
                         completionFlag in
                         view.removeFromSuperview()
