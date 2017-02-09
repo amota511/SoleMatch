@@ -20,8 +20,8 @@ class View2: UIViewController {
     
     lazy var leftButton: UIButton = {
         var button = UIButton()
-        button.setTitle("Left", for: .normal)
-       
+        //button.setTitle("Left", for: .normal)
+       button.setImage(#imageLiteral(resourceName: "Shoe Box"), for: .normal)
         button.setTitleColor(UIColor.blue, for: .normal)
         button.addTarget(self, action: #selector(scrollLeft), for: .touchUpInside)
         return button
@@ -30,7 +30,7 @@ class View2: UIViewController {
     lazy var rightButton: UIButton = {
         var button = UIButton()
         button.setTitle("Right", for: .normal)
-        
+        button.setImage(#imageLiteral(resourceName: "Location Love"), for: .normal)
         button.setTitleColor(UIColor.blue, for: .normal)
         button.addTarget(self, action: #selector(scrollRight), for: .touchUpInside)
         return button
@@ -46,7 +46,9 @@ class View2: UIViewController {
         assignPanGesture(card: cardA!)
         
         let headerView = UIView()
-        headerView.backgroundColor = UIColor.lightGray
+        headerView.backgroundColor = UIColor(red: 42/255.0, green: 47/255.0, blue: 46/255.0, alpha: 1.0)
+            
+        // Background color for sole match font UIColor(red: 225 / 255.0, green: 40/255.0, blue: 30/255.0, alpha: 1.0)
         headerView.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(headerView)
@@ -55,8 +57,15 @@ class View2: UIViewController {
         headerView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         headerView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
         headerView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/11).isActive = true
+        let soleMatchLabel = UILabel()
+        soleMatchLabel.text = "Sole Match"
+        soleMatchLabel.textAlignment = .center
+        soleMatchLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        soleMatchLabel.textColor = UIColor(red: 225 / 255.0, green: 40/255.0, blue: 30/255.0, alpha: 1.0)
+        soleMatchLabel.translatesAutoresizingMaskIntoConstraints = false
+        //soleMatchLabel.font = UIFont(name: <#T##String#>, size: <#T##CGFloat#>)
         
-        
+        headerView.addSubview(soleMatchLabel)
         headerView.addSubview(rightButton)
         headerView.addSubview(leftButton)
         
@@ -72,12 +81,14 @@ class View2: UIViewController {
         rightButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/8).isActive = true
         rightButton.heightAnchor.constraint(equalTo: headerView.heightAnchor, multiplier: 1/2).isActive = true
         
+        soleMatchLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 24).isActive = true
+        soleMatchLabel.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
+        soleMatchLabel.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/3).isActive = true
+        soleMatchLabel.heightAnchor.constraint(equalTo: headerView.heightAnchor, multiplier: 1/2).isActive = true
         
         let cardFilter = UIView()
-        let rand1 = arc4random() % 255
-        let rand2 = arc4random() % 255
-        let rand3 = arc4random() % 255
-        cardFilter.backgroundColor = UIColor(red: CGFloat(rand1) / 255.0, green: CGFloat(rand2)/255.0, blue: CGFloat(rand3)/255.0, alpha: 1.0)
+        
+        cardFilter.backgroundColor = UIColor(red: 42/255.0, green: 47/255.0, blue: 46/255.0, alpha: 1.0)
         cardFilter.layer.cornerRadius = 10
         cardFilter.clipsToBounds = true
         cardFilter.translatesAutoresizingMaskIntoConstraints = false
@@ -90,8 +101,8 @@ class View2: UIViewController {
         cardFilter.heightAnchor.constraint(equalTo: headerView.heightAnchor, multiplier: 1/2).isActive = true
         
         let filterSelectionView = UIView()
-        filterSelectionView.backgroundColor = UIColor.blue
-        filterSelectionView.alpha = 0.85
+        filterSelectionView.backgroundColor = UIColor(red: 230 / 255.0, green: 70/255.0, blue: 30/255.0, alpha: 1.0)
+        filterSelectionView.alpha = 1.0
         filterSelectionView.layer.cornerRadius = 10
         filterSelectionView.clipsToBounds = true
         filterSelectionView.isUserInteractionEnabled = true
@@ -101,8 +112,10 @@ class View2: UIViewController {
         cardFilter.addSubview(filterSelectionView)
         
         let button1 = UIButton()
+        button1.restorationIdentifier = "Button1"
         button1.backgroundColor = UIColor.clear
         button1.setTitle("202", for: .normal)
+        //button1.setImage(#imageLiteral(resourceName: "Gerber Baby"), for: .normal)
         button1.layer.cornerRadius = 10
         button1.clipsToBounds = true
         button1.addTarget(self, action: #selector(changeFilter(sender:)), for: .touchUpInside)
@@ -116,6 +129,7 @@ class View2: UIViewController {
         button1.widthAnchor.constraint(equalTo: cardFilter.widthAnchor, multiplier: 1/3.2).isActive = true
         
         let button2 = UIButton()
+        button2.restorationIdentifier = "Button2"
         button2.backgroundColor = UIColor.clear
         button2.setTitle("505", for: .normal)
         button2.layer.cornerRadius = 10
@@ -131,6 +145,7 @@ class View2: UIViewController {
         button2.widthAnchor.constraint(equalTo: cardFilter.widthAnchor, multiplier: 1/3.2).isActive = true
         
         let button3 = UIButton()
+        button3.restorationIdentifier = "Button3"
         button3.backgroundColor = UIColor.clear
         button3.setTitle("1010", for: .normal)
         button3.layer.cornerRadius = 10
@@ -169,11 +184,18 @@ class View2: UIViewController {
         UIView.animate(withDuration: 0.5, animations: {
             
             filterSelectionView?.center.x = sender.center.x
-            let rand1 = arc4random() % 255
-            let rand2 = arc4random() % 255
-            let rand3 = arc4random() % 255
-            filterSelectionView?.backgroundColor = UIColor(red: CGFloat(rand1) / 255.0, green: CGFloat(rand2)/255.0, blue: CGFloat(rand3)/255.0, alpha: 1.0)
-            print(rand1)
+            if sender.restorationIdentifier == "Button1" {
+                print("Good idea")
+                filterSelectionView?.backgroundColor = UIColor(red: 220 / 255.0, green: 35/255.0, blue: 45/255.0, alpha: 1.0)
+            }else if sender.restorationIdentifier == "Button2" {
+                print("Great idea")
+                filterSelectionView?.backgroundColor = UIColor(red: 230 / 255.0, green: 70/255.0, blue: 30/255.0, alpha: 1.0)
+            }else if sender.restorationIdentifier == "Button3"{
+                print("Best idea")
+                filterSelectionView?.backgroundColor = UIColor(red: 240 / 255.0, green: 110/255.0, blue: 40/255.0, alpha: 1.0)
+            }
+            //filterSelectionView?.backgroundColor = UIColor(red: 225 / 255.0, green: 40/255.0, blue: 30/255.0, alpha: 1.0)
+            
         })
         
     }

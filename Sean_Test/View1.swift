@@ -76,8 +76,9 @@ class View1: UIViewController {
         
         userImage.translatesAutoresizingMaskIntoConstraints = false
         userImage.clipsToBounds = true
-        userImage.layer.cornerRadius = 47.5
         
+        userImage.layer.borderWidth = 3.0
+        userImage.layer.borderColor = UIColor.white.cgColor
         
         self.view.addSubview(userImage)
         
@@ -86,6 +87,8 @@ class View1: UIViewController {
         userImage.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1/4).isActive = true
         userImage.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/8).isActive = true
         
+        userImage.layer.cornerRadius = self.view.frame.width / 8 - 4
+        print(self.view.frame.width / 8 - 4)
         self.userImage = userImage
     }
     

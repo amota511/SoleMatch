@@ -145,15 +145,179 @@ extension View3: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ConnectionsCell", for: indexPath)
-        cell.backgroundColor = UIColor.black
+        cell.backgroundColor = UIColor.white
+        cell.clipsToBounds = true
+        cell.layer.cornerRadius = 20
         
-        cell.clipsToBounds = false
-        cell.layer.cornerRadius = 19
+        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height))
+        image.image = #imageLiteral(resourceName: "drake_fader")
+        image.contentMode = .scaleAspectFill
+        cell.addSubview(image)
+        
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("A connection cell was selected")
+        
+        let conversationView = createConversationView()
+        
+        
         
     }
+    
+    
+}
+
+extension View3: UITextViewDelegate {
+    
+    func createConversationView() -> UIView{
+        let conversationView = UIView(frame: CGRect(x: self.view.frame.width, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+        conversationView.backgroundColor = UIColor.white
+        
+        let headerView: UIView = {
+            let headerView = UIView()
+            headerView.backgroundColor = UIColor(red: 42/255.0, green: 47/255.0, blue: 46/255.0, alpha: 1.0)
+            headerView.translatesAutoresizingMaskIntoConstraints = false
+            return headerView
+        }()
+        
+        conversationView.addSubview(headerView)
+        
+        headerView.topAnchor.constraint(equalTo: conversationView.topAnchor).isActive = true
+        headerView.leftAnchor.constraint(equalTo: conversationView.leftAnchor).isActive = true
+        headerView.widthAnchor.constraint(equalTo: conversationView.widthAnchor).isActive = true
+        headerView.heightAnchor.constraint(equalTo: conversationView.heightAnchor, multiplier: 1/11).isActive = true
+        
+        let backButton: UIButton = {
+            
+            let button = UIButton()
+            button.setTitle("< Back", for: .normal)
+            button.setTitleColor(UIColor.blue, for: .normal)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.addTarget(self, action: #selector(dissmissConversationsView(sender:)), for: .touchUpInside)
+            return button
+        }()
+        
+        headerView.addSubview(backButton)
+        
+        backButton.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 12).isActive = true
+        backButton.leftAnchor.constraint(equalTo: headerView.leftAnchor, constant: 6).isActive = true
+        backButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/6).isActive = true
+        backButton.heightAnchor.constraint(equalTo: headerView.heightAnchor, multiplier: 1/1.2).isActive = true
+        
+        let personNameLabel = UILabel()
+        personNameLabel.text = "Drake"
+        personNameLabel.textColor = UIColor(red: 215/255.0, green: 215/255.0, blue: 215/255.0, alpha: 1.0)
+        personNameLabel.font = UIFont.boldSystemFont(ofSize: 22)
+        personNameLabel.textAlignment = .center
+        personNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        headerView.addSubview(personNameLabel)
+        
+        personNameLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 12).isActive = true
+        personNameLabel.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
+        personNameLabel.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/3).isActive = true
+        personNameLabel.heightAnchor.constraint(equalTo: headerView.heightAnchor, multiplier: 1/1.2).isActive = true
+        
+        let personProfileImage = UIImageView(frame: CGRect(x: self.view.frame.width - 50, y: 17.5, width: 40, height: 40))
+        personProfileImage.image = #imageLiteral(resourceName: "drake_fader")
+        personNameLabel.contentMode = .scaleAspectFit
+        personProfileImage.clipsToBounds = true
+        personProfileImage.layer.cornerRadius = 15
+        
+        headerView.addSubview(personProfileImage)
+        
+
+        
+//        let textFooter = UIView(frame: CGRect(x: 0, y: self.view.frame.height - (self.view.frame.height * (1/12)), width: self.view.frame.width, height: (self.view.frame.height * (1/12))))
+//        textFooter.backgroundColor = UIColor.lightGray
+//
+//        
+//        conversationView.addSubview(textFooter)
+//        
+//
+//        
+//        let textView = UITextView(frame: CGRect(x: 2, y: ((self.view.frame.height * (1/12)) * (3/4)) / 6, width: self.view.frame.width * (6/7), height: (self.view.frame.height * (1/12)) * (3/4)))
+//        
+//        textView.clipsToBounds = true
+//        textView.layer.cornerRadius = 15
+//        textView.delegate = self
+//        textView.text = "How fast can you get from zero to 100th street ?"
+//        
+//        textFooter.addSubview(textView)
+//        
+//        
+        
+
+        let talkButton = UIButton(type: .system)
+        talkButton.frame = CGRect(x: 0, y: self.view.frame.height - (self.view.frame.height * (1/12)), width: self.view.frame.width, height: (self.view.frame.height * (1/12)))
+        talkButton.backgroundColor = UIColor.green
+        talkButton.tintColor = UIColor.white
+        talkButton.setTitle("Talk", for: .normal)
+        talkButton.addTarget(self, action: #selector(sendButtonPressed(sender:)), for: .touchUpInside)
+        
+        conversationView.addSubview(talkButton)
+
+ 
+        
+//        let messagesTableView = UITableView()
+//        messagesTableView.allowsSelection = false
+//        messagesTableView.delegate = self
+//        messagesTableView.dataSource = self
+//        messagesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "MessagesTableViewCell")
+//        messagesTableView.restorationIdentifier = "MessagesTableView"
+//        messagesTableView.separatorColor = UIColor.clear
+//        messagesTableView.separatorStyle = .none
+//        messagesTableView.alwaysBounceHorizontal = false
+//        messagesTableView.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        conversationView.addSubview(messagesTableView)
+//        
+//        messagesTableView.topAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
+//        messagesTableView.leftAnchor.constraint(equalTo: conversationView.leftAnchor).isActive = true
+//        messagesTableView.widthAnchor.constraint(equalTo: conversationView.widthAnchor).isActive = true
+//        messagesTableView.bottomAnchor.constraint(equalTo: textFooter.topAnchor).isActive = true
+//        
+
+        self.view.addSubview(conversationView)
+        
+        //messagesTableView.scrollRectToVisible( CGRect(x: 0, y: 1000, width: messagesTableView.frame.width, height: messagesTableView.frame.height), animated: false)
+        UIView.animate(withDuration: 0.5, animations: {
+            
+            conversationView.frame.origin.x = 0
+            
+        }, completion: {
+            complete in
+            //messagesTableView.scrollToRow(at: IndexPath(row: 4, section: 0), at: .bottom, animated: true)
+        })
+        return conversationView
+    }
+    
+    func sendButtonPressed(sender: UIButton) {
+        print("Send button was pressed")
+    }
+    
+    func dissmissConversationsView(sender: UIButton) {
+        let conversationsView = sender.superview!.superview!
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            
+            conversationsView.frame.origin.x = conversationsView.frame.width
+            
+        },  completion: {
+            completed in
+            
+            conversationsView.removeFromSuperview()
+        })
+        
+    }
+    
+//    func creatConversationTableView() -> UITableView {
+//        
+//        
+//        
+
+    
 }
 
 
@@ -169,12 +333,38 @@ extension View3: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ConversationsCell", for: indexPath)
-        return cell
+       
+        if tableView.restorationIdentifier == "MessagesTableView" {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MessagesTableViewCell", for: indexPath)
+            
+            let rand1 = arc4random() % 255
+            let rand2 = arc4random() % 255
+            let rand3 = arc4random() % 255
+            
+            cell.backgroundColor = UIColor(red: CGFloat(rand1) / 255.0, green: CGFloat(rand2)/255.0, blue: CGFloat(rand3)/255.0, alpha: 1.0)
+            
+            if indexPath.row == 18 {
+                cell.backgroundColor = UIColor.black
+            }
+            return cell
+        }else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ConversationsCell", for: indexPath)
+            
+            let image = UIImageView(frame: CGRect(x: 6, y: cell.frame.height / 10, width: cell.frame.width / 6, height: cell.frame.height / 1.25))
+            image.image = #imageLiteral(resourceName: "drake_fader")
+            image.contentMode = .scaleAspectFill
+            image.clipsToBounds = true
+            image.layer.cornerRadius = 10
+            cell.addSubview(image)
+            
+            return cell
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        createConversationView()
         
     }
     
@@ -183,6 +373,7 @@ extension View3: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
 
 
 

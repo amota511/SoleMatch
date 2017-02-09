@@ -14,6 +14,6 @@ class Sneaker {
     var name: String!
     var size: String!
     var locationOfSeller: String!
-    
+    var styleNumber: String!
     
 }
