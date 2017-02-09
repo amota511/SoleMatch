@@ -251,9 +251,11 @@ extension View3: UITextViewDelegate {
 
         let talkButton = UIButton(type: .system)
         talkButton.frame = CGRect(x: 0, y: self.view.frame.height - (self.view.frame.height * (1/12)), width: self.view.frame.width, height: (self.view.frame.height * (1/12)))
-        talkButton.backgroundColor = UIColor.green
+        talkButton.backgroundColor = UIColor(red: 230 / 255.0, green: 70/255.0, blue: 30/255.0, alpha: 1.0)
         talkButton.tintColor = UIColor.white
-        talkButton.setTitle("Talk", for: .normal)
+        talkButton.setTitle("Connect", for: .normal)
+        
+        talkButton.titleLabel?.font = talkButton.titleLabel?.font.withSize(20)
         talkButton.addTarget(self, action: #selector(sendButtonPressed(sender:)), for: .touchUpInside)
         
         conversationView.addSubview(talkButton)
@@ -294,7 +296,50 @@ extension View3: UITextViewDelegate {
     }
     
     func sendButtonPressed(sender: UIButton) {
-        print("Send button was pressed")
+        let connectButton = sender
+        
+        let buttonsView = UIView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height / 2 - connectButton.frame.height / 2))
+        buttonsView.backgroundColor = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 1)
+        
+        connectButton.superview!.addSubview(buttonsView)
+        
+        let negotiateButton = UIView(frame: CGRect(x: 10, y: 65, width: 80, height: 80))
+        negotiateButton.backgroundColor = UIColor.green
+        negotiateButton.layer.cornerRadius = negotiateButton.frame.width / 2
+        negotiateButton.clipsToBounds = true
+        
+        let locationButton = UIView(frame: CGRect(x: self.view.frame.width / 2 - negotiateButton.frame.width / 2, y: 5, width: 80, height: 80))
+        locationButton.backgroundColor = UIColor.yellow
+        locationButton.layer.cornerRadius = locationButton.frame.width / 2
+        locationButton.clipsToBounds = true
+        
+        let conditionButton = UIView(frame: CGRect(x: self.view.frame.width - (negotiateButton.frame.width) - 10, y: 65, width: 80, height: 80))
+        conditionButton.backgroundColor = UIColor.red
+        conditionButton.layer.cornerRadius = conditionButton.frame.width / 2
+        conditionButton.clipsToBounds = true
+        
+        buttonsView.addSubview(negotiateButton)
+        buttonsView.addSubview(locationButton)
+        buttonsView.addSubview(conditionButton)
+        
+        let buyButton = UIView(frame: CGRect(x: self.view.frame.width / 2 - 160 / 2, y: buttonsView.frame.height / 2 - negotiateButton.frame.height + 20 , width: 160, height: 160))
+        buyButton.backgroundColor = UIColor.orange
+        buyButton.layer.cornerRadius = buyButton.frame.width / 2
+        buyButton.clipsToBounds = true
+
+        buttonsView.addSubview(buyButton)
+        
+        UIView.animate(withDuration: 0.5, animations: {
+           () -> Void in
+            
+            connectButton.center.y = connectButton.superview!.center.y * 1.15
+            buttonsView.center.y = connectButton.center.y + connectButton.frame.height / 2 + buttonsView.frame.height / 2
+            
+            
+        }, completion: {
+            (completed) -> Void in
+            print("Movement completed")
+        })
     }
     
     func dissmissConversationsView(sender: UIButton) {
