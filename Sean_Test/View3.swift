@@ -11,6 +11,7 @@ import UIKit
 class View3: UIViewController {
 
     var scrollView: UIScrollView!
+    var isConnectViewHidden = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -168,7 +169,9 @@ extension View3: UICollectionViewDelegate, UICollectionViewDataSource {
     
 }
 
-extension View3: UITextViewDelegate {
+extension View3 {
+    
+    
     
     func createConversationView() -> UIView{
         let conversationView = UIView(frame: CGRect(x: self.view.frame.width, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -192,7 +195,7 @@ extension View3: UITextViewDelegate {
             
             let button = UIButton()
             button.setTitle("< Back", for: .normal)
-            button.setTitleColor(UIColor.blue, for: .normal)
+            button.setTitleColor(UIColor.white, for: .normal)
             button.translatesAutoresizingMaskIntoConstraints = false
             button.addTarget(self, action: #selector(dissmissConversationsView(sender:)), for: .touchUpInside)
             return button
@@ -226,27 +229,6 @@ extension View3: UITextViewDelegate {
         personProfileImage.layer.cornerRadius = 15
         
         headerView.addSubview(personProfileImage)
-        
-
-        
-//        let textFooter = UIView(frame: CGRect(x: 0, y: self.view.frame.height - (self.view.frame.height * (1/12)), width: self.view.frame.width, height: (self.view.frame.height * (1/12))))
-//        textFooter.backgroundColor = UIColor.lightGray
-//
-//        
-//        conversationView.addSubview(textFooter)
-//        
-//
-//        
-//        let textView = UITextView(frame: CGRect(x: 2, y: ((self.view.frame.height * (1/12)) * (3/4)) / 6, width: self.view.frame.width * (6/7), height: (self.view.frame.height * (1/12)) * (3/4)))
-//        
-//        textView.clipsToBounds = true
-//        textView.layer.cornerRadius = 15
-//        textView.delegate = self
-//        textView.text = "How fast can you get from zero to 100th street ?"
-//        
-//        textFooter.addSubview(textView)
-//        
-//        
         
 
         let talkButton = UIButton(type: .system)
@@ -296,49 +278,243 @@ extension View3: UITextViewDelegate {
     }
     
     func sendButtonPressed(sender: UIButton) {
-        let connectButton = sender
         
-        let buttonsView = UIView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height / 2 - connectButton.frame.height / 2))
-        buttonsView.backgroundColor = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 1)
         
-        connectButton.superview!.addSubview(buttonsView)
+            
+            let connectButton = sender
+            
         
-        let negotiateButton = UIView(frame: CGRect(x: 10, y: 65, width: 80, height: 80))
-        negotiateButton.backgroundColor = UIColor.green
-        negotiateButton.layer.cornerRadius = negotiateButton.frame.width / 2
-        negotiateButton.clipsToBounds = true
         
-        let locationButton = UIView(frame: CGRect(x: self.view.frame.width / 2 - negotiateButton.frame.width / 2, y: 5, width: 80, height: 80))
-        locationButton.backgroundColor = UIColor.yellow
-        locationButton.layer.cornerRadius = locationButton.frame.width / 2
-        locationButton.clipsToBounds = true
+        if isConnectViewHidden == true {
+            
+            let buttonsView = UIView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.view.frame.height / 2 - connectButton.frame.height / 2))
+            buttonsView.backgroundColor = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 1)
+            buttonsView.restorationIdentifier = "buttonview"
+            connectButton.superview!.addSubview(buttonsView)
+            
+            
+            let negotiateButton = UIView(frame: CGRect(x: 10, y: 65, width: 80, height: 80))
+            negotiateButton.backgroundColor = UIColor(red: 220 / 255.0, green: 35/255.0, blue: 45/255.0, alpha: 1.0)
+            negotiateButton.layer.cornerRadius = negotiateButton.frame.width / 2
+            negotiateButton.clipsToBounds = true
+            negotiateButton.restorationIdentifier = "negotiateButton"
+            let negotiateTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(negotiateButtonTapped(sender:)))
+            negotiateTapRecognizer.numberOfTapsRequired = 1
+            negotiateTapRecognizer.numberOfTouchesRequired = 1
+            negotiateButton.addGestureRecognizer(negotiateTapRecognizer)
+            
+            let locationButton = UIView(frame: CGRect(x: self.view.frame.width / 2 - negotiateButton.frame.width / 2, y: 5, width: 80, height: 80))
+            locationButton.backgroundColor = UIColor(red: 230 / 255.0, green: 70/255.0, blue: 30/255.0, alpha: 1.0)
+            locationButton.layer.cornerRadius = locationButton.frame.width / 2
+            locationButton.clipsToBounds = true
+            locationButton.restorationIdentifier = "locationButton"
+            let locationTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(locationButtonTapped(sender:)))
+            locationTapRecognizer.numberOfTapsRequired = 1
+            locationTapRecognizer.numberOfTouchesRequired = 1
+            locationButton.addGestureRecognizer(locationTapRecognizer)
+            
+            let conditionButton = UIView(frame: CGRect(x: self.view.frame.width - (negotiateButton.frame.width) - 10, y: 65, width: 80, height: 80))
+            conditionButton.backgroundColor = UIColor(red: 240 / 255.0, green: 110/255.0, blue: 40/255.0, alpha: 1.0)
+            conditionButton.layer.cornerRadius = conditionButton.frame.width / 2
+            conditionButton.clipsToBounds = true
+            conditionButton.restorationIdentifier = "conditionButton"
+            let conditionTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(conditionButtonTapped(sender:)))
+            conditionTapRecognizer.numberOfTapsRequired = 1
+            conditionTapRecognizer.numberOfTouchesRequired = 1
+            conditionButton.addGestureRecognizer(conditionTapRecognizer)
+            
+            buttonsView.addSubview(negotiateButton)
+            buttonsView.addSubview(locationButton)
+            buttonsView.addSubview(conditionButton)
+            
+            let buyButton = UIView(frame: CGRect(x: self.view.frame.width / 2 - 160 / 2, y: buttonsView.frame.height / 2 - negotiateButton.frame.height + 20 , width: 160, height: 160))
+            buyButton.backgroundColor = UIColor(red: 42/255.0, green: 47/255.0, blue: 46/255.0, alpha: 1.0)
+            buyButton.layer.cornerRadius = buyButton.frame.width / 2
+            buyButton.clipsToBounds = true
+            buyButton.restorationIdentifier = "buyButton"
+            let buyTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(buyButtonTapped(sender:)))
+            buyTapRecognizer.numberOfTapsRequired = 1
+            buyTapRecognizer.numberOfTouchesRequired = 1
+            buyButton.addGestureRecognizer(buyTapRecognizer)
+            
+            buttonsView.addSubview(buyButton)
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                () -> Void in
+                
+                connectButton.center.y = connectButton.superview!.center.y * 1.15
+                buttonsView.center.y = connectButton.center.y + connectButton.frame.height / 2 + buttonsView.frame.height / 2
+                
+                
+            }, completion: {
+                (completed) -> Void in
+                print("Movement completed")
+            })
+            
+            isConnectViewHidden = !isConnectViewHidden
+        }else {
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                () -> Void in
+                
+                connectButton.frame.origin.y = self.view.frame.height - connectButton.frame.height
+                var buttonsView: UIView?
+                
+                for views in (connectButton.superview?.subviews)! {
+                    if views.restorationIdentifier == "buttonview" {
+                        buttonsView = views
+                    }
+                }
+                buttonsView?.frame.origin.y = self.view.frame.height
+                buttonsView?.backgroundColor = UIColor.blue
+                
+            }, completion: {
+                (completed) -> Void in
+                print("Movement completed")
+                var buttonsView: UIView?
+                
+                for views in (connectButton.superview?.subviews)! {
+                    if views.restorationIdentifier == "buttonview" {
+                        buttonsView = views
+                    }
+                }
+                
+                buttonsView?.removeFromSuperview()
+            })
+            isConnectViewHidden = !isConnectViewHidden
+        }
+    }
+    
+    func negotiateButtonTapped(sender: UITapGestureRecognizer) {
+        print("Negotiate button tapped")
+        let negotiateButton = sender.view!
         
-        let conditionButton = UIView(frame: CGRect(x: self.view.frame.width - (negotiateButton.frame.width) - 10, y: 65, width: 80, height: 80))
-        conditionButton.backgroundColor = UIColor.red
-        conditionButton.layer.cornerRadius = conditionButton.frame.width / 2
-        conditionButton.clipsToBounds = true
+        var locationButton: UIView? = nil
+        var conditionButton: UIView? = nil
+        var buyButton: UIView? = nil
         
-        buttonsView.addSubview(negotiateButton)
-        buttonsView.addSubview(locationButton)
-        buttonsView.addSubview(conditionButton)
+        let buttonView: UIView = negotiateButton.superview!
         
-        let buyButton = UIView(frame: CGRect(x: self.view.frame.width / 2 - 160 / 2, y: buttonsView.frame.height / 2 - negotiateButton.frame.height + 20 , width: 160, height: 160))
-        buyButton.backgroundColor = UIColor.orange
-        buyButton.layer.cornerRadius = buyButton.frame.width / 2
-        buyButton.clipsToBounds = true
+        for view in negotiateButton.superview!.subviews {
+            if view.restorationIdentifier == "locationButton" {
+                locationButton = view
+            }else if view.restorationIdentifier == "conditionButton" {
+                conditionButton = view
+            }else if view.restorationIdentifier == "buyButton" {
+                buyButton = view
+            }
+            
+        }
+        
+        
+        UIView.animate(withDuration: 0.5,
+                       animations:
+            {
+                locationButton?.center.x = self.view.frame.width + locationButton!.frame.width
+                conditionButton?.center.x = self.view.frame.width + conditionButton!.frame.width
+                buyButton?.center.x = self.view.frame.width + buyButton!.frame.width
+                
+            }, completion:
+            {
+                (true) in
+                UIView.animate(withDuration: 0.35,
+                               animations:
+                    {
+                        
+                        negotiateButton.center.x = buttonView.center.x
 
-        buttonsView.addSubview(buyButton)
+                }, completion:
+                    {
+                        (true) in
+                        UIView.animate(withDuration: 0.35,
+                                       animations:
+                            {
+                                negotiateButton.frame.origin.y = buttonView.frame.height * (1/24)
+                                negotiateButton.frame.size.height = buttonView.frame.height * (3/4)
+                                negotiateButton.frame.origin.x = buttonView.frame.width * (1/8)
+                                negotiateButton.frame.size.width = buttonView.frame.width * (3/4)
+                        }, completion:
+                        {
+                            (true) in
+                                
+                                let cancelButton = UIButton(type: .roundedRect)
+                                cancelButton.clipsToBounds = true
+                                cancelButton.layer.cornerRadius = 5
+                                cancelButton.setTitle("X", for: .normal)
+                                cancelButton.addTarget(self, action: #selector(self.cancelButtonTapped(sender:)), for: .touchUpInside)
+                                cancelButton.tintColor = UIColor.white
+                                cancelButton.backgroundColor = UIColor.lightGray
+                                cancelButton.frame = CGRect(x: negotiateButton.frame.width - 20 - 20, y: 20, width: 20, height: 20)
+                                negotiateButton.addSubview(cancelButton)
+                        })
+                
+        })
+                
+                print("Buttons moved")
+            }
+        )
+        
+    }
+    
+    func locationButtonTapped(sender: UITapGestureRecognizer) {
+        let locationButton = sender.view!
+        print("location button tapped")
+    }
+    
+    func conditionButtonTapped(sender: UITapGestureRecognizer) {
+        let conditionButton = sender.view!
+        print("condition button tapped")
+    }
+    
+    func buyButtonTapped(sender: UITapGestureRecognizer) {
+        let buyButton = sender.view!
+        print("buy button tapped")
+    }
+    
+    func cancelButtonTapped(sender: UIButton) {
+        print("Cancel button tapped")
+        let negotiateButton = sender.superview!
+        
+        for view in negotiateButton.subviews {
+            view.removeFromSuperview()
+        }
+        
+        var locationButton: UIView? = nil
+        var conditionButton: UIView? = nil
+        var buyButton: UIView? = nil
+        
+        let buttonView: UIView = negotiateButton.superview!
+        
+        for view in negotiateButton.superview!.subviews {
+            if view.restorationIdentifier == "locationButton" {
+                locationButton = view
+            }else if view.restorationIdentifier == "conditionButton" {
+                conditionButton = view
+            }else if view.restorationIdentifier == "buyButton" {
+                buyButton = view
+            }
+            
+        }
         
         UIView.animate(withDuration: 0.5, animations: {
-           () -> Void in
+            () -> Void in
+            negotiateButton.frame.origin.x = 10
+            negotiateButton.frame.origin.y = 65
+            negotiateButton.frame.size.height = 80
+            negotiateButton.frame.size.width = 80
             
-            connectButton.center.y = connectButton.superview!.center.y * 1.15
-            buttonsView.center.y = connectButton.center.y + connectButton.frame.height / 2 + buttonsView.frame.height / 2
+            locationButton!.frame.origin.x = self.view.frame.width / 2 - negotiateButton.frame.width / 2
+            locationButton!.frame.origin.y = 5
             
+            conditionButton!.frame.origin.x = self.view.frame.width - (negotiateButton.frame.width) - 10
+            conditionButton!.frame.origin.y = 65
+            
+            buyButton!.frame.origin.x = (self.view.frame.width / 2) - (160 / 2)
+            buyButton!.frame.origin.y = buttonView.frame.height / 2 - negotiateButton.frame.height + 20
             
         }, completion: {
             (completed) -> Void in
-            print("Movement completed")
+            print("Movement completed again")
         })
     }
     
