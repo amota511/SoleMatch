@@ -60,10 +60,10 @@ class View2: UIViewController {
         let soleMatchLabel = UILabel()
         soleMatchLabel.text = "Sole Match"
         soleMatchLabel.textAlignment = .center
-        soleMatchLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        //soleMatchLabel.font = UIFont.boldSystemFont(ofSize: 20)
         soleMatchLabel.textColor = UIColor(red: 225 / 255.0, green: 40/255.0, blue: 30/255.0, alpha: 1.0)
         soleMatchLabel.translatesAutoresizingMaskIntoConstraints = false
-        //soleMatchLabel.font = UIFont(name: <#T##String#>, size: <#T##CGFloat#>)
+        soleMatchLabel.font = UIFont(name: "Pacifico-Regular", size: 24)
         
         headerView.addSubview(soleMatchLabel)
         headerView.addSubview(rightButton)
@@ -83,7 +83,7 @@ class View2: UIViewController {
         
         soleMatchLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 24).isActive = true
         soleMatchLabel.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
-        soleMatchLabel.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/3).isActive = true
+        soleMatchLabel.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/2.5).isActive = true
         soleMatchLabel.heightAnchor.constraint(equalTo: headerView.heightAnchor, multiplier: 1/2).isActive = true
         
         let cardFilter = UIView()

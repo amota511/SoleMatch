@@ -33,6 +33,7 @@
                             <constraint firstItem="4UU-MK-ywW" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Ode-VQ-CcN"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="scrollView" destination="4UU-MK-ywW" id="SkI-hg-pz6"/>
                     </connections>
