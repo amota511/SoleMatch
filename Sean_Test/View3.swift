@@ -231,16 +231,16 @@ extension View3 {
         headerView.addSubview(personProfileImage)
         
 
-        let talkButton = UIButton(type: .system)
-        talkButton.frame = CGRect(x: 0, y: self.view.frame.height - (self.view.frame.height * (1/12)), width: self.view.frame.width, height: (self.view.frame.height * (1/12)))
-        talkButton.backgroundColor = UIColor(red: 230 / 255.0, green: 70/255.0, blue: 30/255.0, alpha: 1.0)
-        talkButton.tintColor = UIColor(red: 215/255.0, green: 215/255.0, blue: 215/255.0, alpha: 1.0)
-        talkButton.setTitle("Connect", for: .normal)
+        let connectButton = UIButton(type: .system)
+        connectButton.frame = CGRect(x: 0, y: self.view.frame.height - (self.view.frame.height * (1/12)), width: self.view.frame.width, height: (self.view.frame.height * (1/12)))
+        connectButton.backgroundColor = UIColor(red: 230 / 255.0, green: 70/255.0, blue: 30/255.0, alpha: 1.0)
+        connectButton.tintColor = UIColor(red: 215/255.0, green: 215/255.0, blue: 215/255.0, alpha: 1.0)
+        connectButton.setTitle("Connect", for: .normal)
         
-        talkButton.titleLabel?.font = talkButton.titleLabel?.font.withSize(20)
-        talkButton.addTarget(self, action: #selector(sendButtonPressed(sender:)), for: .touchUpInside)
+        connectButton.titleLabel?.font = connectButton.titleLabel?.font.withSize(20)
+        connectButton.addTarget(self, action: #selector(sendButtonPressed(sender:)), for: .touchUpInside)
         
-        conversationView.addSubview(talkButton)
+        conversationView.addSubview(connectButton)
 
  
         
@@ -303,6 +303,21 @@ extension View3 {
             negotiateTapRecognizer.numberOfTouchesRequired = 1
             negotiateButton.addGestureRecognizer(negotiateTapRecognizer)
             
+            let negotiateLabel1 = UILabel()
+            negotiateLabel1.text = "Negotiate"
+            negotiateLabel1.font = negotiateLabel1.font.withSize(12)
+            negotiateLabel1.textColor = UIColor(red: 215/255.0, green: 215/255.0, blue: 215/255.0, alpha: 1.0)
+            negotiateLabel1.translatesAutoresizingMaskIntoConstraints = false
+            negotiateLabel1.textAlignment = .center
+            negotiateLabel1.restorationIdentifier = "negotiate label"
+            negotiateButton.addSubview(negotiateLabel1)
+            
+            
+            negotiateLabel1.bottomAnchor.constraint(equalTo: negotiateButton.bottomAnchor, constant: -12).isActive = true
+            negotiateLabel1.centerXAnchor.constraint(equalTo: negotiateButton.centerXAnchor).isActive = true
+            negotiateLabel1.widthAnchor.constraint(equalTo: negotiateButton.widthAnchor, multiplier: 1/1.2).isActive = true
+            negotiateLabel1.heightAnchor.constraint(equalTo: negotiateButton.heightAnchor, multiplier: 1/4).isActive = true
+            
             let locationButton = UIView(frame: CGRect(x: self.view.frame.width / 2 - negotiateButton.frame.width / 2, y: 5, width: 80, height: 80))
             locationButton.backgroundColor = UIColor(red: 230 / 255.0, green: 70/255.0, blue: 30/255.0, alpha: 1.0)
             locationButton.layer.cornerRadius = locationButton.frame.width / 2
@@ -313,6 +328,22 @@ extension View3 {
             locationTapRecognizer.numberOfTouchesRequired = 1
             locationButton.addGestureRecognizer(locationTapRecognizer)
             
+            let locationLabel = UILabel()
+            locationLabel.text = "Location"
+            locationLabel.font = locationLabel.font.withSize(12)
+            locationLabel.textColor = UIColor(red: 215/255.0, green: 215/255.0, blue: 215/255.0, alpha: 1.0)
+            locationLabel.translatesAutoresizingMaskIntoConstraints = false
+            locationLabel.textAlignment = .center
+            locationLabel.restorationIdentifier = "locationLabel"
+            locationButton.addSubview(locationLabel)
+            
+            
+            locationLabel.bottomAnchor.constraint(equalTo: locationButton.bottomAnchor, constant: -12).isActive = true
+            locationLabel.centerXAnchor.constraint(equalTo: locationButton.centerXAnchor).isActive = true
+            locationLabel.widthAnchor.constraint(equalTo: locationButton.widthAnchor, multiplier: 1/1.2).isActive = true
+            locationLabel.heightAnchor.constraint(equalTo: locationButton.heightAnchor, multiplier: 1/4).isActive = true
+            
+            
             let conditionButton = UIView(frame: CGRect(x: self.view.frame.width - (negotiateButton.frame.width) - 10, y: 65, width: 80, height: 80))
             conditionButton.backgroundColor = UIColor(red: 240 / 255.0, green: 110/255.0, blue: 40/255.0, alpha: 1.0)
             conditionButton.layer.cornerRadius = conditionButton.frame.width / 2
@@ -322,6 +353,21 @@ extension View3 {
             conditionTapRecognizer.numberOfTapsRequired = 1
             conditionTapRecognizer.numberOfTouchesRequired = 1
             conditionButton.addGestureRecognizer(conditionTapRecognizer)
+            
+            let conditionLabel = UILabel()
+            conditionLabel.text = "Condition"
+            conditionLabel.font = conditionLabel.font.withSize(12)
+            conditionLabel.textColor = UIColor(red: 215/255.0, green: 215/255.0, blue: 215/255.0, alpha: 1.0)
+            conditionLabel.translatesAutoresizingMaskIntoConstraints = false
+            conditionLabel.textAlignment = .center
+            conditionLabel.restorationIdentifier = "conditionLabel"
+            conditionButton.addSubview(conditionLabel)
+            
+            
+            conditionLabel.bottomAnchor.constraint(equalTo: conditionButton.bottomAnchor, constant: -12).isActive = true
+            conditionLabel.centerXAnchor.constraint(equalTo: conditionButton.centerXAnchor).isActive = true
+            conditionLabel.widthAnchor.constraint(equalTo: conditionButton.widthAnchor, multiplier: 1/1.2).isActive = true
+            conditionLabel.heightAnchor.constraint(equalTo: conditionButton.heightAnchor, multiplier: 1/4).isActive = true
             
             buttonsView.addSubview(negotiateButton)
             buttonsView.addSubview(locationButton)
@@ -336,6 +382,32 @@ extension View3 {
             buyTapRecognizer.numberOfTapsRequired = 1
             buyTapRecognizer.numberOfTouchesRequired = 1
             buyButton.addGestureRecognizer(buyTapRecognizer)
+            
+            let buyImage = UIImageView(image: #imageLiteral(resourceName: "hand_shake"))
+            buyImage.contentMode = .scaleAspectFit
+            buyImage.translatesAutoresizingMaskIntoConstraints = false
+            
+            buyButton.addSubview(buyImage)
+            
+            buyImage.topAnchor.constraint(equalTo: buyButton.topAnchor, constant: 10).isActive = true
+            buyImage.centerXAnchor.constraint(equalTo: buyButton.centerXAnchor).isActive = true
+            buyImage.widthAnchor.constraint(equalTo: buyButton.widthAnchor, multiplier: 5/6).isActive = true
+            buyImage.heightAnchor.constraint(equalTo: buyButton.heightAnchor, multiplier: 1/1.5).isActive = true
+            
+            let buyLabel = UILabel()
+            buyLabel.text = "Buy"
+            buyLabel.font = buyLabel.font.withSize(20)
+            buyLabel.textColor = UIColor(red: 215/255.0, green: 215/255.0, blue: 215/255.0, alpha: 1.0)
+            buyLabel.translatesAutoresizingMaskIntoConstraints = false
+            buyLabel.textAlignment = .center
+            buyLabel.restorationIdentifier = "buyLabel"
+            buyButton.addSubview(buyLabel)
+            
+            
+            buyLabel.bottomAnchor.constraint(equalTo: buyButton.bottomAnchor, constant: -12).isActive = true
+            buyLabel.centerXAnchor.constraint(equalTo: buyButton.centerXAnchor).isActive = true
+            buyLabel.widthAnchor.constraint(equalTo: buyButton.widthAnchor, multiplier: 1/1.2).isActive = true
+            buyLabel.heightAnchor.constraint(equalTo: buyButton.heightAnchor, multiplier: 1/4).isActive = true
             
             buttonsView.addSubview(buyButton)
             

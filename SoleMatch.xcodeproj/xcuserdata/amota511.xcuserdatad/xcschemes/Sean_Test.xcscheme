@@ -17,7 +17,7 @@
                BlueprintIdentifier = "1A37D9AE1E2896A9000B11B2"
                BuildableName = "Sean_Test.app"
                BlueprintName = "Sean_Test"
-               ReferencedContainer = "container:Sean_Test.xcodeproj">
+               ReferencedContainer = "container:SoleMatch.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "1A37D9AE1E2896A9000B11B2"
             BuildableName = "Sean_Test.app"
             BlueprintName = "Sean_Test"
-            ReferencedContainer = "container:Sean_Test.xcodeproj">
+            ReferencedContainer = "container:SoleMatch.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -58,7 +58,7 @@
             BlueprintIdentifier = "1A37D9AE1E2896A9000B11B2"
             BuildableName = "Sean_Test.app"
             BlueprintName = "Sean_Test"
-            ReferencedContainer = "container:Sean_Test.xcodeproj">
+            ReferencedContainer = "container:SoleMatch.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -77,7 +77,7 @@
             BlueprintIdentifier = "1A37D9AE1E2896A9000B11B2"
             BuildableName = "Sean_Test.app"
             BlueprintName = "Sean_Test"
-            ReferencedContainer = "container:Sean_Test.xcodeproj">
+            ReferencedContainer = "container:SoleMatch.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

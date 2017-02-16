@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Sean_Test.xcodeproj">
+      location = "self:/Users/amota511/Desktop/Sean_Test/SoleMatch.xcodeproj">
    </FileRef>
 </Workspace>

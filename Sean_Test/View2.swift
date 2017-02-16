@@ -46,7 +46,7 @@ class View2: UIViewController {
         assignPanGesture(card: cardA!)
         
         let headerView = UIView()
-        headerView.backgroundColor = UIColor(red: 42/255.0, green: 47/255.0, blue: 46/255.0, alpha: 1.0)
+        headerView.backgroundColor = UIColor(red: 55/255.0, green: 61/255.0, blue: 60/255.0, alpha: 1.0)
             
         // Background color for sole match font UIColor(red: 225 / 255.0, green: 40/255.0, blue: 30/255.0, alpha: 1.0)
         headerView.translatesAutoresizingMaskIntoConstraints = false
@@ -226,13 +226,17 @@ class View2: UIViewController {
     
     func createNewCard() -> UIView{
         
+        let backgroundPhoto = UIImageView()
+        
+        
         let photo = UIImageView()
         DispatchQueue.global(qos: .background).async {
             do {
-                let url = URL(string: "https://bossip.files.wordpress.com/2014/01/drakes-air-jordans-ovo-07.jpg?w=900&h=700")
+                let url = URL(string: "https://s-media-cache-ak0.pinimg.com/736x/5f/67/4f/5f674f244275237e63642c7f8afc5a4c.jpg")
                 let data = try Data(contentsOf: url!)
                 let image = UIImage(data: data)
                 DispatchQueue.main.async {
+                    backgroundPhoto.image = image
                     photo.image = image
                 }
             }catch{
@@ -247,7 +251,34 @@ class View2: UIViewController {
         
         newCard.frame.size.width = self.view.frame.width / 1.05
         newCard.frame.size.height = self.view.frame.height / 1.23
-        newCard.center = CGPoint(x: self.view.frame.midX + 1, y: self.view.frame.midY + 45)
+        newCard.center = CGPoint(x: self.view.frame.midX, y: self.view.frame.midY + 45)
+        
+        backgroundPhoto.clipsToBounds = true
+        backgroundPhoto.layer.cornerRadius = 15
+        backgroundPhoto.contentMode = .scaleAspectFill
+        
+        backgroundPhoto.frame.size.width = newCard.bounds.width
+        backgroundPhoto.frame.size.height = newCard.bounds.height
+        
+        backgroundPhoto.frame.origin.x = newCard.bounds.origin.x
+        backgroundPhoto.frame.origin.y = newCard.bounds.origin.y
+        
+        newCard.addSubview(backgroundPhoto)
+        
+        
+        let blur = UIBlurEffect(style: .extraLight)
+        let blurView = UIVisualEffectView(effect: blur)
+        //blurView.backgroundColor = UIColor.green
+        
+        newCard.addSubview(blurView)
+        
+        blurView.frame.size.width = newCard.bounds.width
+        blurView.frame.size.height = newCard.bounds.height
+        
+        blurView.frame.origin.x = newCard.bounds.origin.x
+        blurView.frame.origin.y = newCard.bounds.origin.y
+        
+        newCard.addSubview(photo)
         
         photo.clipsToBounds = true
         photo.layer.cornerRadius = 15
@@ -256,12 +287,13 @@ class View2: UIViewController {
         photo.frame.size.width = newCard.frame.width
         photo.frame.size.height = newCard.frame.height
 
-        photo.center.x = newCard.center.x - 10
-        photo.center.y = newCard.center.y - 115
+        photo.center.x = newCard.bounds.origin.x + newCard.bounds.width / 2
+        photo.center.y = newCard.bounds.origin.y + newCard.bounds.height / 2
         
-        newCard.addSubview(photo)
+        
 
         let labelView = UIView()
+        photo.addSubview(labelView)
         labelView.backgroundColor = UIColor.lightText
         labelView.clipsToBounds = true
         labelView.layer.cornerRadius = 15
@@ -332,7 +364,7 @@ class View2: UIViewController {
                 if view.center.x < 65 {
                     
                     UIView.animate(withDuration: 0.2, animations: {
-                        view.center.x = -(self.cardA?.frame.width)!
+                        view.center.x = -self.cardA!.frame.width
                     }, completion: {
                         completionFlag in
                         view.removeFromSuperview()
@@ -341,28 +373,25 @@ class View2: UIViewController {
                         self.assignPanGesture(card: self.cardA!)
                         
                         self.cardB! = self.createNewCard()
-                        self.cardB!.center.x = 187.5
-                        let photo = self.cardB?.subviews.first as! UIImageView
-                        photo.center.x = self.cardB!.center.x - 9.5
-                        photo.center.y = self.cardB!.center.y - 115
+                        self.cardB!.center.x = self.view.bounds.origin.x + self.view.bounds.width / 2
                     })
                     
                 }else if view.center.x > self.view.frame.width - 50 {
 
                     UIView.animate(withDuration: 0.2, animations: {
-                        view.center.x = self.view.frame.width + ((self.cardA?.frame.width)! / 2)
+                        view.frame.origin.x = self.view.frame.width + self.cardA!.frame.width
                     }, completion: {
                         completionFlag in
                         view.removeFromSuperview()
+                        DispatchQueue.main.async {
+                            self.cardA = self.cardB
+                            self.assignPanGesture(card: self.cardA!)
+                            
+                            self.cardB! = self.createNewCard()
+                            self.cardB!.center.x = self.view.bounds.origin.x + self.view.bounds.width / 2
+
+                        }
                         
-                        self.cardA = self.cardB
-                        self.assignPanGesture(card: self.cardA!)
-                       
-                        self.cardB! = self.createNewCard()
-                        self.cardB!.center.x = 187.5
-                        let photo = self.cardB?.subviews.first as! UIImageView
-                        photo.center.x = self.cardB!.center.x - 9.5
-                        photo.center.y = self.cardB!.center.y - 115
                     })
                     
                 }else {
