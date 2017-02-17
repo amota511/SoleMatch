@@ -25,6 +25,7 @@ class View1: UIViewController {
     var isMyPreferencesDroppedDown: Bool = false
     var myPrefSize: UILabel!
     var myPrefSliderValue: Float!
+    let imageArray = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,10 @@ class View1: UIViewController {
         createMyCollectionView()
         createPreferencesButton()
         createPreferencesView()
+ 
+        
+        
+        
     }
     
     func  createRightButton() {

@@ -22,16 +22,16 @@ class View2: UIViewController {
         var button = UIButton()
         //button.setTitle("Left", for: .normal)
        button.setImage(#imageLiteral(resourceName: "Shoe Box"), for: .normal)
-        button.setTitleColor(UIColor.blue, for: .normal)
+        //button.setTitleColor(UIColor.blue, for: .normal)
         button.addTarget(self, action: #selector(scrollLeft), for: .touchUpInside)
         return button
     }()
     
     lazy var rightButton: UIButton = {
         var button = UIButton()
-        button.setTitle("Right", for: .normal)
+        //button.setTitle("Right", for: .normal)
         button.setImage(#imageLiteral(resourceName: "Location Love"), for: .normal)
-        button.setTitleColor(UIColor.blue, for: .normal)
+        //button.setTitleColor(UIColor.blue, for: .normal)
         button.addTarget(self, action: #selector(scrollRight), for: .touchUpInside)
         return button
     }()
@@ -230,6 +230,7 @@ class View2: UIViewController {
         
         
         let photo = UIImageView()
+        
         DispatchQueue.global(qos: .background).async {
             do {
                 let url = URL(string: "https://s-media-cache-ak0.pinimg.com/736x/5f/67/4f/5f674f244275237e63642c7f8afc5a4c.jpg")
@@ -249,9 +250,9 @@ class View2: UIViewController {
         
         newCard.layer.cornerRadius = 15
         
-        newCard.frame.size.width = self.view.frame.width / 1.05
-        newCard.frame.size.height = self.view.frame.height / 1.23
-        newCard.center = CGPoint(x: self.view.frame.midX, y: self.view.frame.midY + 45)
+        newCard.frame.size.width = self.view.bounds.width / 1.05
+        newCard.frame.size.height = self.view.bounds.height / 1.23
+        newCard.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 + 45)
         
         backgroundPhoto.clipsToBounds = true
         backgroundPhoto.layer.cornerRadius = 15
@@ -266,19 +267,38 @@ class View2: UIViewController {
         newCard.addSubview(backgroundPhoto)
         
         
-        let blur = UIBlurEffect(style: .extraLight)
-        let blurView = UIVisualEffectView(effect: blur)
-        //blurView.backgroundColor = UIColor.green
+//        let blur = UIBlurEffect(style: .dark)
+//        let vibrancyEffect = UIVibrancyEffect(blurEffect: blur)
+//        let blurView = UIVisualEffectView(effect: vibrancyEffect)
+//        
+//        blurView.clipsToBounds = true
+//        blurView.layer.cornerRadius = 15
+//        blurView.alpha = 1
         
-        newCard.addSubview(blurView)
         
-        blurView.frame.size.width = newCard.bounds.width
-        blurView.frame.size.height = newCard.bounds.height
+        let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        blurView.frame = backgroundPhoto.bounds
         
-        blurView.frame.origin.x = newCard.bounds.origin.x
-        blurView.frame.origin.y = newCard.bounds.origin.y
+        backgroundPhoto.addSubview(blurView)
         
-        newCard.addSubview(photo)
+        
+//        let vibrancyEffect = UIVibrancyEffect(blurEffect: blurEffect)
+//        let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
+        
+        //newCard.addSubview(blurView)
+        //vibrancyEffectView.contentView.addSubview(blurView)
+        //blurView.contentView.addSubview(vibrancyEffectView)
+        
+        
+//        blurView.clipsToBounds = true
+//        blurView.layer.cornerRadius = 15
+        
+        
+        //blurView.effect = blurEffect
+        //backgroundPhoto.addSubview(blurView)
+        
+        blurView.contentView.addSubview(photo)
+        //newCard.addSubview(photo)
         
         photo.clipsToBounds = true
         photo.layer.cornerRadius = 15
@@ -321,7 +341,7 @@ class View2: UIViewController {
         nameLabel.heightAnchor.constraint(equalTo: labelView.heightAnchor).isActive = true
         
         let priceLabel = UILabel()
-        priceLabel.frame = CGRect(x: 250, y: 5, width: 100, height: 35)
+        priceLabel.frame = CGRect(x: newCard.bounds.width - 110, y: 10, width: 100, height: 35)
         priceLabel.text = "$250"
         priceLabel.textAlignment = .center
         priceLabel.lineBreakMode = .byWordWrapping
@@ -330,7 +350,8 @@ class View2: UIViewController {
         priceLabel.clipsToBounds = true
         priceLabel.layer.cornerRadius = 10
         
-        newCard.addSubview(priceLabel)
+        blurView.contentView.addSubview(priceLabel)
+        //newCard.addSubview(priceLabel)
         
         //self.view.addSubview(newCard)
         self.view.insertSubview(newCard, at: 0)
@@ -398,7 +419,7 @@ class View2: UIViewController {
                     
                     UIView.animate(withDuration: 0.5, animations: {
                         sender.view!.center = CGPoint(x: self.cardB!.center.x, y: self.cardB!.center.y )
-                        sender.view!.transform = sender.view!.transform.rotated(by: -atan2((self.cardA?.transform.b)!, (self.cardA?.transform.a)!))
+                        sender.view!.transform = sender.view!.transform.rotated(by: -atan2(self.cardA!.transform.b, self.cardA!.transform.a))
                     })
                     sender.setTranslation(CGPoint(x: 0, y: 0), in: self.view)
                     
