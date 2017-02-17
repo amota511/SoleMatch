@@ -362,15 +362,8 @@ class View2: UIViewController {
         labelView.backgroundColor = UIColor.lightText
         labelView.clipsToBounds = true
         labelView.layer.cornerRadius = 15
-        newCard.addSubview(labelView)
-        
         labelView.frame = CGRect(x: newCard.bounds.width * (0.25/20), y: newCard.frame.height - newCard.bounds.height * (1/8) - 2, width: newCard.bounds.width * (19.5/20), height: newCard.bounds.height * (1/8))
-        
-//        labelView.translatesAutoresizingMaskIntoConstraints = false
-//        labelView.bottomAnchor.constraint(equalTo: newCard.bottomAnchor, constant: -2).isActive = true
-//        labelView.centerXAnchor.constraint(equalTo: newCard.centerXAnchor).isActive = true
-//        labelView.widthAnchor.constraint(equalTo: newCard.widthAnchor, multiplier: 19.5/20).isActive = true
-//        labelView.heightAnchor.constraint(equalTo: newCard.heightAnchor, multiplier: 1/8).isActive = true
+        newCard.addSubview(labelView)
         
         let nameLabel = UILabel()
         nameLabel.numberOfLines = 0
@@ -380,9 +373,7 @@ class View2: UIViewController {
         nameLabel.layer.cornerRadius = 15
         nameLabel.text = "Name: Yeezy Boost 350  \nCondition: Deadstock \nSize: 12"
         labelView.addSubview(nameLabel)
-        
-        //nameLabel.frame = CGRect(x: 0, y: 0, width: nameLabel.bounds.width, height: nameLabel.bounds.height)
-        
+
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.topAnchor.constraint(equalTo: labelView.topAnchor).isActive = true
         nameLabel.leftAnchor.constraint(equalTo: labelView.leftAnchor, constant: 2).isActive = true

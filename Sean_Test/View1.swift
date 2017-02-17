@@ -25,7 +25,7 @@ class View1: UIViewController {
     var isMyPreferencesDroppedDown: Bool = false
     var myPrefSize: UILabel!
     var myPrefSliderValue: Float!
-    let imageArray = [UIImage]()
+    var imageArray = [UIImage]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +38,15 @@ class View1: UIViewController {
         createPreferencesButton()
         createPreferencesView()
  
-        
-        
+//        for var i  in 0...5 {
+//            
+//        }
+        imageArray.append(#imageLiteral(resourceName: "Air Mag"))
+        imageArray.append(#imageLiteral(resourceName: "Yeezy Red Stripe"))
+        imageArray.append(#imageLiteral(resourceName: "Yeezy Orange Stripe"))
+        imageArray.append(#imageLiteral(resourceName: "OvO 10"))
+        imageArray.append(#imageLiteral(resourceName: "Concord 11"))
+
         
     }
     
@@ -321,13 +328,44 @@ extension View1: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ConnectionsCell", for: indexPath)
-        cell.backgroundColor = UIColor.black
+        cell.clipsToBounds = true
+        cell.layer.cornerRadius = 20
         
-        cell.clipsToBounds = false
-        cell.layer.cornerRadius = 19
-        
-        if indexPath.row == 5 {
-            cell.backgroundColor = UIColor.green
+        if indexPath.row < imageArray.count {
+            let imageView = UIImageView()
+            imageView.image = imageArray[indexPath.row]
+            imageView.contentMode = .scaleAspectFill
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            cell.addSubview(imageView)
+            imageView.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
+            imageView.leftAnchor.constraint(equalTo: cell.leftAnchor).isActive = true
+            imageView.heightAnchor.constraint(equalTo: cell.heightAnchor).isActive = true
+            imageView.widthAnchor.constraint(equalTo: cell.widthAnchor).isActive = true
+        }
+
+        if indexPath.row == imageArray.count {
+            cell.backgroundColor = UIColor(red: 42/255.0, green: 47/255.0, blue: 46/255.0, alpha: 1.0)
+            
+            let imageView = UIImageView()
+            imageView.image = #imageLiteral(resourceName: "White Plus")
+            imageView.contentMode = .scaleAspectFit
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            cell.addSubview(imageView)
+            imageView.centerXAnchor.constraint(equalTo: cell.centerXAnchor).isActive = true
+            imageView.centerYAnchor.constraint(equalTo: cell.centerYAnchor, constant: -5).isActive = true
+            imageView.heightAnchor.constraint(equalTo: cell.heightAnchor, multiplier: 1/2.5).isActive = true
+            imageView.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 1/2.5).isActive = true
+            
+            let nameLabel = UILabel()
+            nameLabel.textAlignment = .center
+            nameLabel.text = "Add Kick"
+            nameLabel.textColor = UIColor.white
+            nameLabel.translatesAutoresizingMaskIntoConstraints = false
+            cell.addSubview(nameLabel)
+            nameLabel.bottomAnchor.constraint(equalTo: cell.bottomAnchor, constant: -5).isActive = true
+            nameLabel.centerXAnchor.constraint(equalTo: cell.centerXAnchor).isActive = true
+            nameLabel.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 1/1.25).isActive = true
+            nameLabel.heightAnchor.constraint(equalTo: cell.heightAnchor, multiplier: 1/5).isActive = true
         }
         return cell
     }
