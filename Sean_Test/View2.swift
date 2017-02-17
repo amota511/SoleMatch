@@ -378,7 +378,7 @@ class View2: UIViewController {
         nameLabel.lineBreakMode = .byWordWrapping
         nameLabel.clipsToBounds = true
         nameLabel.layer.cornerRadius = 15
-        nameLabel.text = "Name: OvO 10  \nCondition: Deadstock \nSize: 12"
+        nameLabel.text = "Name: Yeezy Boost 350  \nCondition: Deadstock \nSize: 12"
         labelView.addSubview(nameLabel)
         
         //nameLabel.frame = CGRect(x: 0, y: 0, width: nameLabel.bounds.width, height: nameLabel.bounds.height)
