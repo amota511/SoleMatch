@@ -93,7 +93,6 @@ class View1: UIViewController {
         userImage.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/8).isActive = true
         
         userImage.layer.cornerRadius = self.view.frame.width / 8 - 4
-        print(self.view.frame.width / 8 - 4)
         self.userImage = userImage
     }
     

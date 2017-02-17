@@ -227,19 +227,34 @@ class View2: UIViewController {
     func createNewCard() -> UIView{
         
         let backgroundPhoto = UIImageView()
-        
+        let backgroundPhoto2 = UIImageView()
+        let backgroundPhoto3 = UIImageView()
+
         
         let photo = UIImageView()
-        
+        let photo2 = UIImageView()
+        let photo3 = UIImageView()
+
         DispatchQueue.global(qos: .background).async {
             do {
                 let url = URL(string: "https://s-media-cache-ak0.pinimg.com/736x/5f/67/4f/5f674f244275237e63642c7f8afc5a4c.jpg")
+                let url2 = URL(string: "https://cdn.kickgame.co.uk/image/cache/data/yeezy/by9612/adidas-originals-yeezy-boost-350-v2-red_5-1300x1300.jpg")
+                let url3 = URL(string: "https://image.kanyewestsneakers.com/UA-Yeezy-350-Boost-V2-RED-SPLY-350-Black-Red/a648_a7_yno4nf.jpg")
                 let data = try Data(contentsOf: url!)
+                let data2 = try Data(contentsOf: url2!)
+                let data3 = try Data(contentsOf: url3!)
                 let image = UIImage(data: data)
+                let image2 = UIImage(data: data2)
+                let image3 = UIImage(data: data3)
                 DispatchQueue.main.async {
                     backgroundPhoto.image = image
+                    backgroundPhoto2.image = image2
+                    backgroundPhoto3.image = image3
                     photo.image = image
+                    photo2.image = image2
+                    photo3.image = image3
                 }
+                
             }catch{
                 print("The Sneaker photo could not be loaded")
             }
@@ -247,83 +262,115 @@ class View2: UIViewController {
         
         let newCard = UIView()
         newCard.backgroundColor = UIColor.white
-        
         newCard.layer.cornerRadius = 15
-        
         newCard.frame.size.width = self.view.bounds.width / 1.05
         newCard.frame.size.height = self.view.bounds.height / 1.23
         newCard.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 + 45)
         
+        let photoScrollView = UIScrollView(frame: newCard.bounds)
+        photoScrollView.bounces = false
+        photoScrollView.showsVerticalScrollIndicator = false
+        photoScrollView.contentSize = CGSize(width: newCard.bounds.width, height: newCard.bounds.height * 3)
+        photoScrollView.isPagingEnabled = true
+        photoScrollView.isScrollEnabled = true
+        photoScrollView.backgroundColor = UIColor.clear
+        
+        newCard.addSubview(photoScrollView)
+        
         backgroundPhoto.clipsToBounds = true
         backgroundPhoto.layer.cornerRadius = 15
         backgroundPhoto.contentMode = .scaleAspectFill
-        
         backgroundPhoto.frame.size.width = newCard.bounds.width
         backgroundPhoto.frame.size.height = newCard.bounds.height
-        
         backgroundPhoto.frame.origin.x = newCard.bounds.origin.x
         backgroundPhoto.frame.origin.y = newCard.bounds.origin.y
         
-        newCard.addSubview(backgroundPhoto)
+        backgroundPhoto2.clipsToBounds = true
+        backgroundPhoto2.layer.cornerRadius = 15
+        backgroundPhoto2.contentMode = .scaleAspectFill
+        backgroundPhoto2.frame.size.width = newCard.bounds.width
+        backgroundPhoto2.frame.size.height = newCard.bounds.height
+        backgroundPhoto2.frame.origin.x = newCard.bounds.origin.x
+        backgroundPhoto2.frame.origin.y = newCard.bounds.height
         
+        backgroundPhoto3.clipsToBounds = true
+        backgroundPhoto3.layer.cornerRadius = 15
+        backgroundPhoto3.contentMode = .scaleAspectFill
+        backgroundPhoto3.frame.size.width = newCard.bounds.width
+        backgroundPhoto3.frame.size.height = newCard.bounds.height
+        backgroundPhoto3.frame.origin.x = newCard.bounds.origin.x
+        backgroundPhoto3.frame.origin.y = newCard.bounds.height * 2
         
-//        let blur = UIBlurEffect(style: .dark)
-//        let vibrancyEffect = UIVibrancyEffect(blurEffect: blur)
-//        let blurView = UIVisualEffectView(effect: vibrancyEffect)
-//        
-//        blurView.clipsToBounds = true
-//        blurView.layer.cornerRadius = 15
-//        blurView.alpha = 1
-        
-        
+        photoScrollView.addSubview(backgroundPhoto)
+        photoScrollView.addSubview(backgroundPhoto2)
+        photoScrollView.addSubview(backgroundPhoto3)
+    
         let blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        blurView.frame = backgroundPhoto.bounds
+        blurView.frame.origin.x = 0
+        blurView.frame.origin.y = 0
+        blurView.frame.size.width = newCard.bounds.width
+        blurView.frame.size.height = newCard.bounds.height
+        
+        let blurView2 = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        blurView2.frame.origin.x = 0
+        blurView2.frame.origin.y = 0
+        blurView2.frame.size.width = newCard.bounds.width
+        blurView2.frame.size.height = newCard.bounds.height
+        
+        let blurView3 = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        blurView3.frame.origin.x = 0
+        blurView3.frame.origin.y = 0
+        blurView3.frame.size.width = newCard.bounds.width
+        blurView3.frame.size.height = newCard.bounds.height
         
         backgroundPhoto.addSubview(blurView)
-        
-        
-//        let vibrancyEffect = UIVibrancyEffect(blurEffect: blurEffect)
-//        let vibrancyEffectView = UIVisualEffectView(effect: vibrancyEffect)
-        
-        //newCard.addSubview(blurView)
-        //vibrancyEffectView.contentView.addSubview(blurView)
-        //blurView.contentView.addSubview(vibrancyEffectView)
-        
-        
-//        blurView.clipsToBounds = true
-//        blurView.layer.cornerRadius = 15
-        
-        
-        //blurView.effect = blurEffect
-        //backgroundPhoto.addSubview(blurView)
-        
+        backgroundPhoto2.addSubview(blurView2)
+        backgroundPhoto3.addSubview(blurView3)
         blurView.contentView.addSubview(photo)
-        //newCard.addSubview(photo)
+        blurView2.contentView.addSubview(photo2)
+        blurView3.contentView.addSubview(photo3)
+        photoScrollView.addSubview(backgroundPhoto)
+        photoScrollView.addSubview(backgroundPhoto2)
+        photoScrollView.addSubview(backgroundPhoto3)
+        
         
         photo.clipsToBounds = true
         photo.layer.cornerRadius = 15
         photo.contentMode = .scaleAspectFit
-        
         photo.frame.size.width = newCard.frame.width
         photo.frame.size.height = newCard.frame.height
-
         photo.center.x = newCard.bounds.origin.x + newCard.bounds.width / 2
         photo.center.y = newCard.bounds.origin.y + newCard.bounds.height / 2
         
+        photo2.clipsToBounds = true
+        photo2.layer.cornerRadius = 15
+        photo2.contentMode = .scaleAspectFit
+        photo2.frame.size.width = newCard.frame.width
+        photo2.frame.size.height = newCard.frame.height
+        photo2.center.x = newCard.bounds.origin.x + newCard.bounds.width / 2
+        photo2.center.y = newCard.bounds.origin.y + newCard.bounds.height / 2
         
+        photo3.clipsToBounds = true
+        photo3.layer.cornerRadius = 15
+        photo3.contentMode = .scaleAspectFit
+        photo3.frame.size.width = newCard.frame.width
+        photo3.frame.size.height = newCard.frame.height
+        photo3.center.x = newCard.bounds.origin.x + newCard.bounds.width / 2
+        photo3.center.y = newCard.bounds.origin.y + newCard.bounds.height / 2
 
         let labelView = UIView()
-        photo.addSubview(labelView)
         labelView.backgroundColor = UIColor.lightText
         labelView.clipsToBounds = true
         labelView.layer.cornerRadius = 15
-        photo.addSubview(labelView)
+        newCard.addSubview(labelView)
         
-        labelView.translatesAutoresizingMaskIntoConstraints = false
-        labelView.bottomAnchor.constraint(equalTo: photo.bottomAnchor, constant: -2).isActive = true
-        labelView.centerXAnchor.constraint(equalTo: photo.centerXAnchor).isActive = true
-        labelView.widthAnchor.constraint(equalTo: photo.widthAnchor, multiplier: 19.5/20).isActive = true
-        labelView.heightAnchor.constraint(equalTo: photo.heightAnchor, multiplier: 1/8).isActive = true
+        labelView.frame = CGRect(x: newCard.bounds.width * (0.25/20), y: newCard.frame.height - newCard.bounds.height * (1/8) - 2, width: newCard.bounds.width * (19.5/20), height: newCard.bounds.height * (1/8))
+        
+//        labelView.translatesAutoresizingMaskIntoConstraints = false
+//        labelView.bottomAnchor.constraint(equalTo: newCard.bottomAnchor, constant: -2).isActive = true
+//        labelView.centerXAnchor.constraint(equalTo: newCard.centerXAnchor).isActive = true
+//        labelView.widthAnchor.constraint(equalTo: newCard.widthAnchor, multiplier: 19.5/20).isActive = true
+//        labelView.heightAnchor.constraint(equalTo: newCard.heightAnchor, multiplier: 1/8).isActive = true
         
         let nameLabel = UILabel()
         nameLabel.numberOfLines = 0
@@ -333,6 +380,8 @@ class View2: UIViewController {
         nameLabel.layer.cornerRadius = 15
         nameLabel.text = "Name: OvO 10  \nCondition: Deadstock \nSize: 12"
         labelView.addSubview(nameLabel)
+        
+        //nameLabel.frame = CGRect(x: 0, y: 0, width: nameLabel.bounds.width, height: nameLabel.bounds.height)
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.topAnchor.constraint(equalTo: labelView.topAnchor).isActive = true
@@ -350,10 +399,7 @@ class View2: UIViewController {
         priceLabel.clipsToBounds = true
         priceLabel.layer.cornerRadius = 10
         
-        blurView.contentView.addSubview(priceLabel)
-        //newCard.addSubview(priceLabel)
-        
-        //self.view.addSubview(newCard)
+        newCard.addSubview(priceLabel)
         self.view.insertSubview(newCard, at: 0)
 
         return newCard
@@ -364,7 +410,7 @@ class View2: UIViewController {
         
         let translation = sender.translation(in: self.view)
         if let view = sender.view {
-            view.center = CGPoint(x:view.center.x + translation.x, y:view.center.y + translation.y)
+            view.center.x = CGFloat(view.center.x + translation.x)
             
             if view.center.x > lastTranslationX {
                 view.transform = view.transform.rotated(by: 0.01)
