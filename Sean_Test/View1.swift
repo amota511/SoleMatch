@@ -12,7 +12,6 @@ class View1: UIViewController {
 
     var scrollView: UIScrollView!
     
-    var rightButton: UIButton!
     var userImage: UIImageView!
     var userName: UILabel!
     var collectionButton: UILabel!
@@ -30,7 +29,6 @@ class View1: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        createRightButton()
         createUserImage()
         createUserNameLabel()
         createCollectionButton()
@@ -38,36 +36,15 @@ class View1: UIViewController {
         createPreferencesButton()
         createPreferencesView()
  
-//        for var i  in 0...5 {
-//            
-//        }
+
         imageArray.append(#imageLiteral(resourceName: "Air Mag"))
         imageArray.append(#imageLiteral(resourceName: "Yeezy Red Stripe"))
         imageArray.append(#imageLiteral(resourceName: "Yeezy Orange Stripe"))
         imageArray.append(#imageLiteral(resourceName: "OvO 10"))
         imageArray.append(#imageLiteral(resourceName: "Concord 11"))
 
-        
     }
     
-    func  createRightButton() {
-        
-        let rightButton = UIButton()
-        rightButton.setTitle("Right", for: .normal)
-        rightButton.setTitleColor(UIColor.blue, for: .normal)
-        rightButton.addTarget(self, action: #selector(scrollRight), for: .touchUpInside)
-
-        self.view.addSubview(rightButton)
-        
-        rightButton.translatesAutoresizingMaskIntoConstraints = false
-        rightButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 24).isActive = true
-        rightButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -12).isActive = true
-        rightButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1/8).isActive = true
-        rightButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/15).isActive = true
-        
-        
-        self.rightButton = rightButton
-    }
     
     func createUserImage() {
         
@@ -94,19 +71,19 @@ class View1: UIViewController {
         
         self.view.addSubview(userImage)
         
-        userImage.topAnchor.constraint(equalTo: rightButton.bottomAnchor, constant: 15).isActive = true
+        userImage.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20).isActive = true
         userImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        userImage.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1/4).isActive = true
-        userImage.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/8).isActive = true
+        userImage.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1/3).isActive = true
+        userImage.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1/3).isActive = true
         
-        userImage.layer.cornerRadius = self.view.frame.width / 8 - 4
+        userImage.layer.cornerRadius = (self.view.frame.width / 6)
         self.userImage = userImage
     }
     
     func createUserNameLabel() {
         
         let userNameLabel = UILabel()
-        userNameLabel.text = "Drizzy Drake"
+        userNameLabel.text = "Drake"
         userNameLabel.textAlignment = .center
         userNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -148,7 +125,7 @@ class View1: UIViewController {
     func myCollectionTapRecognizer(){
         self.myCollectionHeight.isActive = false
         if !isMyCollectionDroppedDown {
-            self.myCollectionHeight = myCollection.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/3)
+            self.myCollectionHeight = myCollection.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/2.5)
             isMyCollectionDroppedDown = !isMyCollectionDroppedDown
         }else{
             self.myCollectionHeight = myCollection.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0)
@@ -161,7 +138,7 @@ class View1: UIViewController {
     
     func createMyCollectionView() {
         let collectionLayout = UICollectionViewFlowLayout()
-        collectionLayout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        collectionLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         collectionLayout.scrollDirection = .vertical
         
         let collectionCV = UICollectionView(frame: CGRect(x: 0, y: 300, width: self.view.frame.width, height: self.view.frame.height * (1/5)), collectionViewLayout: collectionLayout)
@@ -171,7 +148,7 @@ class View1: UIViewController {
         collectionCV.translatesAutoresizingMaskIntoConstraints = false
         collectionCV.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "ConnectionsCell")
         collectionCV.isScrollEnabled = true
-        collectionCV.backgroundColor = UIColor.white
+        collectionCV.backgroundColor = UIColor(red: 42/255.0, green: 47/255.0, blue: 46/255.0, alpha: 1.0)
         collectionCV.showsHorizontalScrollIndicator = false
         collectionCV.allowsSelection = true
         collectionCV.alwaysBounceHorizontal = false
@@ -271,8 +248,8 @@ class View1: UIViewController {
         
         sizeSlider.setValue(6, animated: true)
         self.myPrefSliderValue = sizeSlider.value
-        sizeSlider.maximumTrackTintColor = UIColor.green
-        sizeSlider.tintColor = UIColor.blue
+        sizeSlider.maximumTrackTintColor = UIColor(red: 42/255.0, green: 47/255.0, blue: 46/255.0, alpha: 1.0)
+        sizeSlider.tintColor = UIColor(red: 230 / 255.0, green: 70/255.0, blue: 30/255.0, alpha: 1.0)
         
         sizeLabel.text = "Size: \(sizeSlider.value)"
         
@@ -281,7 +258,7 @@ class View1: UIViewController {
         preferencesView.addSubview(sizeSlider)
         sizeSlider.topAnchor.constraint(equalTo: sizeLabel.bottomAnchor, constant: 0).isActive = true
         sizeSlider.centerXAnchor.constraint(equalTo: preferencesView.centerXAnchor).isActive = true
-        sizeSlider.widthAnchor.constraint(equalTo: preferencesView.widthAnchor).isActive = true
+        sizeSlider.widthAnchor.constraint(equalTo: preferencesView.widthAnchor, multiplier: 1/1.025).isActive = true
         sizeSlider.heightAnchor.constraint(equalTo: preferencesView.heightAnchor, multiplier: 1/6).isActive = true
         
         for view in myPreferences.subviews {
@@ -341,10 +318,9 @@ extension View1: UICollectionViewDelegate, UICollectionViewDataSource {
             imageView.leftAnchor.constraint(equalTo: cell.leftAnchor).isActive = true
             imageView.heightAnchor.constraint(equalTo: cell.heightAnchor).isActive = true
             imageView.widthAnchor.constraint(equalTo: cell.widthAnchor).isActive = true
-        }
-
-        if indexPath.row == imageArray.count {
-            cell.backgroundColor = UIColor(red: 42/255.0, green: 47/255.0, blue: 46/255.0, alpha: 1.0)
+        
+        } else if indexPath.row == imageArray.count {
+            cell.backgroundColor = UIColor(red: 55/255.0, green: 61/255.0, blue: 60/255.0, alpha: 1.0)
             
             let imageView = UIImageView()
             imageView.image = #imageLiteral(resourceName: "White Plus")

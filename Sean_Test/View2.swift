@@ -47,8 +47,6 @@ class View2: UIViewController {
         
         let headerView = UIView()
         headerView.backgroundColor = UIColor(red: 55/255.0, green: 61/255.0, blue: 60/255.0, alpha: 1.0)
-            
-        // Background color for sole match font UIColor(red: 225 / 255.0, green: 40/255.0, blue: 30/255.0, alpha: 1.0)
         headerView.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(headerView)
@@ -56,11 +54,10 @@ class View2: UIViewController {
         headerView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         headerView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         headerView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        headerView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/11).isActive = true
+        headerView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0).isActive = true
         let soleMatchLabel = UILabel()
         soleMatchLabel.text = "Sole Match"
         soleMatchLabel.textAlignment = .center
-        //soleMatchLabel.font = UIFont.boldSystemFont(ofSize: 20)
         soleMatchLabel.textColor = UIColor(red: 225 / 255.0, green: 40/255.0, blue: 30/255.0, alpha: 1.0)
         soleMatchLabel.translatesAutoresizingMaskIntoConstraints = false
         soleMatchLabel.font = UIFont(name: "Pacifico-Regular", size: 24)
@@ -95,10 +92,10 @@ class View2: UIViewController {
         
         self.view.addSubview(cardFilter)
         
-        cardFilter.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 9).isActive = true
+        cardFilter.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 10).isActive = true
         cardFilter.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         cardFilter.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1/1.85).isActive = true
-        cardFilter.heightAnchor.constraint(equalTo: headerView.heightAnchor, multiplier: 1/2).isActive = true
+        cardFilter.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/22).isActive = true
         
         let filterSelectionView = UIView()
         filterSelectionView.backgroundColor = UIColor(red: 230 / 255.0, green: 70/255.0, blue: 30/255.0, alpha: 1.0)
@@ -114,7 +111,7 @@ class View2: UIViewController {
         let button1 = UIButton()
         button1.restorationIdentifier = "Button1"
         button1.backgroundColor = UIColor.clear
-        button1.setTitle("202", for: .normal)
+        button1.setTitle("1", for: .normal)
         //button1.setImage(#imageLiteral(resourceName: "Gerber Baby"), for: .normal)
         button1.layer.cornerRadius = 10
         button1.clipsToBounds = true
@@ -131,7 +128,7 @@ class View2: UIViewController {
         let button2 = UIButton()
         button2.restorationIdentifier = "Button2"
         button2.backgroundColor = UIColor.clear
-        button2.setTitle("505", for: .normal)
+        button2.setTitle("2", for: .normal)
         button2.layer.cornerRadius = 10
         button2.clipsToBounds = true
         button2.addTarget(self, action: #selector(changeFilter(sender:)), for: .touchUpInside)
@@ -147,7 +144,7 @@ class View2: UIViewController {
         let button3 = UIButton()
         button3.restorationIdentifier = "Button3"
         button3.backgroundColor = UIColor.clear
-        button3.setTitle("1010", for: .normal)
+        button3.setTitle("3", for: .normal)
         button3.layer.cornerRadius = 10
         button3.clipsToBounds = true
         button3.addTarget(self, action: #selector(changeFilter(sender:)), for: .touchUpInside)
@@ -263,9 +260,9 @@ class View2: UIViewController {
         let newCard = UIView()
         newCard.backgroundColor = UIColor.white
         newCard.layer.cornerRadius = 15
-        newCard.frame.size.width = self.view.bounds.width / 1.05
-        newCard.frame.size.height = self.view.bounds.height / 1.23
-        newCard.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 + 45)
+        newCard.frame.size.width = self.view.bounds.width / 1.025
+        newCard.frame.size.height = self.view.bounds.height / 1.225
+        newCard.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 - 10)
         
         let photoScrollView = UIScrollView(frame: newCard.bounds)
         photoScrollView.bounces = false

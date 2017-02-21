@@ -12,26 +12,11 @@ class View3: UIViewController {
 
     var scrollView: UIScrollView!
     var isConnectViewHidden = true
+    var imageArray = [UIImage]()
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let leftButton: UIButton = {
-            let button = UIButton()
-            button.setTitle("Left", for: .normal)
-            button.setTitleColor(UIColor.blue, for: .normal)
-            button.translatesAutoresizingMaskIntoConstraints = false
-            button.addTarget(self, action: #selector(scrollLeft), for: .touchUpInside)
-            return button
-        }()
-        
-        self.view.addSubview(leftButton)
-        
-        leftButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 24).isActive = true
-        leftButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 12).isActive = true
-        leftButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1/12).isActive = true
-        leftButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/15).isActive = true
-        
         
         let connectionsLabel: UILabel = {
             let label = UILabel()
@@ -42,9 +27,15 @@ class View3: UIViewController {
             return label
         }()
         
+        imageArray.append(#imageLiteral(resourceName: "Air Mag"))
+        imageArray.append(#imageLiteral(resourceName: "Yeezy Red Stripe"))
+        imageArray.append(#imageLiteral(resourceName: "Yeezy Orange Stripe"))
+        imageArray.append(#imageLiteral(resourceName: "OvO 10"))
+        imageArray.append(#imageLiteral(resourceName: "Concord 11"))
+        
         self.view.addSubview(connectionsLabel)
         
-        connectionsLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 72).isActive = true
+        connectionsLabel.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 5).isActive = true
         connectionsLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         connectionsLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
         connectionsLabel.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/22).isActive = true
@@ -88,12 +79,6 @@ class View3: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         self.scrollView = self.view.superview as! UIScrollView
-    }
-    
-    func scrollLeft(){
-        let v2Frame : CGRect = CGRect(x: Int(self.view.frame.width), y: 0, width: Int(scrollView.frame.width / 3), height: Int(scrollView.frame.height))
-        self.scrollView.scrollRectToVisible(v2Frame, animated: true)
-        print("The left button was excecuted")
     }
     
     func createConnectionsCV() -> UICollectionView {
@@ -142,7 +127,7 @@ extension View3: UICollectionViewDelegate, UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return 3
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ConnectionsCell", for: indexPath)
@@ -151,7 +136,7 @@ extension View3: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.layer.cornerRadius = 20
         
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height))
-        image.image = #imageLiteral(resourceName: "drake_fader")
+        image.image = imageArray[indexPath.row]
         image.contentMode = .scaleAspectFill
         cell.addSubview(image)
         
@@ -961,7 +946,7 @@ extension View3: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -983,7 +968,7 @@ extension View3: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ConversationsCell", for: indexPath)
             
             let image = UIImageView(frame: CGRect(x: 6, y: cell.frame.height / 10, width: cell.frame.width / 6, height: cell.frame.height / 1.25))
-            image.image = #imageLiteral(resourceName: "drake_fader")
+            image.image = imageArray[indexPath.row + 3]
             image.contentMode = .scaleAspectFill
             image.clipsToBounds = true
             image.layer.cornerRadius = 10
