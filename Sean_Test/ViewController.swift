@@ -26,8 +26,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         button.titleLabel?.font = UIFont(name: "Pacifico-Regular", size: 24)
         button.addTarget(self, action: #selector(scrollCenter), for: .touchUpInside)
         button.titleLabel?.textAlignment = .center
-        button.titleLabel?.textColor = UIColor(red: 225 / 255.0, green: 40/255.0, blue: 30/255.0, alpha: 1.0)
         button.translatesAutoresizingMaskIntoConstraints = false
+        //button.setTitleColor( UIColor(red: 225 / 255.0, green: 40/255.0, blue: 30/255.0, alpha: 1.0), for: .normal)
         return button
     }()
     
@@ -49,7 +49,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         v1.didMove(toParentViewController: self)
         
         var v1Frame : CGRect = v1.view.frame
-        v1Frame.origin.y = 0
         v1Frame.size.height = scrollView.frame.height
         v1.view.frame = v1Frame
         
@@ -59,12 +58,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         v2.didMove(toParentViewController: self)
         
         var v2Frame : CGRect = v2.view.frame
-        
         v2Frame.size.height = scrollView.frame.height
-        v2Frame.origin.y = 0
         v2Frame.origin.x = self.view.frame.width
         v2.view.frame = v2Frame
-        print(v2Frame)
+
         let v3 : View3 = View3(nibName: "View3", bundle: nil)
         self.addChildViewController(v3)
         self.scrollView.addSubview(v3.view)
@@ -72,11 +69,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         var v3Frame : CGRect = v3.view.frame
         v3Frame.origin.x = 2 * self.view.frame.width
-        v3Frame.origin.y = 0
         v3Frame.size.height = scrollView.frame.height
         v3.view.frame = v3Frame
         
-        self.scrollView.contentSize = CGSize(width: self.view.frame.width * 3, height: self.view.frame.size.height)
+        self.scrollView.contentSize = CGSize(width: self.view.frame.width * 3, height: self.view.frame.height)
         
         self.scrollView.isScrollEnabled = false
         

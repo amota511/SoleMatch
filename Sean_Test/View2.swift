@@ -356,7 +356,7 @@ class View2: UIViewController {
         photo3.center.y = newCard.bounds.origin.y + newCard.bounds.height / 2
 
         let labelView = UIView()
-        labelView.backgroundColor = UIColor.lightText
+        labelView.backgroundColor = UIColor.white
         labelView.clipsToBounds = true
         labelView.layer.cornerRadius = 15
         labelView.frame = CGRect(x: newCard.bounds.width * (0.25/20), y: newCard.frame.height - newCard.bounds.height * (1/8) - 2, width: newCard.bounds.width * (19.5/20), height: newCard.bounds.height * (1/8))
@@ -383,7 +383,7 @@ class View2: UIViewController {
         priceLabel.textAlignment = .center
         priceLabel.lineBreakMode = .byWordWrapping
         priceLabel.numberOfLines = 0
-        priceLabel.backgroundColor = UIColor.lightGray
+        priceLabel.backgroundColor = UIColor.white
         priceLabel.clipsToBounds = true
         priceLabel.layer.cornerRadius = 10
         

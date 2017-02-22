@@ -125,7 +125,7 @@ class View1: UIViewController {
     func myCollectionTapRecognizer(){
         self.myCollectionHeight.isActive = false
         if !isMyCollectionDroppedDown {
-            self.myCollectionHeight = myCollection.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/2.5)
+            self.myCollectionHeight = myCollection.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/2.35)
             isMyCollectionDroppedDown = !isMyCollectionDroppedDown
         }else{
             self.myCollectionHeight = myCollection.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0)
@@ -285,15 +285,15 @@ class View1: UIViewController {
         myPrefSize.text = "Size: \(myPrefSliderValue!)"
     }
 
-    func scrollRight(){
-        let v2Frame : CGRect = CGRect(x: Int((self.view.frame.width) * 1.67), y: 0, width: Int(scrollView.frame.width / 3), height: Int(scrollView.frame.height))
-        scrollView.scrollRectToVisible(v2Frame, animated: true)
-        print("The right button was excecuted")
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        self.scrollView = self.view.superview as! UIScrollView
-    }
+//    func scrollRight(){
+//        let v2Frame : CGRect = CGRect(x: Int((self.view.frame.width) * 1.67), y: 0, width: Int(scrollView.frame.width / 3), height: Int(scrollView.frame.height))
+//        scrollView.scrollRectToVisible(v2Frame, animated: true)
+//        print("The right button was excecuted")
+//    }
+//
+//    override func viewDidAppear(_ animated: Bool) {
+//        self.scrollView = self.view.superview as! UIScrollView
+//    }
     
 }
 
@@ -301,25 +301,18 @@ extension View1: UICollectionViewDelegate, UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return 6
+        
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ConnectionsCell", for: indexPath)
         cell.clipsToBounds = true
         cell.layer.cornerRadius = 20
         
-        if indexPath.row < imageArray.count {
-            let imageView = UIImageView()
-            imageView.image = imageArray[indexPath.row]
-            imageView.contentMode = .scaleAspectFill
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            cell.addSubview(imageView)
-            imageView.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
-            imageView.leftAnchor.constraint(equalTo: cell.leftAnchor).isActive = true
-            imageView.heightAnchor.constraint(equalTo: cell.heightAnchor).isActive = true
-            imageView.widthAnchor.constraint(equalTo: cell.widthAnchor).isActive = true
-        
-        } else if indexPath.row == imageArray.count {
+        if indexPath.row == imageArray.count {
+            
             cell.backgroundColor = UIColor(red: 55/255.0, green: 61/255.0, blue: 60/255.0, alpha: 1.0)
             
             let imageView = UIImageView()
@@ -342,11 +335,25 @@ extension View1: UICollectionViewDelegate, UICollectionViewDataSource {
             nameLabel.centerXAnchor.constraint(equalTo: cell.centerXAnchor).isActive = true
             nameLabel.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 1/1.25).isActive = true
             nameLabel.heightAnchor.constraint(equalTo: cell.heightAnchor, multiplier: 1/5).isActive = true
+        }else if indexPath.row < imageArray.count {
+            let imageView = UIImageView()
+            imageView.image = imageArray[indexPath.row]
+            imageView.contentMode = .scaleAspectFill
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            cell.addSubview(imageView)
+            imageView.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
+            imageView.leftAnchor.constraint(equalTo: cell.leftAnchor).isActive = true
+            imageView.heightAnchor.constraint(equalTo: cell.heightAnchor).isActive = true
+            imageView.widthAnchor.constraint(equalTo: cell.widthAnchor).isActive = true
+        
         }
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         print(indexPath.row)
+    
     }
 }
 

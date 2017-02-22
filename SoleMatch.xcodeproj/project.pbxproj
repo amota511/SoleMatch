@@ -12,6 +12,7 @@
 		1A37D9B81E2896A9000B11B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A37D9B61E2896A9000B11B2 /* Main.storyboard */; };
 		1A37D9BA1E2896A9000B11B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A37D9B91E2896A9000B11B2 /* Assets.xcassets */; };
 		1A37D9BD1E2896A9000B11B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A37D9BB1E2896A9000B11B2 /* LaunchScreen.storyboard */; };
+		1A514F051E5E35DB00F8217D /* ConversationsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A514F041E5E35DA00F8217D /* ConversationsTVCell.swift */; };
 		1A5B3BFE1E4D6CF200DF6B32 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A5B3BFD1E4D6CDB00DF6B32 /* Pacifico-Regular.ttf */; };
 		1A5E9A7A1E3A91A7005DE1D8 /* ConnectionsCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E9A791E3A91A7005DE1D8 /* ConnectionsCVCell.swift */; };
 		1A9AB2F91E34063B003319EC /* View1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AB2F71E34063B003319EC /* View1.swift */; };
@@ -32,6 +33,7 @@
 		1A37D9B91E2896A9000B11B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A37D9BC1E2896A9000B11B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A37D9BE1E2896A9000B11B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1A514F041E5E35DA00F8217D /* ConversationsTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsTVCell.swift; sourceTree = "<group>"; };
 		1A5B3BFD1E4D6CDB00DF6B32 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pacifico-Regular.ttf"; sourceTree = "<group>"; };
 		1A5E9A791E3A91A7005DE1D8 /* ConnectionsCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsCVCell.swift; sourceTree = "<group>"; };
 		1A9AB2F71E34063B003319EC /* View1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View1.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				1A9AB2FC1E34064C003319EC /* View2.xib */,
 				1A9AB2FF1E340659003319EC /* View3.swift */,
 				1A5E9A791E3A91A7005DE1D8 /* ConnectionsCVCell.swift */,
+				1A514F041E5E35DA00F8217D /* ConversationsTVCell.swift */,
 				1AC89E101E4403F100539890 /* ConversationView.swift */,
 				1A9AB3001E340659003319EC /* View3.xib */,
 				1A37D9B61E2896A9000B11B2 /* Main.storyboard */,
@@ -182,6 +185,7 @@
 			files = (
 				1A37D9B51E2896A9000B11B2 /* ViewController.swift in Sources */,
 				1AC89E0F1E428D0500539890 /* Sneaker.swift in Sources */,
+				1A514F051E5E35DB00F8217D /* ConversationsTVCell.swift in Sources */,
 				1A9AB3011E340659003319EC /* View3.swift in Sources */,
 				1A9AB2F91E34063B003319EC /* View1.swift in Sources */,
 				1A37D9B31E2896A9000B11B2 /* AppDelegate.swift in Sources */,

@@ -47,7 +47,7 @@ class View3: UIViewController {
         connectionsCollectionView.topAnchor.constraint(equalTo: connectionsLabel.bottomAnchor).isActive = true
         connectionsCollectionView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         connectionsCollectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        connectionsCollectionView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/8).isActive = true
+        connectionsCollectionView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/6).isActive = true
         
         
         let conversationsLabel: UILabel = {
@@ -85,13 +85,11 @@ class View3: UIViewController {
         
         let connectionsLayout = UICollectionViewFlowLayout()
         connectionsLayout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        
         connectionsLayout.scrollDirection = .horizontal
         
-        
-        
-        let connectionsCollectionView = UICollectionView(frame: CGRect(x: 0, y: 100, width: self.view.frame.width, height: self.view.frame.height * (1/8)), collectionViewLayout: connectionsLayout)
-        connectionsLayout.itemSize = CGSize(width: connectionsLayout.collectionView!.frame.width * (1/6), height: connectionsLayout.collectionView!.frame.height * (5/6))
+
+        let connectionsCollectionView = UICollectionView(frame: CGRect(x: 0, y: 100, width: self.view.frame.width, height: self.view.frame.height * (1/6)), collectionViewLayout: connectionsLayout)
+        connectionsLayout.itemSize = CGSize(width: connectionsLayout.collectionView!.frame.height * (5/6), height: connectionsLayout.collectionView!.frame.height * (5/6))
         connectionsCollectionView.dataSource = self
         connectionsCollectionView.delegate = self
         connectionsCollectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -113,9 +111,10 @@ class View3: UIViewController {
         let conversationsTableView = UITableView(frame: frame, style: .plain)
         conversationsTableView.translatesAutoresizingMaskIntoConstraints = false
         conversationsTableView.backgroundColor = UIColor.white
+        conversationsTableView.allowsMultipleSelection = false
         conversationsTableView.delegate = self
         conversationsTableView.dataSource = self
-        conversationsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "ConversationsCell")
+//        conversationsTableView.register(ConversationsTVCell.self, forCellReuseIdentifier: "ConversationsCell")
         
         return conversationsTableView
     }
@@ -129,6 +128,7 @@ extension View3: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ConnectionsCell", for: indexPath)
         cell.backgroundColor = UIColor.white
@@ -946,7 +946,7 @@ extension View3: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -965,15 +965,54 @@ extension View3: UITableViewDelegate, UITableViewDataSource {
             }
             return cell
         }else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "ConversationsCell", for: indexPath)
+            tableView.register(ConversationsTVCell.self, forCellReuseIdentifier: "ConversationsCell")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ConversationsCell", for: indexPath) as! ConversationsTVCell
             
-            let image = UIImageView(frame: CGRect(x: 6, y: cell.frame.height / 10, width: cell.frame.width / 6, height: cell.frame.height / 1.25))
-            image.image = imageArray[indexPath.row + 3]
+            let image = cell.sneakerImage
+            image.image = imageArray[(indexPath.row + 3) % 5]
             image.contentMode = .scaleAspectFill
             image.clipsToBounds = true
             image.layer.cornerRadius = 10
+            image.translatesAutoresizingMaskIntoConstraints = false
+            
+//            cell.sneakerImage.frame = CGRect(x: 6,
+//                                        y: cell.bounds.midY - (cell.frame.height / 1.25) / 2,
+//                                        width: cell.frame.width / 4.5,
+//                                        height: cell.frame.height / 1.25 )
+            
             cell.addSubview(image)
             
+            image.leftAnchor.constraint(equalTo: cell.leftAnchor, constant: 6).isActive = true
+            image.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
+            image.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 1/5).isActive = true
+            image.heightAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 1/5).isActive = true
+            
+            let sneakerName = cell.sneakerName
+            sneakerName.text = "Shoe Name"
+            sneakerName.textColor = UIColor.white
+            sneakerName.textAlignment = .left
+            sneakerName.translatesAutoresizingMaskIntoConstraints = false
+            
+            cell.addSubview(sneakerName)
+            
+            sneakerName.bottomAnchor.constraint(equalTo: cell.centerYAnchor, constant: -2).isActive = true
+            sneakerName.leftAnchor.constraint(equalTo: image.rightAnchor, constant: 12).isActive = true
+            sneakerName.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 1/1.25).isActive = true
+            sneakerName.heightAnchor.constraint(equalTo: cell.heightAnchor, multiplier: 1/3).isActive = true
+            
+            
+            let timerView = cell.timerView
+            timerView.backgroundColor = UIColor(red: 50/255.0, green: 150/255.0, blue: 30/255.0, alpha: 1.0)
+            timerView.translatesAutoresizingMaskIntoConstraints = false
+            
+            cell.insertSubview(timerView, at: 0)
+            
+            timerView.leftAnchor.constraint(equalTo: cell.leftAnchor).isActive = true
+            timerView.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
+            timerView.bottomAnchor.constraint(equalTo: cell.bottomAnchor).isActive = true
+            timerView.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: CGFloat(24 - indexPath.row) / 24).isActive = true
+            
+            cell.selectionStyle = .none
             return cell
         }
         
@@ -986,7 +1025,7 @@ extension View3: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.frame.height / 6.5
+        return tableView.frame.height / 4.5
     }
     
 }
