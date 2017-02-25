@@ -140,7 +140,7 @@ class View1: UIViewController {
     func createUserNameLabel() {
         
         let userNameLabel = UILabel()
-        userNameLabel.text = "Kanye \"Pablo\" West"
+        userNameLabel.text = "Kanye West"
         userNameLabel.textAlignment = .center
         userNameLabel.translatesAutoresizingMaskIntoConstraints = false
         

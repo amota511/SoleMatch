@@ -145,9 +145,10 @@ extension View3: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("A connection cell was selected")
         
-        let conversationView = createConversationView()
+        //let conversationView = createConversationView()
         
-        
+        let baseView = self.parent as! ViewController
+        baseView.showConversation()
         
     }
     
@@ -946,7 +947,7 @@ extension View3: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 16
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -974,12 +975,7 @@ extension View3: UITableViewDelegate, UITableViewDataSource {
             image.clipsToBounds = true
             image.layer.cornerRadius = 10
             image.translatesAutoresizingMaskIntoConstraints = false
-            
-//            cell.sneakerImage.frame = CGRect(x: 6,
-//                                        y: cell.bounds.midY - (cell.frame.height / 1.25) / 2,
-//                                        width: cell.frame.width / 4.5,
-//                                        height: cell.frame.height / 1.25 )
-            
+
             cell.addSubview(image)
             
             image.leftAnchor.constraint(equalTo: cell.leftAnchor, constant: 6).isActive = true
@@ -989,7 +985,7 @@ extension View3: UITableViewDelegate, UITableViewDataSource {
             
             let sneakerName = cell.sneakerName
             sneakerName.text = "Shoe Name"
-            sneakerName.textColor = UIColor.white
+            sneakerName.textColor = UIColor.black
             sneakerName.textAlignment = .left
             sneakerName.translatesAutoresizingMaskIntoConstraints = false
             
@@ -1002,16 +998,13 @@ extension View3: UITableViewDelegate, UITableViewDataSource {
             
             
             let timerView = cell.timerView
-            timerView.backgroundColor = UIColor(red: 50/255.0, green: 150/255.0, blue: 30/255.0, alpha: 1.0)
-            timerView.translatesAutoresizingMaskIntoConstraints = false
-            
-            cell.insertSubview(timerView, at: 0)
-            
-            timerView.leftAnchor.constraint(equalTo: cell.leftAnchor).isActive = true
-            timerView.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
-            timerView.bottomAnchor.constraint(equalTo: cell.bottomAnchor).isActive = true
-            timerView.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: CGFloat(24 - indexPath.row) / 24).isActive = true
-            
+            timerView.backgroundColor = UIColor(red: CGFloat((50.0 + Double(indexPath.row * 10)) / 255.0), green: CGFloat((150.0 - Double((indexPath.row ) * 10) ) / 255.0), blue: 30/255.0, alpha: 1.0)
+            timerView.clipsToBounds = true
+            timerView.layer.cornerRadius = 15
+            timerView.frame = CGRect(x: -15, y: 0, width: (Int(cell.frame.width / 24) * (24 - indexPath.row) + 15), height: Int(cell.frame.height))
+
+            //cell.contentView.addSubview(timerView)
+
             cell.selectionStyle = .none
             return cell
         }
@@ -1020,7 +1013,8 @@ extension View3: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        createConversationView()
+        let baseView = self.parent as! ViewController
+        baseView.showConversation()
         
     }
     
@@ -1029,9 +1023,3 @@ extension View3: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
-
-
-
-
-
-
