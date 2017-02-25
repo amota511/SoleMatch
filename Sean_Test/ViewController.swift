@@ -82,14 +82,12 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         headerView.backgroundColor = UIColor(red: 55/255.0, green: 61/255.0, blue: 60/255.0, alpha: 1.0)
         headerView.translatesAutoresizingMaskIntoConstraints = false
         self.view.insertSubview(headerView, at: 0)
-        //self.view.addSubview(headerView)
+
         
         headerView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         headerView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         headerView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
         headerView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/11).isActive = true
-
-        //centerButton.titleLabel?.textColor = UIColor(red: 225 / 255.0, green: 40/255.0, blue: 30/255.0, alpha: 1.0) 
 
         headerView.addSubview(rightButton)
         headerView.addSubview(centerButton)
@@ -111,6 +109,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         centerButton.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
         centerButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/2.5).isActive = true
         centerButton.heightAnchor.constraint(equalTo: headerView.heightAnchor, multiplier: 1/2).isActive = true
+        
         self.scrollView.clipsToBounds = false
         self.view.clipsToBounds = false
     }

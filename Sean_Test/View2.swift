@@ -260,14 +260,10 @@ class View2: UIViewController {
         }
         
         let newCard = UIView()
-        self.view.superview as! UIScrollView
         newCard.backgroundColor = UIColor.white
         newCard.layer.cornerRadius = 15
         newCard.frame.size.width = self.view.frame.width / 1.025
-        print(self.view.bounds.height )
         newCard.frame.size.height = self.view.frame.height / 1.105
-        print(self.scrollView.contentSize.height)
-
         newCard.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 + 17.5)
         
         let photoScrollView = UIScrollView(frame: newCard.bounds)

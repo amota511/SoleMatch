@@ -49,20 +49,20 @@ class View1: UIViewController {
     func createUserImage() {
         
         
-        let url = URL(string: "https://thefader-res.cloudinary.com/images/w_2400,c_limit,f_auto,q_auto:best/F100_Drake_Cover_FINAL_tuqta0/drake-views-from-the-6-cover-story-interview.jpg")
-        let userImage = UIImageView()
+        //let url = URL(string: "https://thefader-res.cloudinary.com/images/w_2400,c_limit,f_auto,q_auto:best/F100_Drake_Cover_FINAL_tuqta0/drake-views-from-the-6-cover-story-interview.jpg")
+        let userImage = UIImageView(image: #imageLiteral(resourceName: "kanye-west"))
         
-        do {
-            
-            let data = try Data(contentsOf: url!)
-            
-            let userPhoto = UIImage(data: data)
-            userImage.image = userPhoto
-            
-        }catch {
-            
-        }
-        
+//        do {
+//            
+//            let data = try Data(contentsOf: url!)
+//            
+//            let userPhoto = UIImage(data: data)
+//            userImage.image = userPhoto
+//            
+//        }catch {
+//            
+//        }
+        userImage.contentMode = .scaleAspectFill
         userImage.translatesAutoresizingMaskIntoConstraints = false
         userImage.clipsToBounds = true
         
@@ -77,19 +77,76 @@ class View1: UIViewController {
         userImage.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1/3).isActive = true
         
         userImage.layer.cornerRadius = (self.view.frame.width / 6)
+        
+        
+        let thirdStar = UIImageView(image: #imageLiteral(resourceName: "Gold_Star"))
+        thirdStar.contentMode = .scaleAspectFit
+        thirdStar.transform = thirdStar.transform.rotated(by: 0.0)
+        thirdStar.translatesAutoresizingMaskIntoConstraints = false
+        thirdStar.backgroundColor = UIColor.clear
+        self.view.addSubview(thirdStar)
+        thirdStar.topAnchor.constraint(equalTo: userImage.bottomAnchor, constant: 0).isActive = true
+        thirdStar.centerXAnchor.constraint(equalTo: userImage.centerXAnchor, constant: 0).isActive = true
+        thirdStar.widthAnchor.constraint(equalTo: userImage.widthAnchor, multiplier: 1/4).isActive = true
+        thirdStar.heightAnchor.constraint(equalTo: userImage.heightAnchor, multiplier: 1/4).isActive = true
+        
+        let secondStar = UIImageView(image: #imageLiteral(resourceName: "Gold_Star"))
+        secondStar.contentMode = .scaleAspectFit
+        secondStar.transform = secondStar.transform.rotated(by: 0.5)
+        secondStar.translatesAutoresizingMaskIntoConstraints = false
+        secondStar.backgroundColor = UIColor.clear
+        self.view.addSubview(secondStar)
+        secondStar.topAnchor.constraint(equalTo: thirdStar.topAnchor, constant: -7).isActive = true
+        secondStar.centerXAnchor.constraint(equalTo: thirdStar.centerXAnchor, constant: (-(self.view.frame.width / 12) - 5)).isActive = true
+        secondStar.widthAnchor.constraint(equalTo: thirdStar.widthAnchor).isActive = true
+        secondStar.heightAnchor.constraint(equalTo: thirdStar.heightAnchor).isActive = true
+        
+        let fourthStar = UIImageView(image: #imageLiteral(resourceName: "Gold_Star"))
+        fourthStar.contentMode = .scaleAspectFit
+        fourthStar.transform = fourthStar.transform.rotated(by: -0.5)
+        fourthStar.translatesAutoresizingMaskIntoConstraints = false
+        fourthStar.backgroundColor = UIColor.clear
+        self.view.addSubview(fourthStar)
+        fourthStar.topAnchor.constraint(equalTo: thirdStar.topAnchor, constant: -7).isActive = true
+        fourthStar.centerXAnchor.constraint(equalTo: thirdStar.centerXAnchor, constant: (self.view.frame.width / 12) + 5).isActive = true
+        fourthStar.widthAnchor.constraint(equalTo: thirdStar.widthAnchor).isActive = true
+        fourthStar.heightAnchor.constraint(equalTo: thirdStar.heightAnchor).isActive = true
+        
+        let firstStar = UIImageView(image: #imageLiteral(resourceName: "Gold_Star"))
+        firstStar.contentMode = .scaleAspectFit
+        firstStar.transform = firstStar.transform.rotated(by: -0.42)
+        firstStar.translatesAutoresizingMaskIntoConstraints = false
+        firstStar.backgroundColor = UIColor.clear
+        self.view.addSubview(firstStar)
+        firstStar.topAnchor.constraint(equalTo: secondStar.topAnchor, constant: -25).isActive = true
+        firstStar.centerXAnchor.constraint(equalTo: secondStar.centerXAnchor, constant: -(self.view.frame.width / 12) + 2.5).isActive = true
+        firstStar.widthAnchor.constraint(equalTo: secondStar.widthAnchor).isActive = true
+        firstStar.heightAnchor.constraint(equalTo: secondStar.heightAnchor).isActive = true
+         
+        let fifthStar = UIImageView(image: #imageLiteral(resourceName: "Gold_Star"))
+        fifthStar.contentMode = .scaleAspectFit
+        fifthStar.transform = fifthStar.transform.rotated(by: 0.42)
+        fifthStar.translatesAutoresizingMaskIntoConstraints = false
+        fifthStar.backgroundColor = UIColor.clear
+        self.view.addSubview(fifthStar)
+        fifthStar.topAnchor.constraint(equalTo: fourthStar.topAnchor, constant: -25).isActive = true
+        fifthStar.centerXAnchor.constraint(equalTo: fourthStar.centerXAnchor, constant: (self.view.frame.width / 12) - 2.5).isActive = true
+        fifthStar.widthAnchor.constraint(equalTo: fourthStar.widthAnchor).isActive = true
+        fifthStar.heightAnchor.constraint(equalTo: fourthStar.heightAnchor).isActive = true
+
         self.userImage = userImage
     }
     
     func createUserNameLabel() {
         
         let userNameLabel = UILabel()
-        userNameLabel.text = "Drake"
+        userNameLabel.text = "Kanye \"Pablo\" West"
         userNameLabel.textAlignment = .center
         userNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addSubview(userNameLabel)
         
-        userNameLabel.topAnchor.constraint(equalTo: userImage.bottomAnchor).isActive = true
+        userNameLabel.topAnchor.constraint(equalTo: self.userImage.bottomAnchor, constant: 25).isActive = true
         userNameLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         userNameLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
         userNameLabel.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/10).isActive = true
@@ -106,10 +163,8 @@ class View1: UIViewController {
         collectionButton.translatesAutoresizingMaskIntoConstraints = false
         collectionButton.isUserInteractionEnabled = true
         
-        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(myCollectionTapRecognizer))
         collectionButton.addGestureRecognizer(tapGesture)
-        
         
         self.view.addSubview(collectionButton)
         
