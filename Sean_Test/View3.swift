@@ -156,11 +156,14 @@ extension View3: UICollectionViewDelegate, UICollectionViewDataSource {
 
 extension View3 {
     
-    
-    
+    //-(self.view.frame.height * (1/11))
+    //+ (self.view.frame.height * (1/11))
     func createConversationView() -> UIView{
-        let conversationView = UIView(frame: CGRect(x: self.view.frame.width, y: 0, width: self.view.frame.width, height: self.view.frame.height))
-        conversationView.backgroundColor = UIColor.white
+        self.view.clipsToBounds = false
+        let conversationView = UIView(frame: CGRect(x: self.view.frame.width, y: (-(self.view.frame.height * (1/11)) - 5), width: self.view.frame.width, height: self.view.frame.height + (self.view.frame.height * (1/11)) + 5))
+        conversationView.backgroundColor = UIColor(red: 215/255.0, green: 215/255.0, blue: 215/255.0, alpha: 1.0)
+        conversationView.clipsToBounds = false
+        
         
         let headerView: UIView = {
             let headerView = UIView()
@@ -188,7 +191,7 @@ extension View3 {
         
         headerView.addSubview(backButton)
         
-        backButton.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 12).isActive = true
+        backButton.centerYAnchor.constraint(equalTo: headerView.centerYAnchor, constant: 0).isActive = true
         backButton.leftAnchor.constraint(equalTo: headerView.leftAnchor, constant: 6).isActive = true
         backButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/6).isActive = true
         backButton.heightAnchor.constraint(equalTo: headerView.heightAnchor, multiplier: 1/1.2).isActive = true
@@ -202,12 +205,12 @@ extension View3 {
         
         headerView.addSubview(personNameLabel)
         
-        personNameLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 12).isActive = true
+        personNameLabel.centerYAnchor.constraint(equalTo: headerView.centerYAnchor, constant: 0).isActive = true
         personNameLabel.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
         personNameLabel.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/3).isActive = true
         personNameLabel.heightAnchor.constraint(equalTo: headerView.heightAnchor, multiplier: 1/1.2).isActive = true
         
-        let personProfileImage = UIImageView(frame: CGRect(x: self.view.frame.width - 50, y: 17.5, width: 40, height: 40))
+        let personProfileImage = UIImageView(frame: CGRect(x: self.view.frame.width - 50, y: 8, width: 40, height: 40))
         personProfileImage.image = #imageLiteral(resourceName: "drake_fader")
         personNameLabel.contentMode = .scaleAspectFit
         personProfileImage.clipsToBounds = true
@@ -217,7 +220,7 @@ extension View3 {
         
 
         let connectButton = UIButton(type: .system)
-        connectButton.frame = CGRect(x: 0, y: self.view.frame.height - (self.view.frame.height * (1/12)), width: self.view.frame.width, height: (self.view.frame.height * (1/12)))
+        connectButton.frame = CGRect(x: 0, y: conversationView.frame.height - (self.view.frame.height * (1/12)), width: self.view.frame.width, height: (self.view.frame.height * (1/12)))
         connectButton.backgroundColor = UIColor(red: 230 / 255.0, green: 70/255.0, blue: 30/255.0, alpha: 1.0)
         connectButton.tintColor = UIColor(red: 215/255.0, green: 215/255.0, blue: 215/255.0, alpha: 1.0)
         connectButton.setTitle("Connect", for: .normal)
@@ -265,10 +268,7 @@ extension View3 {
     func sendButtonPressed(sender: UIButton) {
         
         
-            
-            let connectButton = sender
-            
-        
+        let connectButton = sender
         
         if isConnectViewHidden == true {
             
@@ -276,7 +276,7 @@ extension View3 {
             buttonsView.backgroundColor = UIColor(red: 215/255, green: 215/255, blue: 215/255, alpha: 1)
             buttonsView.restorationIdentifier = "buttonview"
             connectButton.superview!.addSubview(buttonsView)
-            
+
             
             let negotiateButton = UIView(frame: CGRect(x: 10, y: 65, width: 80, height: 80))
             negotiateButton.backgroundColor = UIColor(red: 220 / 255.0, green: 35/255.0, blue: 45/255.0, alpha: 1.0)

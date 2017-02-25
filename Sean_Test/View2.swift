@@ -39,11 +39,9 @@ class View2: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        cardA = createNewCard()
-        cardB = createNewCard()
         
-        assignPanGesture(card: cardA!)
+        
+       
         
         let headerView = UIView()
         headerView.backgroundColor = UIColor(red: 55/255.0, green: 61/255.0, blue: 60/255.0, alpha: 1.0)
@@ -200,6 +198,10 @@ class View2: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         self.scrollView = self.view.superview as! UIScrollView
+        cardA = createNewCard()
+        cardB = createNewCard()
+        
+        assignPanGesture(card: cardA!)
     }
     
     func scrollLeft(){
@@ -258,11 +260,15 @@ class View2: UIViewController {
         }
         
         let newCard = UIView()
+        self.view.superview as! UIScrollView
         newCard.backgroundColor = UIColor.white
         newCard.layer.cornerRadius = 15
-        newCard.frame.size.width = self.view.bounds.width / 1.025
-        newCard.frame.size.height = self.view.bounds.height / 1.225
-        newCard.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 - 10)
+        newCard.frame.size.width = self.view.frame.width / 1.025
+        print(self.view.bounds.height )
+        newCard.frame.size.height = self.view.frame.height / 1.105
+        print(self.scrollView.contentSize.height)
+
+        newCard.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 + 17.5)
         
         let photoScrollView = UIScrollView(frame: newCard.bounds)
         photoScrollView.bounces = false
@@ -416,43 +422,37 @@ class View2: UIViewController {
             
             if let view = sender.view {
                 
-                if view.center.x < 65 {
+                if view.center.x < 50 {
                     
-                    UIView.animate(withDuration: 0.2, animations: {
-                        view.center.x = -self.cardA!.frame.width
+                    UIView.animate(withDuration: 0.1, animations: {
+                        view.frame.origin.x = -self.cardA!.frame.width
                     }, completion: {
                         completionFlag in
-                        view.removeFromSuperview()
                         
+                        view.removeFromSuperview()
                         self.cardA = self.cardB
                         self.assignPanGesture(card: self.cardA!)
-                        
                         self.cardB! = self.createNewCard()
-                        self.cardB!.center.x = self.view.bounds.origin.x + self.view.bounds.width / 2
                     })
                     
                 }else if view.center.x > self.view.frame.width - 50 {
 
-                    UIView.animate(withDuration: 0.2, animations: {
-                        view.frame.origin.x = self.view.frame.width + self.cardA!.frame.width
+                    UIView.animate(withDuration: 0.1, animations: {
+                        view.frame.origin.x = self.view.frame.width
                     }, completion: {
                         completionFlag in
-                        view.removeFromSuperview()
-                        DispatchQueue.main.async {
-                            self.cardA = self.cardB
-                            self.assignPanGesture(card: self.cardA!)
-                            
-                            self.cardB! = self.createNewCard()
-                            self.cardB!.center.x = self.view.bounds.origin.x + self.view.bounds.width / 2
-
-                        }
                         
+                        view.removeFromSuperview()
+                        self.cardA = self.cardB
+                        self.assignPanGesture(card: self.cardA!)
+                        self.cardB! = self.createNewCard()
                     })
+                    
                     
                 }else {
                     
                     UIView.animate(withDuration: 0.5, animations: {
-                        sender.view!.center = CGPoint(x: self.cardB!.center.x, y: self.cardB!.center.y )
+                        sender.view!.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 + 17.5)
                         sender.view!.transform = sender.view!.transform.rotated(by: -atan2(self.cardA!.transform.b, self.cardA!.transform.a))
                     })
                     sender.setTranslation(CGPoint(x: 0, y: 0), in: self.view)
