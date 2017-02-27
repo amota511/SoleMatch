@@ -236,12 +236,11 @@ class View1: UIViewController {
         preferencesButton.backgroundColor = UIColor.white
         preferencesButton.translatesAutoresizingMaskIntoConstraints = false
         preferencesButton.isUserInteractionEnabled = true
-        preferencesButton.layer.borderColor = UIColor(red: 215/255.0, green: 215/255.0, blue: 215/255.0, alpha: 1.0).cgColor
-        preferencesButton.layer.borderWidth = 1
+//        preferencesButton.layer.borderColor = UIColor(red: 215/255.0, green: 215/255.0, blue: 215/255.0, alpha: 1.0).cgColor
+//        preferencesButton.layer.borderWidth = 1
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(myPreferencesTapRecognizer))
         preferencesButton.addGestureRecognizer(tapGesture)
-        
         
         self.view.addSubview(preferencesButton)
         

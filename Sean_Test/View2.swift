@@ -261,6 +261,7 @@ class View2: UIViewController {
         
         let newCard = UIView()
         newCard.backgroundColor = UIColor.white
+        newCard.clipsToBounds = true
         newCard.layer.cornerRadius = 15
         newCard.frame.size.width = self.view.frame.width / 1.025
         newCard.frame.size.height = self.view.frame.height / 1.105
@@ -309,18 +310,21 @@ class View2: UIViewController {
         blurView.frame.origin.y = 0
         blurView.frame.size.width = newCard.bounds.width
         blurView.frame.size.height = newCard.bounds.height
+        blurView.clipsToBounds = true
         
         let blurView2 = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
         blurView2.frame.origin.x = 0
         blurView2.frame.origin.y = 0
         blurView2.frame.size.width = newCard.bounds.width
         blurView2.frame.size.height = newCard.bounds.height
+        blurView2.clipsToBounds = true
         
         let blurView3 = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
         blurView3.frame.origin.x = 0
         blurView3.frame.origin.y = 0
         blurView3.frame.size.width = newCard.bounds.width
         blurView3.frame.size.height = newCard.bounds.height
+        blurView3.clipsToBounds = true
         
         backgroundPhoto.addSubview(blurView)
         backgroundPhoto2.addSubview(blurView2)
@@ -410,7 +414,7 @@ class View2: UIViewController {
 //            }
             
             //lastTranslationX = view.center.x
-            print(-(((self.view.center.x - view.center.x) * 0.002) - (2 * 0.375)))
+            
             
         }
         

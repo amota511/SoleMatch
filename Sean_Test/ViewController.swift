@@ -112,10 +112,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         centerButton.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 1/2.5).isActive = true
         centerButton.heightAnchor.constraint(equalTo: headerView.heightAnchor, multiplier: 1/2).isActive = true
         
-        self.scrollView.clipsToBounds = false
-        self.view.clipsToBounds = false
-        
-        
         selectionView.backgroundColor = UIColor.white
         selectionView.clipsToBounds = true
         selectionView.layer.cornerRadius = 0.75
