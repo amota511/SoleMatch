@@ -22,6 +22,7 @@
 		1A9AB3011E340659003319EC /* View3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AB2FF1E340659003319EC /* View3.swift */; };
 		1A9AB3021E340659003319EC /* View3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9AB3001E340659003319EC /* View3.xib */; };
 		1ABFA14D1E63D6CF00E0801E /* AddSneakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABFA14C1E63D6CF00E0801E /* AddSneakerViewController.swift */; };
+		1ABFA14F1E64D6D600E0801E /* AddSneakerCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABFA14E1E64D6D600E0801E /* AddSneakerCVCell.swift */; };
 		1AC89E0F1E428D0500539890 /* Sneaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC89E0E1E428D0500539890 /* Sneaker.swift */; };
 		1AC89E111E4403F100539890 /* ConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC89E101E4403F100539890 /* ConversationView.swift */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		1A9AB2FF1E340659003319EC /* View3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View3.swift; sourceTree = "<group>"; };
 		1A9AB3001E340659003319EC /* View3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View3.xib; sourceTree = "<group>"; };
 		1ABFA14C1E63D6CF00E0801E /* AddSneakerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSneakerViewController.swift; sourceTree = "<group>"; };
+		1ABFA14E1E64D6D600E0801E /* AddSneakerCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSneakerCVCell.swift; sourceTree = "<group>"; };
 		1AC89E0E1E428D0500539890 /* Sneaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sneaker.swift; sourceTree = "<group>"; };
 		1AC89E101E4403F100539890 /* ConversationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +84,7 @@
 				1A37D9B41E2896A9000B11B2 /* ViewController.swift */,
 				1A9AB2F71E34063B003319EC /* View1.swift */,
 				1ABFA14C1E63D6CF00E0801E /* AddSneakerViewController.swift */,
+				1ABFA14E1E64D6D600E0801E /* AddSneakerCVCell.swift */,
 				1A9AB2F81E34063B003319EC /* View1.xib */,
 				1A9AB2FB1E34064C003319EC /* View2.swift */,
 				1AC89E0E1E428D0500539890 /* Sneaker.swift */,
@@ -188,6 +191,7 @@
 			files = (
 				1A37D9B51E2896A9000B11B2 /* ViewController.swift in Sources */,
 				1AC89E0F1E428D0500539890 /* Sneaker.swift in Sources */,
+				1ABFA14F1E64D6D600E0801E /* AddSneakerCVCell.swift in Sources */,
 				1A514F051E5E35DB00F8217D /* ConversationsTVCell.swift in Sources */,
 				1A9AB3011E340659003319EC /* View3.swift in Sources */,
 				1A9AB2F91E34063B003319EC /* View1.swift in Sources */,

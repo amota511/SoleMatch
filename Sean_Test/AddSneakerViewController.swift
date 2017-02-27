@@ -8,8 +8,10 @@
 
 import UIKit
 
-class AddSneakerViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class AddSneakerViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    var selectedCell: AddSneakerCVCell?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         createBlurView()
@@ -60,7 +62,7 @@ class AddSneakerViewController: UIViewController, UICollectionViewDelegate, UICo
             sneakerPhotosCV.frame.size.width = containerView.bounds.width
             sneakerPhotosCV.frame.size.height = containerView.bounds.height * (1/1.5)
             
-            //self.addPhotoViewDescriptionLabel(containerView: containerView, collectionView: sneakerPhotosCV)
+            self.addPhotoViewDescriptionLabel(containerView: containerView, collectionView: sneakerPhotosCV)
         }) { (completion) in
             
         }
@@ -106,7 +108,7 @@ class AddSneakerViewController: UIViewController, UICollectionViewDelegate, UICo
         sneakerPhotosCV.dataSource = self
         sneakerPhotosCV.delegate = self
         sneakerPhotosCV.translatesAutoresizingMaskIntoConstraints = false
-        sneakerPhotosCV.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "ConnectionsCell")
+        sneakerPhotosCV.register(AddSneakerCVCell.self, forCellWithReuseIdentifier: "ConnectionsCell")
         sneakerPhotosCV.isScrollEnabled = false
         sneakerPhotosCV.backgroundColor = UIColor.white
         sneakerPhotosCV.allowsSelection = true
@@ -124,20 +126,20 @@ class AddSneakerViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ConnectionsCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ConnectionsCell", for: indexPath) as! AddSneakerCVCell
         cell.layer.cornerRadius = 2
         cell.backgroundColor = UIColor(red: 245.0/255.0, green: 245.0/255.0, blue: 245.0/255.0, alpha: 1.0)
         cell.layer.borderColor = UIColor(red: 225.0/255.0, green: 225.0/255.0, blue: 225.0/255.0, alpha: 1.0).cgColor
         cell.layer.borderWidth = 1
         
-        addCameraImage(cell: cell)
-        
+        setupCameraImage(cell: cell)
+        setupSelectedImage(cell: cell)
         
         return cell
         
     }
     
-    func addCameraImage(cell: UICollectionViewCell){
+    func setupCameraImage(cell: AddSneakerCVCell){
         
         let cameraImageView = UIImageView(image: #imageLiteral(resourceName: "white-camera-hi"))
         cameraImageView.contentMode = .scaleAspectFit
@@ -146,20 +148,33 @@ class AddSneakerViewController: UIViewController, UICollectionViewDelegate, UICo
         cameraImageView.frame.size.height = cell.bounds.height * 0.5
         cameraImageView.center = CGPoint(x: cell.bounds.width / 2, y: cell.bounds.height / 2)
         
-        cell.contentView.addSubview(cameraImageView)
+        cell.cameraImage = cameraImageView
+        cell.contentView.addSubview(cell.cameraImage)
+    }
+    
+    func setupSelectedImage(cell: AddSneakerCVCell){
+        let selectedImageView = UIImageView()
+        selectedImageView.contentMode = .scaleAspectFit
+        selectedImageView.backgroundColor = UIColor.clear
+        selectedImageView.frame.size.width = cell.bounds.width
+        selectedImageView.frame.size.height = cell.bounds.height
+        selectedImageView.center = CGPoint(x: cell.bounds.width / 2, y: cell.bounds.height / 2)
+        
+        cell.selectedImage = selectedImageView
+        cell.contentView.addSubview(cell.selectedImage)
     }
     
     func addPhotoViewDescriptionLabel(containerView: UIView, collectionView: UICollectionView){
         let descriptionLabel = UILabel()
         descriptionLabel.text = "Add up to 6 photos."
         descriptionLabel.textAlignment = .center
-        descriptionLabel.textColor = UIColor(red: 245.0/255.0, green: 245.0/255.0, blue: 245.0/255.0, alpha: 1.0)
+        descriptionLabel.textColor = UIColor(red: 225.0/255.0, green: 225.0/255.0, blue: 225.0/255.0, alpha: 1.0)
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         containerView.addSubview(descriptionLabel)
         
-        descriptionLabel.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 5).isActive = true
-        descriptionLabel.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor).isActive = true
+        descriptionLabel.topAnchor.constraint(equalTo: containerView.centerYAnchor, constant: 17.5).isActive = true
+        descriptionLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
         descriptionLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 1).isActive = true
         descriptionLabel.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 1/12).isActive = true
         
@@ -170,6 +185,61 @@ class AddSneakerViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
+        let photoSelectionAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        photoSelectionAlertController.addAction(UIAlertAction(title: "Import From Camera Roll", style: .default, handler: { (UIAlertAction) in
+            
+            print("cameraRollImportSelected")
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                
+                let picker = UIImagePickerController()
+                picker.delegate = self
+                picker.sourceType = .photoLibrary
+                self.present(picker, animated: true, completion: nil)
+                
+            }else {
+                print("The camera is not available")
+            }
+        }))
+        
+        
+        photoSelectionAlertController.addAction(UIAlertAction(title: "Use Camera", style: .default, handler: { (UIAlertAction) in
+            
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                self.selectedCell = collectionView.cellForItem(at: indexPath) as! AddSneakerCVCell?
+                let picker = UIImagePickerController()
+                picker.delegate = self
+                picker.sourceType = .camera
+                picker.allowsEditing = false
+                self.present(picker, animated: true, completion: nil)
+            
+            }else {
+                print("The camera is not available")
+            }
+        }))
+        
+        
+        photoSelectionAlertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (UIAlertAction) in
+            photoSelectionAlertController.dismiss(animated: true)
+        }))
+        
+        self.present(photoSelectionAlertController, animated: true)
     }
+
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        let cell = selectedCell
+        cell!.cameraImage.image = nil
+        cell!.selectedImage.image = image
+        print("Image picked")
+        
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        print("Image picked 2")
+        picker.dismiss(animated: true) {
+            
+        }
+    }
+    
 }
+
+

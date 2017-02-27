@@ -49,5 +49,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCameraUsageDescription</key>
+	<string>Sole Match would like to access your camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Sole Match would like to access your photo library</string>
 </dict>
 </plist>
