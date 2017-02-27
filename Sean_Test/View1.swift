@@ -78,7 +78,14 @@ class View1: UIViewController {
         
         userImage.layer.cornerRadius = (self.view.frame.width / 6)
         
+        self.userImage = userImage
         
+        createStars()
+        
+        
+    }
+    
+    func createStars() {
         let thirdStar = UIImageView(image: #imageLiteral(resourceName: "Gold_Star"))
         thirdStar.contentMode = .scaleAspectFit
         thirdStar.transform = thirdStar.transform.rotated(by: 0.0)
@@ -122,7 +129,7 @@ class View1: UIViewController {
         firstStar.centerXAnchor.constraint(equalTo: secondStar.centerXAnchor, constant: -(self.view.frame.width / 12) + 2.5).isActive = true
         firstStar.widthAnchor.constraint(equalTo: secondStar.widthAnchor).isActive = true
         firstStar.heightAnchor.constraint(equalTo: secondStar.heightAnchor).isActive = true
-         
+        
         let fifthStar = UIImageView(image: #imageLiteral(resourceName: "Gold_Star"))
         fifthStar.contentMode = .scaleAspectFit
         fifthStar.transform = fifthStar.transform.rotated(by: 0.42)
@@ -133,8 +140,6 @@ class View1: UIViewController {
         fifthStar.centerXAnchor.constraint(equalTo: fourthStar.centerXAnchor, constant: (self.view.frame.width / 12) - 2.5).isActive = true
         fifthStar.widthAnchor.constraint(equalTo: fourthStar.widthAnchor).isActive = true
         fifthStar.heightAnchor.constraint(equalTo: fourthStar.heightAnchor).isActive = true
-
-        self.userImage = userImage
     }
     
     func createUserNameLabel() {
@@ -407,10 +412,9 @@ extension View1: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let addSneakerVC = AddSneakerViewController()
-        
-        self.addChildViewController(addSneakerVC)
-        self.view.addSubview(addSneakerVC.view)
+        let baseView = self.parent as! ViewController
+        baseView.showAddSneakerViewController()
+
     
     }
 }
