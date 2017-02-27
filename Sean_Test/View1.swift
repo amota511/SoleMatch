@@ -407,7 +407,10 @@ extension View1: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        print(indexPath.row)
+        let addSneakerVC = AddSneakerViewController()
+        
+        self.addChildViewController(addSneakerVC)
+        self.view.addSubview(addSneakerVC.view)
     
     }
 }

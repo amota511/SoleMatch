@@ -969,19 +969,19 @@ extension View3: UITableViewDelegate, UITableViewDataSource {
             tableView.register(ConversationsTVCell.self, forCellReuseIdentifier: "ConversationsCell")
             let cell = tableView.dequeueReusableCell(withIdentifier: "ConversationsCell", for: indexPath) as! ConversationsTVCell
             
-            let image = cell.sneakerImage
-            image.image = imageArray[(indexPath.row + 3) % 5]
-            image.contentMode = .scaleAspectFill
-            image.clipsToBounds = true
-            image.layer.cornerRadius = 10
-            image.translatesAutoresizingMaskIntoConstraints = false
+            let sneakerImage = cell.sneakerImage
+            sneakerImage.image = imageArray[(indexPath.row + 3) % 5]
+            sneakerImage.contentMode = .scaleAspectFill
+            sneakerImage.clipsToBounds = true
+            sneakerImage.layer.cornerRadius = 10
+            sneakerImage.translatesAutoresizingMaskIntoConstraints = false
 
-            cell.addSubview(image)
+            cell.addSubview(sneakerImage)
             
-            image.leftAnchor.constraint(equalTo: cell.leftAnchor, constant: 6).isActive = true
-            image.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
-            image.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 1/5).isActive = true
-            image.heightAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 1/5).isActive = true
+            sneakerImage.leftAnchor.constraint(equalTo: cell.leftAnchor, constant: 6).isActive = true
+            sneakerImage.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
+            sneakerImage.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 1/5).isActive = true
+            sneakerImage.heightAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 1/5).isActive = true
             
             let sneakerName = cell.sneakerName
             sneakerName.text = "Shoe Name"
@@ -992,19 +992,30 @@ extension View3: UITableViewDelegate, UITableViewDataSource {
             cell.addSubview(sneakerName)
             
             sneakerName.bottomAnchor.constraint(equalTo: cell.centerYAnchor, constant: -2).isActive = true
-            sneakerName.leftAnchor.constraint(equalTo: image.rightAnchor, constant: 12).isActive = true
+            sneakerName.leftAnchor.constraint(equalTo: sneakerImage.rightAnchor, constant: 12).isActive = true
             sneakerName.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 1/1.25).isActive = true
             sneakerName.heightAnchor.constraint(equalTo: cell.heightAnchor, multiplier: 1/3).isActive = true
             
             
-            let timerView = cell.timerView
-            timerView.backgroundColor = UIColor(red: CGFloat((50.0 + Double(indexPath.row * 10)) / 255.0), green: CGFloat((150.0 - Double((indexPath.row ) * 10) ) / 255.0), blue: 30/255.0, alpha: 1.0)
-            timerView.clipsToBounds = true
-            timerView.layer.cornerRadius = 15
-            timerView.frame = CGRect(x: -15, y: 0, width: (Int(cell.frame.width / 24) * (24 - indexPath.row) + 15), height: Int(cell.frame.height))
+//            let timerView = cell.timerView
+//            timerView.backgroundColor = UIColor(red: CGFloat((50.0 + Double(indexPath.row * 10)) / 255.0), green: CGFloat((150.0 - Double((indexPath.row ) * 10) ) / 255.0), blue: 30/255.0, alpha: 1.0)
+//            timerView.clipsToBounds = true
+//            timerView.layer.cornerRadius = 15
+//            timerView.frame = CGRect(x: -15, y: 0, width: (Int(cell.frame.width / 24) * (24 - indexPath.row) + 15), height: Int(cell.frame.height))
+//
+//            cell.contentView.addSubview(timerView)
 
-            //cell.contentView.addSubview(timerView)
-
+            let hourGlassTimer = UIImageView(image: #imageLiteral(resourceName: "hourglass_colored"))
+            hourGlassTimer.contentMode = .scaleAspectFit
+            hourGlassTimer.translatesAutoresizingMaskIntoConstraints = false
+            
+            cell.contentView.addSubview(hourGlassTimer)
+            
+            hourGlassTimer.topAnchor.constraint(equalTo: sneakerName.topAnchor).isActive = true
+            hourGlassTimer.rightAnchor.constraint(equalTo: cell.rightAnchor, constant: -5).isActive = true
+            hourGlassTimer.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 1/7).isActive = true
+            hourGlassTimer.heightAnchor.constraint(equalTo: cell.heightAnchor, multiplier: 2/4).isActive = true
+            
             cell.selectionStyle = .none
             return cell
         }
