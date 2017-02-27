@@ -234,7 +234,10 @@ class AddSneakerViewController: UIViewController, UICollectionViewDelegate, UICo
         
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        print("Image picked 2")
+        print(info)
+        let cell = selectedCell
+        cell!.cameraImage.image = nil
+        cell!.selectedImage.image = info[UIImagePickerControllerOriginalImage] as! UIImage?
         picker.dismiss(animated: true) {
             
         }
