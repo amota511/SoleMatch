@@ -401,15 +401,17 @@ class View2: UIViewController {
         let translation = sender.translation(in: self.view)
         if let view = sender.view {
             view.center.x = CGFloat(view.center.x + translation.x)
+            view.transform = CGAffineTransform(rotationAngle: -(((self.view.center.x - view.center.x) * 0.002) - (2 *  0.375)))
+//            if view.center.x > lastTranslationX {
+//                //view.transform = view.transform.rotated(by: 0.01)
+//                view.transform = CGAffineTransform(rotationAngle: view.center.x - self.view.center.x)
+//            }else if view.center.x < lastTranslationX {
+//                //view.transform = view.transform.rotated(by: -0.01)
+//            }
             
-            if view.center.x > lastTranslationX {
-                view.transform = view.transform.rotated(by: 0.01)
-                
-            }else if view.center.x < lastTranslationX {
-                view.transform = view.transform.rotated(by: -0.01)
-            }
+            //lastTranslationX = view.center.x
+            print(-(((self.view.center.x - view.center.x) * 0.002) - (2 * 0.375)))
             
-            lastTranslationX = view.center.x
         }
         
         sender.setTranslation(CGPoint(x: 0, y: 0), in: self.view)
