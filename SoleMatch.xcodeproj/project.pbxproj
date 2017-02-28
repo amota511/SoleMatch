@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A37D9B31E2896A9000B11B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A37D9B21E2896A9000B11B2 /* AppDelegate.swift */; };
-		1A37D9B51E2896A9000B11B2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A37D9B41E2896A9000B11B2 /* ViewController.swift */; };
+		1A37D9B51E2896A9000B11B2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A37D9B41E2896A9000B11B2 /* BaseViewController.swift */; };
 		1A37D9B81E2896A9000B11B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A37D9B61E2896A9000B11B2 /* Main.storyboard */; };
 		1A37D9BA1E2896A9000B11B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A37D9B91E2896A9000B11B2 /* Assets.xcassets */; };
 		1A37D9BD1E2896A9000B11B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A37D9BB1E2896A9000B11B2 /* LaunchScreen.storyboard */; };
@@ -16,11 +16,11 @@
 		1A5B3BFE1E4D6CF200DF6B32 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A5B3BFD1E4D6CDB00DF6B32 /* Pacifico-Regular.ttf */; };
 		1A5E9A7A1E3A91A7005DE1D8 /* ConnectionsCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E9A791E3A91A7005DE1D8 /* ConnectionsCVCell.swift */; };
 		1A9AB2F91E34063B003319EC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AB2F71E34063B003319EC /* ProfileViewController.swift */; };
-		1A9AB2FA1E34063B003319EC /* View1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9AB2F81E34063B003319EC /* View1.xib */; };
+		1A9AB2FA1E34063B003319EC /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9AB2F81E34063B003319EC /* ProfileView.xib */; };
 		1A9AB2FD1E34064C003319EC /* SwipingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AB2FB1E34064C003319EC /* SwipingViewController.swift */; };
-		1A9AB2FE1E34064C003319EC /* View2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9AB2FC1E34064C003319EC /* View2.xib */; };
+		1A9AB2FE1E34064C003319EC /* SwipingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9AB2FC1E34064C003319EC /* SwipingView.xib */; };
 		1A9AB3011E340659003319EC /* CommunicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AB2FF1E340659003319EC /* CommunicationViewController.swift */; };
-		1A9AB3021E340659003319EC /* View3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9AB3001E340659003319EC /* View3.xib */; };
+		1A9AB3021E340659003319EC /* CommunicationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9AB3001E340659003319EC /* CommunicationView.xib */; };
 		1ABFA14D1E63D6CF00E0801E /* AddSneakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABFA14C1E63D6CF00E0801E /* AddSneakerViewController.swift */; };
 		1ABFA14F1E64D6D600E0801E /* AddSneakerCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABFA14E1E64D6D600E0801E /* AddSneakerCVCell.swift */; };
 		1AC89E0F1E428D0500539890 /* Sneaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC89E0E1E428D0500539890 /* Sneaker.swift */; };
@@ -30,7 +30,7 @@
 /* Begin PBXFileReference section */
 		1A37D9AF1E2896A9000B11B2 /* SoleMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoleMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A37D9B21E2896A9000B11B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1A37D9B41E2896A9000B11B2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1A37D9B41E2896A9000B11B2 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		1A37D9B71E2896A9000B11B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1A37D9B91E2896A9000B11B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A37D9BC1E2896A9000B11B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -39,11 +39,11 @@
 		1A5B3BFD1E4D6CDB00DF6B32 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pacifico-Regular.ttf"; sourceTree = "<group>"; };
 		1A5E9A791E3A91A7005DE1D8 /* ConnectionsCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsCVCell.swift; sourceTree = "<group>"; };
 		1A9AB2F71E34063B003319EC /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		1A9AB2F81E34063B003319EC /* View1.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View1.xib; sourceTree = "<group>"; };
+		1A9AB2F81E34063B003319EC /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		1A9AB2FB1E34064C003319EC /* SwipingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingViewController.swift; sourceTree = "<group>"; };
-		1A9AB2FC1E34064C003319EC /* View2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View2.xib; sourceTree = "<group>"; };
+		1A9AB2FC1E34064C003319EC /* SwipingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwipingView.xib; sourceTree = "<group>"; };
 		1A9AB2FF1E340659003319EC /* CommunicationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationViewController.swift; sourceTree = "<group>"; };
-		1A9AB3001E340659003319EC /* View3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View3.xib; sourceTree = "<group>"; };
+		1A9AB3001E340659003319EC /* CommunicationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommunicationView.xib; sourceTree = "<group>"; };
 		1ABFA14C1E63D6CF00E0801E /* AddSneakerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSneakerViewController.swift; sourceTree = "<group>"; };
 		1ABFA14E1E64D6D600E0801E /* AddSneakerCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSneakerCVCell.swift; sourceTree = "<group>"; };
 		1AC89E0E1E428D0500539890 /* Sneaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sneaker.swift; sourceTree = "<group>"; };
@@ -81,23 +81,10 @@
 			isa = PBXGroup;
 			children = (
 				1A37D9B21E2896A9000B11B2 /* AppDelegate.swift */,
-				1A37D9B41E2896A9000B11B2 /* ViewController.swift */,
-				1A9AB2F71E34063B003319EC /* ProfileViewController.swift */,
-				1ABFA14C1E63D6CF00E0801E /* AddSneakerViewController.swift */,
-				1ABFA14E1E64D6D600E0801E /* AddSneakerCVCell.swift */,
-				1A9AB2F81E34063B003319EC /* View1.xib */,
-				1A9AB2FB1E34064C003319EC /* SwipingViewController.swift */,
-				1AC89E0E1E428D0500539890 /* Sneaker.swift */,
-				1A9AB2FC1E34064C003319EC /* View2.xib */,
-				1A9AB2FF1E340659003319EC /* CommunicationViewController.swift */,
-				1A5E9A791E3A91A7005DE1D8 /* ConnectionsCVCell.swift */,
-				1A514F041E5E35DA00F8217D /* ConversationsTVCell.swift */,
-				1AC89E101E4403F100539890 /* ConversationView.swift */,
-				1A9AB3001E340659003319EC /* View3.xib */,
-				1A37D9B61E2896A9000B11B2 /* Main.storyboard */,
+				1ABFA1561E652CDF00E0801E /* StoryBoards */,
+				1ABFA1531E652C9D00E0801E /* Base */,
+				1ABFA1551E652CC500E0801E /* Media */,
 				1A37D9B91E2896A9000B11B2 /* Assets.xcassets */,
-				1A5B3BFC1E4D6CC700DF6B32 /* Fonts */,
-				1A37D9BB1E2896A9000B11B2 /* LaunchScreen.storyboard */,
 				1A37D9BE1E2896A9000B11B2 /* Info.plist */,
 			);
 			name = SoleMatch;
@@ -110,6 +97,75 @@
 				1A5B3BFD1E4D6CDB00DF6B32 /* Pacifico-Regular.ttf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		1ABFA1501E652C2900E0801E /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				1A9AB2F71E34063B003319EC /* ProfileViewController.swift */,
+				1ABFA1571E652D3000E0801E /* AddSneaker */,
+				1A9AB2F81E34063B003319EC /* ProfileView.xib */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		1ABFA1511E652C6600E0801E /* Swipe */ = {
+			isa = PBXGroup;
+			children = (
+				1A9AB2FB1E34064C003319EC /* SwipingViewController.swift */,
+				1AC89E0E1E428D0500539890 /* Sneaker.swift */,
+				1A9AB2FC1E34064C003319EC /* SwipingView.xib */,
+			);
+			name = Swipe;
+			sourceTree = "<group>";
+		};
+		1ABFA1521E652C8300E0801E /* Communication */ = {
+			isa = PBXGroup;
+			children = (
+				1A9AB2FF1E340659003319EC /* CommunicationViewController.swift */,
+				1A5E9A791E3A91A7005DE1D8 /* ConnectionsCVCell.swift */,
+				1A514F041E5E35DA00F8217D /* ConversationsTVCell.swift */,
+				1AC89E101E4403F100539890 /* ConversationView.swift */,
+				1A9AB3001E340659003319EC /* CommunicationView.xib */,
+			);
+			name = Communication;
+			sourceTree = "<group>";
+		};
+		1ABFA1531E652C9D00E0801E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				1A37D9B41E2896A9000B11B2 /* BaseViewController.swift */,
+				1ABFA1501E652C2900E0801E /* Profile */,
+				1ABFA1511E652C6600E0801E /* Swipe */,
+				1ABFA1521E652C8300E0801E /* Communication */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		1ABFA1551E652CC500E0801E /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				1A5B3BFC1E4D6CC700DF6B32 /* Fonts */,
+			);
+			name = Media;
+			sourceTree = "<group>";
+		};
+		1ABFA1561E652CDF00E0801E /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				1A37D9B61E2896A9000B11B2 /* Main.storyboard */,
+				1A37D9BB1E2896A9000B11B2 /* LaunchScreen.storyboard */,
+			);
+			name = StoryBoards;
+			sourceTree = "<group>";
+		};
+		1ABFA1571E652D3000E0801E /* AddSneaker */ = {
+			isa = PBXGroup;
+			children = (
+				1ABFA14C1E63D6CF00E0801E /* AddSneakerViewController.swift */,
+				1ABFA14E1E64D6D600E0801E /* AddSneakerCVCell.swift */,
+			);
+			name = AddSneaker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,9 +231,9 @@
 				1A5B3BFE1E4D6CF200DF6B32 /* Pacifico-Regular.ttf in Resources */,
 				1A37D9BD1E2896A9000B11B2 /* LaunchScreen.storyboard in Resources */,
 				1A37D9BA1E2896A9000B11B2 /* Assets.xcassets in Resources */,
-				1A9AB3021E340659003319EC /* View3.xib in Resources */,
-				1A9AB2FA1E34063B003319EC /* View1.xib in Resources */,
-				1A9AB2FE1E34064C003319EC /* View2.xib in Resources */,
+				1A9AB3021E340659003319EC /* CommunicationView.xib in Resources */,
+				1A9AB2FA1E34063B003319EC /* ProfileView.xib in Resources */,
+				1A9AB2FE1E34064C003319EC /* SwipingView.xib in Resources */,
 				1A37D9B81E2896A9000B11B2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,7 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A37D9B51E2896A9000B11B2 /* ViewController.swift in Sources */,
+				1A37D9B51E2896A9000B11B2 /* BaseViewController.swift in Sources */,
 				1AC89E0F1E428D0500539890 /* Sneaker.swift in Sources */,
 				1ABFA14F1E64D6D600E0801E /* AddSneakerCVCell.swift in Sources */,
 				1A514F051E5E35DB00F8217D /* ConversationsTVCell.swift in Sources */,
