@@ -6,14 +6,19 @@
 //  Copyright © 2017 Aaron Motayne. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Sneaker {
     
-    var brand: String!
-    var name: String!
-    var size: String!
-    var locationOfSeller: String!
-    var styleNumber: String!
+    var photos: [UIImage]?
+    var brand: String?
+    var name: String?
+    var condition: String?
+    var size: String?
+    var locationOfSeller: String?
+    var styleNumber: String?
+    var price: String?
+
+    
     
 }

@@ -12,7 +12,7 @@ class View3: UIViewController {
 
     var scrollView: UIScrollView!
     var isConnectViewHidden = true
-    var imageArray = [UIImage]()
+    var sneakers = [Sneaker]()
     
 
     override func viewDidLoad() {
@@ -27,11 +27,16 @@ class View3: UIViewController {
             return label
         }()
         
-        imageArray.append(#imageLiteral(resourceName: "Air Mag"))
-        imageArray.append(#imageLiteral(resourceName: "Yeezy Red Stripe"))
-        imageArray.append(#imageLiteral(resourceName: "Yeezy Orange Stripe"))
-        imageArray.append(#imageLiteral(resourceName: "OvO 10"))
-        imageArray.append(#imageLiteral(resourceName: "Concord 11"))
+        for i in 0...5 {
+            sneakers.append(Sneaker())
+        }
+        
+        sneakers[0].photos?.append(#imageLiteral(resourceName: "Air Mag"))
+        sneakers[1].photos?.append(#imageLiteral(resourceName: "Yeezy Red Stripe"))
+        sneakers[2].photos?.append(#imageLiteral(resourceName: "Yeezy Orange Stripe"))
+        sneakers[3].photos?.append(#imageLiteral(resourceName: "OvO 10"))
+        sneakers[4].photos?.append(#imageLiteral(resourceName: "Concord 11"))
+
         
         self.view.addSubview(connectionsLabel)
         
@@ -136,7 +141,7 @@ extension View3: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.layer.cornerRadius = 20
         
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: cell.frame.width, height: cell.frame.height))
-        image.image = imageArray[indexPath.row]
+        image.image = sneakers[indexPath.row].photos?[0]
         image.contentMode = .scaleAspectFill
         cell.addSubview(image)
         
@@ -970,7 +975,7 @@ extension View3: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "ConversationsCell", for: indexPath) as! ConversationsTVCell
             
             let sneakerImage = cell.sneakerImage
-            sneakerImage.image = imageArray[(indexPath.row + 3) % 5]
+            sneakerImage.image = sneakers[(indexPath.row + 3) % 5].photos?[0]
             sneakerImage.contentMode = .scaleAspectFill
             sneakerImage.clipsToBounds = true
             sneakerImage.layer.cornerRadius = 10
