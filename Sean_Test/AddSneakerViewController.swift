@@ -189,16 +189,18 @@ class AddSneakerViewController: UIViewController, UICollectionViewDelegate, UICo
         
         photoSelectionAlertController.addAction(UIAlertAction(title: "Import From Camera Roll", style: .default, handler: { (UIAlertAction) in
             
-            print("cameraRollImportSelected")
+            
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
                 
+                self.selectedCell = collectionView.cellForItem(at: indexPath) as! AddSneakerCVCell?
                 let picker = UIImagePickerController()
                 picker.delegate = self
                 picker.sourceType = .photoLibrary
+                picker.allowsEditing = false
                 self.present(picker, animated: true, completion: nil)
                 
             }else {
-                print("The camera is not available")
+                print("The camera roll is not available")
             }
         }))
         
@@ -206,6 +208,7 @@ class AddSneakerViewController: UIViewController, UICollectionViewDelegate, UICo
         photoSelectionAlertController.addAction(UIAlertAction(title: "Use Camera", style: .default, handler: { (UIAlertAction) in
             
             if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                
                 self.selectedCell = collectionView.cellForItem(at: indexPath) as! AddSneakerCVCell?
                 let picker = UIImagePickerController()
                 picker.delegate = self
