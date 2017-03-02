@@ -45,7 +45,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        let v1 : View1 = View1(nibName: "ProfileView", bundle: nil)
+        let v1 : ProfileViewController = ProfileViewController(nibName: "ProfileView", bundle: nil)
         self.addChildViewController(v1)
         self.scrollView.addSubview(v1.view)
         v1.didMove(toParentViewController: self)
@@ -54,7 +54,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         v1Frame.size.height = scrollView.frame.height
         v1.view.frame = v1Frame
         
-        let v2 : View2 = View2(nibName: "SwipingView", bundle: nil)
+        let v2 : SwipingViewController = SwipingViewController(nibName: "SwipingView", bundle: nil)
         self.addChildViewController(v2)
         self.scrollView.addSubview(v2.view)
         v2.didMove(toParentViewController: self)
@@ -64,7 +64,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         v2Frame.origin.x = self.view.frame.width
         v2.view.frame = v2Frame
 
-        let v3 : View3 = View3(nibName: "CommunicationView", bundle: nil)
+        let v3 : CommunicationViewController = CommunicationViewController(nibName: "CommunicationView", bundle: nil)
         self.addChildViewController(v3)
         self.scrollView.addSubview(v3.view)
         v3.didMove(toParentViewController: self)

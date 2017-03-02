@@ -8,7 +8,7 @@
 
 import UIKit
 
-class View2: UIViewController {
+class SwipingViewController: UIViewController {
 
     var cardA: UIView?
     var cardB: UIView?

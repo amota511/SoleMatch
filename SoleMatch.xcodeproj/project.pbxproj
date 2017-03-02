@@ -83,6 +83,7 @@
 				1A37D9B21E2896A9000B11B2 /* AppDelegate.swift */,
 				1ABFA1561E652CDF00E0801E /* StoryBoards */,
 				1ABFA1531E652C9D00E0801E /* Base */,
+				1AA322131E67AD87002C34CF /* Models */,
 				1ABFA1551E652CC500E0801E /* Media */,
 				1A37D9B91E2896A9000B11B2 /* Assets.xcassets */,
 				1A37D9BE1E2896A9000B11B2 /* Info.plist */,
@@ -99,6 +100,23 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		1AA322121E67AC12002C34CF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1A5E9A791E3A91A7005DE1D8 /* ConnectionsCVCell.swift */,
+				1A514F041E5E35DA00F8217D /* ConversationsTVCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		1AA322131E67AD87002C34CF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1AC89E0E1E428D0500539890 /* Sneaker.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		1ABFA1501E652C2900E0801E /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,7 +131,6 @@
 			isa = PBXGroup;
 			children = (
 				1A9AB2FB1E34064C003319EC /* SwipingViewController.swift */,
-				1AC89E0E1E428D0500539890 /* Sneaker.swift */,
 				1A9AB2FC1E34064C003319EC /* SwipingView.xib */,
 			);
 			name = Swipe;
@@ -123,9 +140,8 @@
 			isa = PBXGroup;
 			children = (
 				1A9AB2FF1E340659003319EC /* CommunicationViewController.swift */,
-				1A5E9A791E3A91A7005DE1D8 /* ConnectionsCVCell.swift */,
-				1A514F041E5E35DA00F8217D /* ConversationsTVCell.swift */,
 				1AC89E101E4403F100539890 /* ConversationView.swift */,
+				1AA322121E67AC12002C34CF /* Cells */,
 				1A9AB3001E340659003319EC /* CommunicationView.xib */,
 			);
 			name = Communication;

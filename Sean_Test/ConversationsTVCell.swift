@@ -13,7 +13,8 @@ class ConversationsTVCell: UITableViewCell {
     var sneakerImage = UIImageView()
     var sneakerName = UILabel()
     var sneakerCondition = UILabel()
-    var sneakerSize = UILabel()
+    //var sneakerSize = UILabel()
+    var sneakerPrice = UILabel()
     var timerLabel = UILabel()
     
 }

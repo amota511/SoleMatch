@@ -17,7 +17,7 @@ class Sneaker {
     var size: String?
     var locationOfSeller: String?
     var styleNumber: String?
-    var price: String?
+    var price: Int?
 
     
     

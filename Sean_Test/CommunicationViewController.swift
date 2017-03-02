@@ -8,7 +8,7 @@
 
 import UIKit
 
-class View3: UIViewController {
+class CommunicationViewController: UIViewController {
 
     var scrollView: UIScrollView!
     var isConnectViewHidden = true
@@ -29,6 +29,8 @@ class View3: UIViewController {
         
         for i in 0...5 {
             sneakers.append(Sneaker())
+            sneakers[i].photos = [UIImage]()
+            sneakers[i].price = 150 + (20 * i)
         }
         
         sneakers[0].photos?.append(#imageLiteral(resourceName: "Air Mag"))
@@ -127,7 +129,7 @@ class View3: UIViewController {
 }
 
 
-extension View3: UICollectionViewDelegate, UICollectionViewDataSource {
+extension CommunicationViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -160,7 +162,7 @@ extension View3: UICollectionViewDelegate, UICollectionViewDataSource {
     
 }
 
-extension View3 {
+extension CommunicationViewController {
     
     //-(self.view.frame.height * (1/11))
     //+ (self.view.frame.height * (1/11))
@@ -944,7 +946,7 @@ extension View3 {
 }
 
 
-extension View3: UITableViewDelegate, UITableViewDataSource {
+extension CommunicationViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -972,7 +974,9 @@ extension View3: UITableViewDelegate, UITableViewDataSource {
             return cell
         }else {
             tableView.register(ConversationsTVCell.self, forCellReuseIdentifier: "ConversationsCell")
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "ConversationsCell", for: indexPath) as! ConversationsTVCell
+            let sneaker = sneakers[(indexPath.row + 3) % sneakers.count]
             
             let sneakerImage = cell.sneakerImage
             sneakerImage.image = sneakers[(indexPath.row + 3) % 5].photos?[0]
@@ -1014,8 +1018,8 @@ extension View3: UITableViewDelegate, UITableViewDataSource {
             sneakerCondition.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 1/1.25).isActive = true
             sneakerCondition.heightAnchor.constraint(equalTo: cell.heightAnchor, multiplier: 1/5).isActive = true
             
-            let sneakerSize = cell.sneakerSize
-            sneakerSize.text = "Shoe Size"
+            let sneakerSize = cell.sneakerPrice
+            sneakerSize.text = String(sneaker.price!)
             sneakerSize.textColor = UIColor.black
             sneakerSize.textAlignment = .left
             sneakerSize.translatesAutoresizingMaskIntoConstraints = false

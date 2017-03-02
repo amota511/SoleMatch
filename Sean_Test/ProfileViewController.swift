@@ -8,7 +8,7 @@
 
 import UIKit
 
-class View1: UIViewController {
+class ProfileViewController: UIViewController {
 
     var scrollView: UIScrollView!
     
@@ -183,14 +183,27 @@ class View1: UIViewController {
     }
     
     func myCollectionTapRecognizer(){
-        self.myCollectionHeight.isActive = false
+        //self.myCollectionHeight.isActive = false
         if !isMyCollectionDroppedDown {
-            self.myCollectionHeight = myCollection.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/2.35)
+            self.myCollectionHeight.constant.add(self.view.frame.height * (1/2.35))
+            
+                //.subtract(self.myCollectionHeight.multiplier)
+            //self.myCollectionHeight = myCollection.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/2.35)
             isMyCollectionDroppedDown = !isMyCollectionDroppedDown
         }else{
-            self.myCollectionHeight = myCollection.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0)
+            self.myCollectionHeight.constant.subtract(self.view.frame.height * (1/2.35))
+            //self.myCollectionHeight.multiplier.add(self.myCollectionHeight.multiplier)
+            //= 1/2.35
+            //self.myCollectionHeight = myCollection.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0)
+//            UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 0.80, initialSpringVelocity: 0.0, options: [], animations: {
+//                self.view.layoutIfNeeded()
+//            }, completion: nil)
             isMyCollectionDroppedDown = !isMyCollectionDroppedDown
         }
+        
+        UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [.curveEaseOut], animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
 
         self.myCollectionHeight.isActive = true
         
@@ -357,7 +370,7 @@ class View1: UIViewController {
     
 }
 
-extension View1: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
