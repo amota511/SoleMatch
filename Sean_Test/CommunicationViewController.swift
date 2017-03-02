@@ -1018,18 +1018,18 @@ extension CommunicationViewController: UITableViewDelegate, UITableViewDataSourc
             sneakerCondition.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 1/1.25).isActive = true
             sneakerCondition.heightAnchor.constraint(equalTo: cell.heightAnchor, multiplier: 1/5).isActive = true
             
-            let sneakerSize = cell.sneakerPrice
-            sneakerSize.text = String(sneaker.price!)
-            sneakerSize.textColor = UIColor.black
-            sneakerSize.textAlignment = .left
-            sneakerSize.translatesAutoresizingMaskIntoConstraints = false
+            let sneakerPrice = cell.sneakerPrice
+            sneakerPrice.text = "$" + String(sneaker.price!)
+            sneakerPrice.textColor = UIColor.black
+            sneakerPrice.textAlignment = .left
+            sneakerPrice.translatesAutoresizingMaskIntoConstraints = false
             
-            cell.addSubview(sneakerSize)
+            cell.addSubview(sneakerPrice)
             
-            sneakerSize.bottomAnchor.constraint(equalTo: sneakerImage.bottomAnchor, constant: 0).isActive = true
-            sneakerSize.leftAnchor.constraint(equalTo: sneakerImage.rightAnchor, constant: 12).isActive = true
-            sneakerSize.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 1/1.25).isActive = true
-            sneakerSize.heightAnchor.constraint(equalTo: cell.heightAnchor, multiplier: 1/5).isActive = true
+            sneakerPrice.bottomAnchor.constraint(equalTo: sneakerImage.bottomAnchor, constant: 0).isActive = true
+            sneakerPrice.leftAnchor.constraint(equalTo: sneakerImage.rightAnchor, constant: 12).isActive = true
+            sneakerPrice.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 1/1.25).isActive = true
+            sneakerPrice.heightAnchor.constraint(equalTo: cell.heightAnchor, multiplier: 1/5).isActive = true
             
 
             let hourGlassTimer = UIImageView(image: #imageLiteral(resourceName: "hourglass_colored"))
@@ -1052,7 +1052,7 @@ extension CommunicationViewController: UITableViewDelegate, UITableViewDataSourc
             
             cell.addSubview(timerLabel)
             
-            timerLabel.bottomAnchor.constraint(equalTo: sneakerSize.bottomAnchor, constant: 0).isActive = true
+            timerLabel.bottomAnchor.constraint(equalTo: sneakerPrice.bottomAnchor, constant: 0).isActive = true
             timerLabel.rightAnchor.constraint(equalTo: cell.rightAnchor, constant: 3.5).isActive = true
             timerLabel.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 1/3).isActive = true
             timerLabel.heightAnchor.constraint(equalTo: cell.heightAnchor, multiplier: 1/6).isActive = true

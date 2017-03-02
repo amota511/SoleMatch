@@ -36,7 +36,7 @@ class AddSneakerViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func setupContainerView(blurView: UIVisualEffectView){
         
-        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width / 1.25, height: self.view.frame.width / 1.25))
+        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width * 0.95, height: self.view.frame.width / 1.25))
         containerView.center = CGPoint(x: self.view.center.x, y: self.view.center.y + self.view.center.y / 6)
         containerView.backgroundColor = UIColor.white //(red: 245.0/255.0, green: 245.0/255.0, blue: 245.0/255.0, alpha: 1.0)
         containerView.alpha = 0
@@ -55,7 +55,7 @@ class AddSneakerViewController: UIViewController, UICollectionViewDelegate, UICo
     func animateContainerView(containerView: UIView, sneakerPhotosCV: UICollectionView) {
         UIView.animate(withDuration: 1.5, delay: 0.0, usingSpringWithDamping: 3.5, initialSpringVelocity: 0.5, options: [.curveEaseInOut] , animations: {
             
-            containerView.frame.size = CGSize(width: self.view.frame.width * 0.95, height: self.view.frame.width * 0.95)
+            containerView.frame.size.height = CGFloat(self.view.frame.width * 0.95)
             containerView.center = self.view.center
             sneakerPhotosCV.bounds.origin.x = 0
             sneakerPhotosCV.bounds.origin.y = 0
@@ -104,7 +104,7 @@ class AddSneakerViewController: UIViewController, UICollectionViewDelegate, UICo
         
         
         let sneakerPhotosCV = UICollectionView(frame: CGRect(x: 0, y: 0, width: containerView.frame.width, height: (self.view.frame.width * 0.95) * (1/1.75)), collectionViewLayout: sneakerPhotosCVLayout)
-        sneakerPhotosCVLayout.itemSize = CGSize(width: sneakerPhotosCVLayout.collectionView!.frame.width * (1/2.76), height: sneakerPhotosCVLayout.collectionView!.frame.height * (1/2.25))
+        sneakerPhotosCVLayout.itemSize = CGSize(width: sneakerPhotosCVLayout.collectionView!.frame.width * (1/3.3), height: sneakerPhotosCVLayout.collectionView!.frame.height * (1/2.25))
         sneakerPhotosCV.dataSource = self
         sneakerPhotosCV.delegate = self
         sneakerPhotosCV.translatesAutoresizingMaskIntoConstraints = false
