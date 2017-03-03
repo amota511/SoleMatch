@@ -426,8 +426,8 @@ class SwipingViewController: UIViewController {
                 
                 if view.center.x < 50 {
                     
-                    UIView.animate(withDuration: 0.1, animations: {
-                        view.frame.origin.x = -self.cardA!.frame.width
+                    UIView.animate(withDuration: 0.2, animations: {
+                        view.frame.origin.x = -self.cardA!.frame.width * 2
                     }, completion: {
                         completionFlag in
                         
@@ -439,8 +439,8 @@ class SwipingViewController: UIViewController {
                     
                 }else if view.center.x > self.view.frame.width - 50 {
 
-                    UIView.animate(withDuration: 0.1, animations: {
-                        view.frame.origin.x = self.view.frame.width
+                    UIView.animate(withDuration: 0.2, animations: {
+                        view.frame.origin.x = self.view.frame.width * 2
                     }, completion: {
                         completionFlag in
                         
@@ -453,10 +453,14 @@ class SwipingViewController: UIViewController {
                     
                 }else {
                     
-                    UIView.animate(withDuration: 0.5, animations: {
+                    UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: [], animations: {
                         sender.view!.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 + 17.5)
                         sender.view!.transform = sender.view!.transform.rotated(by: -atan2(self.cardA!.transform.b, self.cardA!.transform.a))
-                    })
+                    }, completion: nil)
+                    
+//                    UIView.animate(withDuration: 0.5, animations: {
+//                        
+//                    })
                     sender.setTranslation(CGPoint(x: 0, y: 0), in: self.view)
                     
                 }

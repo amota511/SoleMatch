@@ -78,7 +78,7 @@ class AddSneakerViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func setupAddKickLabel(blurView: UIVisualEffectView) {
         let addKickLabel = UILabel()
-        addKickLabel.text = "Add Kick"
+        addKickLabel.text = "Add Sneaker"
         addKickLabel.textColor = UIColor.white
         addKickLabel.textAlignment = .center
         addKickLabel.attributedText = NSAttributedString(string: addKickLabel.text!, attributes: [NSUnderlineStyleAttributeName: 1, NSFontAttributeName : UIFont.systemFont(ofSize: 21.0)])

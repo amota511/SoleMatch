@@ -400,13 +400,14 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             let nameLabel = UILabel()
             nameLabel.textAlignment = .center
-            nameLabel.text = "Add Kick"
+            nameLabel.text = "Add Sneaker"
             nameLabel.textColor = UIColor.white
+            nameLabel.adjustsFontSizeToFitWidth = true
             nameLabel.translatesAutoresizingMaskIntoConstraints = false
             cell.addSubview(nameLabel)
             nameLabel.bottomAnchor.constraint(equalTo: cell.bottomAnchor, constant: -5).isActive = true
             nameLabel.centerXAnchor.constraint(equalTo: cell.centerXAnchor).isActive = true
-            nameLabel.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 1/1.25).isActive = true
+            nameLabel.widthAnchor.constraint(equalTo: cell.widthAnchor, multiplier: 1).isActive = true
             nameLabel.heightAnchor.constraint(equalTo: cell.heightAnchor, multiplier: 1/5).isActive = true
         }else if indexPath.row < imageArray.count {
             let imageView = UIImageView()
@@ -425,7 +426,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let baseView = self.parent as! ViewController
+        let baseView = self.parent as! BaseVC
         baseView.showAddSneakerViewController()
 
     

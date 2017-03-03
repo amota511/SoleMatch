@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIScrollViewDelegate {
+class BaseVC: UIViewController, UIScrollViewDelegate {
 
     
     @IBOutlet var scrollView: UIScrollView!
@@ -167,7 +167,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     func showConversation() {
         createConversationView()
     }
-    func createConversationView() -> UIView{
+    func createConversationView() {
         self.view.clipsToBounds = false
         let conversationView = UIView(frame: CGRect(x: self.view.frame.width, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         conversationView.backgroundColor = UIColor(red: 215/255.0, green: 215/255.0, blue: 215/255.0, alpha: 1.0)
@@ -192,7 +192,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             
             let button = UIButton()
             button.setTitle("< Back", for: .normal)
-            button.setTitleColor(UIColor(red: 215/255.0, green: 215/255.0, blue: 215/255.0, alpha: 1.0), for: .normal)
+            button.setTitleColor(UIColor.white, for: .normal)
             button.translatesAutoresizingMaskIntoConstraints = false
             button.addTarget(self, action: #selector(dissmissConversationsView(sender:)), for: .touchUpInside)
             return button
@@ -207,7 +207,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         let personNameLabel = UILabel()
         personNameLabel.text = "Kanye"
-        personNameLabel.textColor = UIColor(red: 215/255.0, green: 215/255.0, blue: 215/255.0, alpha: 1.0)
+        personNameLabel.textColor = UIColor.white
         personNameLabel.font = UIFont.boldSystemFont(ofSize: 22)
         personNameLabel.textAlignment = .center
         personNameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -271,7 +271,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
             complete in
             //messagesTableView.scrollToRow(at: IndexPath(row: 4, section: 0), at: .bottom, animated: true)
         })
-        return conversationView
+        
     }
     
     func sendButtonPressed(sender: UIButton) {

@@ -8,18 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		1A37D9B31E2896A9000B11B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A37D9B21E2896A9000B11B2 /* AppDelegate.swift */; };
-		1A37D9B51E2896A9000B11B2 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A37D9B41E2896A9000B11B2 /* BaseViewController.swift */; };
+		1A37D9B51E2896A9000B11B2 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A37D9B41E2896A9000B11B2 /* BaseVC.swift */; };
 		1A37D9B81E2896A9000B11B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A37D9B61E2896A9000B11B2 /* Main.storyboard */; };
 		1A37D9BA1E2896A9000B11B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A37D9B91E2896A9000B11B2 /* Assets.xcassets */; };
 		1A37D9BD1E2896A9000B11B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A37D9BB1E2896A9000B11B2 /* LaunchScreen.storyboard */; };
 		1A514F051E5E35DB00F8217D /* ConversationsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A514F041E5E35DA00F8217D /* ConversationsTVCell.swift */; };
 		1A5B3BFE1E4D6CF200DF6B32 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A5B3BFD1E4D6CDB00DF6B32 /* Pacifico-Regular.ttf */; };
 		1A5E9A7A1E3A91A7005DE1D8 /* ConnectionsCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E9A791E3A91A7005DE1D8 /* ConnectionsCVCell.swift */; };
-		1A9AB2F91E34063B003319EC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AB2F71E34063B003319EC /* ProfileViewController.swift */; };
+		1A9AB2F91E34063B003319EC /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AB2F71E34063B003319EC /* ProfileVC.swift */; };
 		1A9AB2FA1E34063B003319EC /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9AB2F81E34063B003319EC /* ProfileView.xib */; };
-		1A9AB2FD1E34064C003319EC /* SwipingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AB2FB1E34064C003319EC /* SwipingViewController.swift */; };
+		1A9AB2FD1E34064C003319EC /* SwipingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AB2FB1E34064C003319EC /* SwipingVC.swift */; };
 		1A9AB2FE1E34064C003319EC /* SwipingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9AB2FC1E34064C003319EC /* SwipingView.xib */; };
-		1A9AB3011E340659003319EC /* CommunicationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AB2FF1E340659003319EC /* CommunicationViewController.swift */; };
+		1A9AB3011E340659003319EC /* CommunicationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AB2FF1E340659003319EC /* CommunicationVC.swift */; };
 		1A9AB3021E340659003319EC /* CommunicationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9AB3001E340659003319EC /* CommunicationView.xib */; };
 		1ABFA14D1E63D6CF00E0801E /* AddSneakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABFA14C1E63D6CF00E0801E /* AddSneakerViewController.swift */; };
 		1ABFA14F1E64D6D600E0801E /* AddSneakerCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABFA14E1E64D6D600E0801E /* AddSneakerCVCell.swift */; };
@@ -30,7 +30,7 @@
 /* Begin PBXFileReference section */
 		1A37D9AF1E2896A9000B11B2 /* SoleMatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoleMatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A37D9B21E2896A9000B11B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1A37D9B41E2896A9000B11B2 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		1A37D9B41E2896A9000B11B2 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		1A37D9B71E2896A9000B11B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1A37D9B91E2896A9000B11B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A37D9BC1E2896A9000B11B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -38,11 +38,11 @@
 		1A514F041E5E35DA00F8217D /* ConversationsTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsTVCell.swift; sourceTree = "<group>"; };
 		1A5B3BFD1E4D6CDB00DF6B32 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pacifico-Regular.ttf"; sourceTree = "<group>"; };
 		1A5E9A791E3A91A7005DE1D8 /* ConnectionsCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsCVCell.swift; sourceTree = "<group>"; };
-		1A9AB2F71E34063B003319EC /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		1A9AB2F71E34063B003319EC /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		1A9AB2F81E34063B003319EC /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
-		1A9AB2FB1E34064C003319EC /* SwipingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingViewController.swift; sourceTree = "<group>"; };
+		1A9AB2FB1E34064C003319EC /* SwipingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingVC.swift; sourceTree = "<group>"; };
 		1A9AB2FC1E34064C003319EC /* SwipingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwipingView.xib; sourceTree = "<group>"; };
-		1A9AB2FF1E340659003319EC /* CommunicationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationViewController.swift; sourceTree = "<group>"; };
+		1A9AB2FF1E340659003319EC /* CommunicationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationVC.swift; sourceTree = "<group>"; };
 		1A9AB3001E340659003319EC /* CommunicationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommunicationView.xib; sourceTree = "<group>"; };
 		1ABFA14C1E63D6CF00E0801E /* AddSneakerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSneakerViewController.swift; sourceTree = "<group>"; };
 		1ABFA14E1E64D6D600E0801E /* AddSneakerCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSneakerCVCell.swift; sourceTree = "<group>"; };
@@ -100,6 +100,14 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		1A6EB9741E6932D800041801 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1ABFA14E1E64D6D600E0801E /* AddSneakerCVCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		1AA322121E67AC12002C34CF /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,7 +128,7 @@
 		1ABFA1501E652C2900E0801E /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				1A9AB2F71E34063B003319EC /* ProfileViewController.swift */,
+				1A9AB2F71E34063B003319EC /* ProfileVC.swift */,
 				1ABFA1571E652D3000E0801E /* AddSneaker */,
 				1A9AB2F81E34063B003319EC /* ProfileView.xib */,
 			);
@@ -130,7 +138,7 @@
 		1ABFA1511E652C6600E0801E /* Swipe */ = {
 			isa = PBXGroup;
 			children = (
-				1A9AB2FB1E34064C003319EC /* SwipingViewController.swift */,
+				1A9AB2FB1E34064C003319EC /* SwipingVC.swift */,
 				1A9AB2FC1E34064C003319EC /* SwipingView.xib */,
 			);
 			name = Swipe;
@@ -139,7 +147,7 @@
 		1ABFA1521E652C8300E0801E /* Communication */ = {
 			isa = PBXGroup;
 			children = (
-				1A9AB2FF1E340659003319EC /* CommunicationViewController.swift */,
+				1A9AB2FF1E340659003319EC /* CommunicationVC.swift */,
 				1AC89E101E4403F100539890 /* ConversationView.swift */,
 				1AA322121E67AC12002C34CF /* Cells */,
 				1A9AB3001E340659003319EC /* CommunicationView.xib */,
@@ -150,7 +158,7 @@
 		1ABFA1531E652C9D00E0801E /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				1A37D9B41E2896A9000B11B2 /* BaseViewController.swift */,
+				1A37D9B41E2896A9000B11B2 /* BaseVC.swift */,
 				1ABFA1501E652C2900E0801E /* Profile */,
 				1ABFA1511E652C6600E0801E /* Swipe */,
 				1ABFA1521E652C8300E0801E /* Communication */,
@@ -179,7 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				1ABFA14C1E63D6CF00E0801E /* AddSneakerViewController.swift */,
-				1ABFA14E1E64D6D600E0801E /* AddSneakerCVCell.swift */,
+				1A6EB9741E6932D800041801 /* Cells */,
 			);
 			name = AddSneaker;
 			sourceTree = "<group>";
@@ -261,15 +269,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A37D9B51E2896A9000B11B2 /* BaseViewController.swift in Sources */,
+				1A37D9B51E2896A9000B11B2 /* BaseVC.swift in Sources */,
 				1AC89E0F1E428D0500539890 /* Sneaker.swift in Sources */,
 				1ABFA14F1E64D6D600E0801E /* AddSneakerCVCell.swift in Sources */,
 				1A514F051E5E35DB00F8217D /* ConversationsTVCell.swift in Sources */,
-				1A9AB3011E340659003319EC /* CommunicationViewController.swift in Sources */,
-				1A9AB2F91E34063B003319EC /* ProfileViewController.swift in Sources */,
+				1A9AB3011E340659003319EC /* CommunicationVC.swift in Sources */,
+				1A9AB2F91E34063B003319EC /* ProfileVC.swift in Sources */,
 				1A37D9B31E2896A9000B11B2 /* AppDelegate.swift in Sources */,
 				1A5E9A7A1E3A91A7005DE1D8 /* ConnectionsCVCell.swift in Sources */,
-				1A9AB2FD1E34064C003319EC /* SwipingViewController.swift in Sources */,
+				1A9AB2FD1E34064C003319EC /* SwipingVC.swift in Sources */,
 				1ABFA14D1E63D6CF00E0801E /* AddSneakerViewController.swift in Sources */,
 				1AC89E111E4403F100539890 /* ConversationView.swift in Sources */,
 			);
