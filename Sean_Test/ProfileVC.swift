@@ -25,6 +25,7 @@ class ProfileViewController: UIViewController {
     var myPrefSize: UILabel!
     var myPrefSliderValue: Float!
     var imageArray = [UIImage]()
+    var reviewsLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +36,8 @@ class ProfileViewController: UIViewController {
         createMyCollectionView()
         createPreferencesButton()
         createPreferencesView()
- 
+        createReviewsLabel()
+        
 
         imageArray.append(#imageLiteral(resourceName: "Air Mag"))
         imageArray.append(#imageLiteral(resourceName: "Yeezy Red Stripe"))
@@ -45,6 +47,28 @@ class ProfileViewController: UIViewController {
 
     }
     
+    func createReviewsTBVC() {
+        let reviewsTBVC = UITableViewController()
+        reviewsTBVC
+        
+    }
+    
+    func createReviewsLabel() {
+        let reviewsLabel = UILabel()
+        reviewsLabel.text = "My Reviews"
+        reviewsLabel.textAlignment = .center
+        reviewsLabel.textColor = UIColor.black
+        reviewsLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        self.reviewsLabel = reviewsLabel
+        self.view.addSubview(self.reviewsLabel)
+        reviewsLabel.topAnchor.constraint(equalTo: self.myPreferences.bottomAnchor, constant: 5).isActive = true
+        reviewsLabel.centerXAnchor.constraint(equalTo: self.myPreferences.centerXAnchor).isActive = true
+        reviewsLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1/2).isActive = true
+        reviewsLabel.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/15).isActive = true
+        
+    }
     
     func createUserImage() {
         
@@ -337,6 +361,8 @@ class ProfileViewController: UIViewController {
         for view in myPreferences.subviews {
             view.isHidden = true
         }
+        
+        
     }
     
     func sliderMoved(sender: UISlider) {

@@ -282,7 +282,7 @@ extension CommunicationViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let baseView = self.parent as! BaseVC
-        baseView.showConversation()
+        baseView.createConversationView()
         
     }
     

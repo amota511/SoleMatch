@@ -15,6 +15,8 @@
 		1A514F051E5E35DB00F8217D /* ConversationsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A514F041E5E35DA00F8217D /* ConversationsTVCell.swift */; };
 		1A5B3BFE1E4D6CF200DF6B32 /* Pacifico-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A5B3BFD1E4D6CDB00DF6B32 /* Pacifico-Regular.ttf */; };
 		1A5E9A7A1E3A91A7005DE1D8 /* ConnectionsCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E9A791E3A91A7005DE1D8 /* ConnectionsCVCell.swift */; };
+		1A64A0C21E8624620067BF87 /* ReviewsTBVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64A0C11E8624620067BF87 /* ReviewsTBVC.swift */; };
+		1A64A0C41E8624A90067BF87 /* ReviewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A64A0C31E8624A90067BF87 /* ReviewsCell.swift */; };
 		1A9AB2F91E34063B003319EC /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AB2F71E34063B003319EC /* ProfileVC.swift */; };
 		1A9AB2FA1E34063B003319EC /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A9AB2F81E34063B003319EC /* ProfileView.xib */; };
 		1A9AB2FD1E34064C003319EC /* SwipingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AB2FB1E34064C003319EC /* SwipingVC.swift */; };
@@ -24,7 +26,7 @@
 		1ABFA14D1E63D6CF00E0801E /* AddSneakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABFA14C1E63D6CF00E0801E /* AddSneakerViewController.swift */; };
 		1ABFA14F1E64D6D600E0801E /* AddSneakerCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ABFA14E1E64D6D600E0801E /* AddSneakerCVCell.swift */; };
 		1AC89E0F1E428D0500539890 /* Sneaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC89E0E1E428D0500539890 /* Sneaker.swift */; };
-		1AC89E111E4403F100539890 /* ConversationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC89E101E4403F100539890 /* ConversationView.swift */; };
+		1AC89E111E4403F100539890 /* ConversationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC89E101E4403F100539890 /* ConversationVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		1A514F041E5E35DA00F8217D /* ConversationsTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationsTVCell.swift; sourceTree = "<group>"; };
 		1A5B3BFD1E4D6CDB00DF6B32 /* Pacifico-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pacifico-Regular.ttf"; sourceTree = "<group>"; };
 		1A5E9A791E3A91A7005DE1D8 /* ConnectionsCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsCVCell.swift; sourceTree = "<group>"; };
+		1A64A0C11E8624620067BF87 /* ReviewsTBVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsTBVC.swift; sourceTree = "<group>"; };
+		1A64A0C31E8624A90067BF87 /* ReviewsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsCell.swift; sourceTree = "<group>"; };
 		1A9AB2F71E34063B003319EC /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		1A9AB2F81E34063B003319EC /* ProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		1A9AB2FB1E34064C003319EC /* SwipingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingVC.swift; sourceTree = "<group>"; };
@@ -47,7 +51,7 @@
 		1ABFA14C1E63D6CF00E0801E /* AddSneakerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSneakerViewController.swift; sourceTree = "<group>"; };
 		1ABFA14E1E64D6D600E0801E /* AddSneakerCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSneakerCVCell.swift; sourceTree = "<group>"; };
 		1AC89E0E1E428D0500539890 /* Sneaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sneaker.swift; sourceTree = "<group>"; };
-		1AC89E101E4403F100539890 /* ConversationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationView.swift; sourceTree = "<group>"; };
+		1AC89E101E4403F100539890 /* ConversationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConversationVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				1A9AB2F71E34063B003319EC /* ProfileVC.swift */,
+				1A64A0C11E8624620067BF87 /* ReviewsTBVC.swift */,
+				1A64A0C31E8624A90067BF87 /* ReviewsCell.swift */,
 				1ABFA1571E652D3000E0801E /* AddSneaker */,
 				1A9AB2F81E34063B003319EC /* ProfileView.xib */,
 			);
@@ -148,7 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				1A9AB2FF1E340659003319EC /* CommunicationVC.swift */,
-				1AC89E101E4403F100539890 /* ConversationView.swift */,
+				1AC89E101E4403F100539890 /* ConversationVC.swift */,
 				1AA322121E67AC12002C34CF /* Cells */,
 				1A9AB3001E340659003319EC /* CommunicationView.xib */,
 			);
@@ -269,9 +275,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A64A0C21E8624620067BF87 /* ReviewsTBVC.swift in Sources */,
 				1A37D9B51E2896A9000B11B2 /* BaseVC.swift in Sources */,
 				1AC89E0F1E428D0500539890 /* Sneaker.swift in Sources */,
 				1ABFA14F1E64D6D600E0801E /* AddSneakerCVCell.swift in Sources */,
+				1A64A0C41E8624A90067BF87 /* ReviewsCell.swift in Sources */,
 				1A514F051E5E35DB00F8217D /* ConversationsTVCell.swift in Sources */,
 				1A9AB3011E340659003319EC /* CommunicationVC.swift in Sources */,
 				1A9AB2F91E34063B003319EC /* ProfileVC.swift in Sources */,
@@ -279,7 +287,7 @@
 				1A5E9A7A1E3A91A7005DE1D8 /* ConnectionsCVCell.swift in Sources */,
 				1A9AB2FD1E34064C003319EC /* SwipingVC.swift in Sources */,
 				1ABFA14D1E63D6CF00E0801E /* AddSneakerViewController.swift in Sources */,
-				1AC89E111E4403F100539890 /* ConversationView.swift in Sources */,
+				1AC89E111E4403F100539890 /* ConversationVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +412,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 22ZGT27U85;
 				INFOPLIST_FILE = Sean_Test/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.motayne.aaron.SoleMatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -417,6 +426,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 22ZGT27U85;
 				INFOPLIST_FILE = Sean_Test/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.motayne.aaron.SoleMatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";

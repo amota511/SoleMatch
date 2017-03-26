@@ -197,11 +197,13 @@ class SwipingViewController: UIViewController {
 
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         self.scrollView = self.view.superview as! UIScrollView
         cardA = createNewCard()
         cardB = createNewCard()
         
         assignPanGesture(card: cardA!)
+        
     }
     
     func scrollLeft(){
