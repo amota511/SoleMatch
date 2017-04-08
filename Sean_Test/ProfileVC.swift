@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var scrollView: UIScrollView!
     
@@ -37,7 +37,7 @@ class ProfileViewController: UIViewController {
         createPreferencesButton()
         createPreferencesView()
         createReviewsLabel()
-        
+        createReviewsTBVC()
 
         imageArray.append(#imageLiteral(resourceName: "Air Mag"))
         imageArray.append(#imageLiteral(resourceName: "Yeezy Red Stripe"))
@@ -48,8 +48,18 @@ class ProfileViewController: UIViewController {
     }
     
     func createReviewsTBVC() {
-        let reviewsTBVC = UITableViewController()
-        reviewsTBVC
+        let reviewsTBVC = ReviewsTBVC()
+        //reviewsTBVC.view.frame = CGRect(x: 0, y: 400, width: self.view.frame.width, height: self.view.frame.height / 3)
+        reviewsTBVC.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.addChildViewController(reviewsTBVC)
+        self.view.addSubview(reviewsTBVC.view)
+        
+        reviewsTBVC.view.topAnchor.constraint(equalTo: self.reviewsLabel.bottomAnchor, constant: 5).isActive = true
+        reviewsTBVC.view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        reviewsTBVC.view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1).isActive = true
+        reviewsTBVC.view.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        
         
     }
     
@@ -74,6 +84,7 @@ class ProfileViewController: UIViewController {
         
         
         //let url = URL(string: "https://thefader-res.cloudinary.com/images/w_2400,c_limit,f_auto,q_auto:best/F100_Drake_Cover_FINAL_tuqta0/drake-views-from-the-6-cover-story-interview.jpg")
+        
         let userImage = UIImageView(image: #imageLiteral(resourceName: "kanye-west"))
         
 //        do {
@@ -89,6 +100,9 @@ class ProfileViewController: UIViewController {
         userImage.contentMode = .scaleAspectFill
         userImage.translatesAutoresizingMaskIntoConstraints = false
         userImage.clipsToBounds = true
+        
+        let editUserImageGestureRecognizer = UIGestureRecognizer(target: self, action: #selector(editUserImage))
+        userImage.addGestureRecognizer(editUserImageGestureRecognizer)
         
         userImage.layer.borderWidth = 3.0
         userImage.layer.borderColor = UIColor.white.cgColor
@@ -106,7 +120,68 @@ class ProfileViewController: UIViewController {
         
         createStars()
         
+    }
+    
+    func editUserImage() {
+        print("user image tapped")
+        let photoSelectionAlertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
+        photoSelectionAlertController.addAction(UIAlertAction(title: "Import From Camera Roll", style: .default, handler: { (UIAlertAction) in
+            
+            
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                
+                
+                let picker = UIImagePickerController()
+                picker.delegate = self
+                picker.sourceType = .photoLibrary
+                picker.allowsEditing = false
+                self.present(picker, animated: true, completion: nil)
+                
+            }else {
+                print("The camera roll is not available")
+            }
+        }))
+        
+        
+        photoSelectionAlertController.addAction(UIAlertAction(title: "Use Camera", style: .default, handler: { (UIAlertAction) in
+            
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                
+                
+                let picker = UIImagePickerController()
+                picker.delegate = self
+                picker.sourceType = .camera
+                picker.allowsEditing = false
+                self.present(picker, animated: true, completion: nil)
+                
+            }else {
+                print("The camera is not available")
+            }
+        }))
+        
+        
+        photoSelectionAlertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (UIAlertAction) in
+            photoSelectionAlertController.dismiss(animated: true)
+        }))
+        
+        self.present(photoSelectionAlertController, animated: true)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        
+        self.userImage.image = image
+        print("Image picked")
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        print(info)
+        
+        self.userImage.image = info[UIImagePickerControllerOriginalImage] as! UIImage?
+        picker.dismiss(animated: true) {
+            
+        }
     }
     
     func createStars() {

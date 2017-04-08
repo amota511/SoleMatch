@@ -36,6 +36,7 @@ class SwipingViewController: UIViewController {
         return button
     }()
     
+    var filterView: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +95,7 @@ class SwipingViewController: UIViewController {
         cardFilter.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         cardFilter.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1/1.85).isActive = true
         cardFilter.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 1/22).isActive = true
-        
+        (self.view.frame.height / 22)
         let filterSelectionView = UIView()
         filterSelectionView.backgroundColor = UIColor(red: 230 / 255.0, green: 70/255.0, blue: 30/255.0, alpha: 1.0)
         filterSelectionView.alpha = 1.0
@@ -163,7 +164,9 @@ class SwipingViewController: UIViewController {
         filterSelectionViewCenterX.isActive = true
         filterSelectionView.heightAnchor.constraint(equalTo: cardFilter.heightAnchor).isActive = true
         filterSelectionView.widthAnchor.constraint(equalTo: cardFilter.widthAnchor, multiplier: 1/3.2).isActive = true
+        self.filterView = cardFilter
         
+        createFilterTutorialButton()
     }
     
     func changeFilter(sender: UIButton){
@@ -225,6 +228,33 @@ class SwipingViewController: UIViewController {
         card.addGestureRecognizer(panGesture)
     }
     
+    func createFilterTutorialButton(){
+        
+        let filterTutorialButton = UIButton(type: .system)
+        filterTutorialButton.translatesAutoresizingMaskIntoConstraints = false
+        filterTutorialButton.backgroundColor = UIColor.lightGray
+        filterTutorialButton.layer.cornerRadius = ((self.view.frame.height / 22) / 1.25) / 2 - 1
+        
+        filterTutorialButton.setImage(#imageLiteral(resourceName: "White_Question_Mark"), for: .normal)
+        
+        filterTutorialButton.tintColor = UIColor.white
+
+        filterTutorialButton.addTarget(self, action: #selector(filterTutorialButtonTapped(sender:)), for: .touchUpInside)
+        
+        self.view.addSubview(filterTutorialButton)
+        
+        filterTutorialButton.centerYAnchor.constraint(equalTo: filterView!.centerYAnchor).isActive = true
+        filterTutorialButton.heightAnchor.constraint(equalTo: filterView!.heightAnchor, multiplier: 1/1.25).isActive = true
+        filterTutorialButton.widthAnchor.constraint(equalTo: filterTutorialButton.heightAnchor).isActive = true
+        filterTutorialButton.leftAnchor.constraint(equalTo: filterView!.rightAnchor, constant: 5).isActive = true
+        
+//        filterTutorialButton.imageView?.heightAnchor.constraint(equalTo: filterTutorialButton.heightAnchor, multiplier: 1/2).isActive = true
+    }
+    
+    func filterTutorialButtonTapped(sender: UIButton){
+        print("filterTutorialButtonTapped")
+    }
+    
     func createNewCard() -> UIView{
         
         let backgroundPhoto = UIImageView()
@@ -236,30 +266,37 @@ class SwipingViewController: UIViewController {
         let photo2 = UIImageView()
         let photo3 = UIImageView()
 
-        DispatchQueue.global(qos: .background).async {
-            do {
-                let url = URL(string: "https://s-media-cache-ak0.pinimg.com/736x/5f/67/4f/5f674f244275237e63642c7f8afc5a4c.jpg")
-                let url2 = URL(string: "https://cdn.kickgame.co.uk/image/cache/data/yeezy/by9612/adidas-originals-yeezy-boost-350-v2-red_5-1300x1300.jpg")
-                let url3 = URL(string: "https://image.kanyewestsneakers.com/UA-Yeezy-350-Boost-V2-RED-SPLY-350-Black-Red/a648_a7_yno4nf.jpg")
-                let data = try Data(contentsOf: url!)
-                let data2 = try Data(contentsOf: url2!)
-                let data3 = try Data(contentsOf: url3!)
-                let image = UIImage(data: data)
-                let image2 = UIImage(data: data2)
-                let image3 = UIImage(data: data3)
-                DispatchQueue.main.async {
-                    backgroundPhoto.image = image
-                    backgroundPhoto2.image = image2
-                    backgroundPhoto3.image = image3
-                    photo.image = image
-                    photo2.image = image2
-                    photo3.image = image3
-                }
-                
-            }catch{
-                print("The Sneaker photo could not be loaded")
-            }
-        }
+//        DispatchQueue.global(qos: .background).async {
+//            do {
+//                let url = URL(string: "https://s-media-cache-ak0.pinimg.com/736x/5f/67/4f/5f674f244275237e63642c7f8afc5a4c.jpg")
+//                let url2 = URL(string: "https://cdn.kickgame.co.uk/image/cache/data/yeezy/by9612/adidas-originals-yeezy-boost-350-v2-red_5-1300x1300.jpg")
+//                let url3 = URL(string: "https://image.kanyewestsneakers.com/UA-Yeezy-350-Boost-V2-RED-SPLY-350-Black-Red/a648_a7_yno4nf.jpg")
+//                let data = try Data(contentsOf: url!)
+//                let data2 = try Data(contentsOf: url2!)
+//                let data3 = try Data(contentsOf: url3!)
+//                let image = UIImage(data: data)
+//                let image2 = UIImage(data: data2)
+//                let image3 = UIImage(data: data3)
+//                DispatchQueue.main.async {
+//                    backgroundPhoto.image = image
+//                    backgroundPhoto2.image = image2
+//                    backgroundPhoto3.image = image3
+//                    photo.image = image
+//                    photo2.image = image2
+//                    photo3.image = image3
+//                }
+//                
+//            }catch{
+//                print("The Sneaker photo could not be loaded")
+//            }
+//        }
+        
+        backgroundPhoto.image = #imageLiteral(resourceName: "Black_Yeezy_3")
+        backgroundPhoto2.image = #imageLiteral(resourceName: "Black_Yeezy_2")
+        backgroundPhoto3.image = #imageLiteral(resourceName: "Black_Yeezy_1")
+        photo.image = #imageLiteral(resourceName: "Black_Yeezy_3")
+        photo2.image = #imageLiteral(resourceName: "Black_Yeezy_2")
+        photo3.image = #imageLiteral(resourceName: "Black_Yeezy_1")
         
         let newCard = UIView()
         newCard.backgroundColor = UIColor.white
@@ -396,6 +433,8 @@ class SwipingViewController: UIViewController {
         priceLabel.layer.cornerRadius = 10
         
         newCard.addSubview(priceLabel)
+        
+        
         self.view.insertSubview(newCard, at: 0)
 
         return newCard
@@ -460,9 +499,6 @@ class SwipingViewController: UIViewController {
                         sender.view!.transform = sender.view!.transform.rotated(by: -atan2(self.cardA!.transform.b, self.cardA!.transform.a))
                     }, completion: nil)
                     
-//                    UIView.animate(withDuration: 0.5, animations: {
-//                        
-//                    })
                     sender.setTranslation(CGPoint(x: 0, y: 0), in: self.view)
                     
                 }

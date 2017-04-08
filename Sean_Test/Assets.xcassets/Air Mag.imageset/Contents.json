@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Air Mag.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Air Mag.jpg",
       "scale" : "2x"
     },
     {

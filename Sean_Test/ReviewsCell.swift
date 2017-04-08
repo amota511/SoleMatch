@@ -20,6 +20,4 @@ class ReviewsCell: UITableViewCell {
     let star5 = UIImageView()
     let review = UITextView()
     
-    
-    
 }
